@@ -1,0 +1,14 @@
+<app-atis-form [ReceivedData]="received.content.atisFields"></app-atis-form>
+<div class="row">
+  <div class="column">
+    <textarea
+      [(ngModel)]="content"
+      name="contentInput"
+      cols="40"
+      rows="5"
+    ></textarea>
+    <br />
+    <button (click)="sendMsg()">Send Message</button>
+  </div>
+  <button (click)="sendMsg()">Trimite mesaj</button>
+</div>

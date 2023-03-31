@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  </head>
+  <body>
+    <section class="container">
+      <header>ATIS Report</header>
+      <form action="#" class="form">
+        <div class="input-box">
+          <label>Observation time</label>
+          <input
+            [(ngModel)]="ReceivedData.obstime.name"
+            name="obstime"
+            type="text"
+            placeholder="Enter observation time"
+            required
+          />
+        </div>
+        <div class="grid">
+          <div class="grid-item">
+            <label>Active runway</label>
+            <div class="select-box">
+              <select>
+                <option hidden>Runway</option>
+                <option>07</option>
+                <option>10</option>
+                <option>14</option>
+                <option>25</option>
+                <option>28</option>
+                <option>32</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid-item">
+            <label>Type of Approach</label>
+            <div class="select-box">
+              <select>
+                <option hidden>Approach</option>
+                <option>ILS</option>
+                <option>VOR</option>
+                <option>NDB</option>
+              </select>
+            </div>
+          </div>
+          <div></div>
+          <div class="grid-item">
+            <label>Holding delay</label>
+            <input
+              [(ngModel)]="ReceivedData.holding.name"
+              name="holding"
+              type="text"
+              placeholder="Enter holding delay"
+              required
+            />
+          </div>
+          <div class="grid-item">
+            <label>Transition Level</label>
+            <input type="text" placeholder="Enter holding delay" required />
+          </div>
+          <div></div>
+          <div class="grid-item">
+            <label>Wind direction</label>
+            <input type="text" placeholder="Enter wind direction" required />
+          </div>
+          <div class="grid-item">
+            <label>Varying between</label>
+            <input type="text" placeholder="Enter holding delay" required />
+            <label class="and">and</label>
+            <input type="text" placeholder="Enter holding delay" required />
+          </div>
+          <div></div>
+          <div class="grid-item">
+            <label>Wind speed</label>
+            <input
+              [(ngModel)]="ReceivedData.mrl.wind.gusts.name"
+              name="holding"
+              type="text"
+              placeholder="Enter wind speed"
+              required
+            />
+            <label>kt</label>
+          </div>
+          <div class="grid-item">
+            <label>Gusting To</label>
+            <input type="text" placeholder="Enter holding delay" required />
+            <label>kt</label>
+          </div>
+        </div>
+        <div class="input-box">
+          <label>Visibility</label>
+          <input
+            [(ngModel)]="ReceivedData.visibility.name"
+            name="visibility"
+            type="text"
+            placeholder="Enter visibility"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <label>RVR</label>
+          <input
+            [(ngModel)]="ReceivedData.rvr.name"
+            name="rvr"
+            type="text"
+            placeholder="Enter RVR"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <label>Present weather</label>
+          <input
+            [(ngModel)]="ReceivedData.presentweather.name"
+            name="presentweather"
+            type="text"
+            placeholder="Enter present weather"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <label> Clouds</label>
+          <input
+            [(ngModel)]="ReceivedData.clouds.name"
+            name="clouds"
+            type="text"
+            placeholder="Enter present weather"
+            required
+          />
+        </div>
+        <div class="temperature-related-grid">
+          <div class="temp-grid-item-1">
+            <label>Temperature</label>
+            <input
+              [(ngModel)]="ReceivedData.temperature.name"
+              name="temperature"
+              type="text"
+              placeholder="Enter present weather"
+              required
+            />
+          </div>
+          <div class="temp-grid-item-2">
+            <label>Dewpoint</label>
+            <input
+              [(ngModel)]="ReceivedData.dewpoint.name"
+              name="dewpoint"
+              type="text"
+              placeholder="Enter present weather"
+              required
+            />
+          </div>
+          <div class="temp-grid-item-3">
+            <label>QNH</label>
+            <input type="text" placeholder="Enter present weather" required />
+          </div>
+          <div class="temp-grid-item-4">
+            <label>QFE</label>
+            <input
+              [(ngModel)]="ReceivedData.qfe.name"
+              name="qfe"
+              type="text"
+              placeholder="Enter present weather"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="input-box">
+          <label>Freetext</label>
+          <input type="text" placeholder="Enter present weather" required />
+        </div>
+        <div class="fixed-text">
+          <label>Fixedtext</label>
+          <div class="select-box">
+            <select>
+              <option hidden>Runway</option>
+              <option>INITIAL CLEARED ALTITUDE 4000 FEET</option>
+              <option>GROUND FREQUENCY 132.60</option>
+              <option>BIRD ACTIVITY NORTHEAST OF THRESHOLD RWY11</option>
+            </select>
+          </div>
+        </div>
+        <div class="broadcast-mode-buttons">
+          <label>Broadcast mode</label>
+          <br />
+          <button>Manual</button>
+          <button>SemiAuto</button>
+          <button>Auto</button>
+          <button class="broadcast">Broadcast</button>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>
