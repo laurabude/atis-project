@@ -1,4 +1,8 @@
-<app-atis-form [ReceivedData]="received.content.atisFields"></app-atis-form>
+<app-atis-form
+  [ReceivedData]="received.content.atisFields"
+  [collapsed]="isSideNavCollapsed"
+  [screenWidth]="screenWidth"
+></app-atis-form>
 <div class="row">
   <div class="column">
     <textarea
@@ -12,3 +16,4 @@
   </div>
   <button (click)="sendMsg()">Trimite mesaj</button>
 </div>
+<app-sidebar (onToggleSideNav)="onToggleSideNav($event)"></app-sidebar>

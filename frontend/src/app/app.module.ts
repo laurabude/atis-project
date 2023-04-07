@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { AtisFormComponent } from './atis-form/atis-form.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AtisFormComponent
+    AtisFormComponent,
+    SidebarComponent
     ],
   imports: [
     FormsModule,

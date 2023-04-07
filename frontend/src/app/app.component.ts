@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { ReceivedMessage, WebsocketService } from './websocket.service';
+interface SideNavToggle {
+  screenWidth: number;
+  collapsed: boolean;
+}
 
 @Component({
   selector: 'app-root',
@@ -29,5 +33,12 @@ export class AppComponent {
 
     this.sent.push(message);
     this.WebsocketService.messages.next(message);
+  }
+  isSideNavCollapsed = false;
+  screenWidth = 0;
+
+  onToggleSideNav(data: SideNavToggle): void {
+    this.screenWidth = data.screenWidth;
+    this.isSideNavCollapsed = data.collapsed;
   }
 }
