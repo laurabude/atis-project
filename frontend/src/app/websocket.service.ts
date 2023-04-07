@@ -16,14 +16,7 @@ export class ReceivedMessage implements SentMessage {
   content: Content;
 }
 export class Content {
-  atisCode: string;
   atisFields: object;
-  atisState: string;
-  icaoCode: string;
-  messageText: object;
-  releaseMode: string;
-  releaseTime: Date;
-  reportType: string;
 }
 @Injectable()
 export class WebsocketService {

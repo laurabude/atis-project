@@ -6,7 +6,7 @@
       <div class="input-box">
         <label>Observation time</label>
         <input
-          [(ngModel)]="ReceivedData.obstime.name"
+          [(ngModel)]="ReceivedData.obstime.value"
           name="obstime"
           type="text"
           placeholder="Enter observation time"
@@ -43,7 +43,7 @@
         <div class="grid-item">
           <label>Holding delay</label>
           <input
-            [(ngModel)]="ReceivedData.holding.name"
+            [(ngModel)]="ReceivedData.holding.value"
             name="holding"
             type="text"
             placeholder="Enter holding delay"
@@ -52,7 +52,7 @@
         </div>
         <div class="grid-item">
           <label>Transition Level</label>
-          <input type="text" placeholder="Enter holding delay" required />
+          <input type="text" placeholder="Enter transition level" required />
         </div>
         <div></div>
         <div class="grid-item">
@@ -61,9 +61,9 @@
         </div>
         <div class="grid-item">
           <label>Varying between</label>
-          <input type="text" placeholder="Enter holding delay" required />
+          <input type="text" placeholder="..." required />
           <label class="and">and</label>
-          <input type="text" placeholder="Enter holding delay" required />
+          <input type="text" placeholder="..." required />
         </div>
         <div></div>
         <div class="grid-item">
@@ -79,14 +79,14 @@
         </div>
         <div class="grid-item">
           <label>Gusting To</label>
-          <input type="text" placeholder="Enter holding delay" required />
+          <input type="text" placeholder="..." required />
           <label>kt</label>
         </div>
       </div>
       <div class="input-box">
         <label>Visibility</label>
         <input
-          [(ngModel)]="ReceivedData.visibility.name"
+          [(ngModel)]="ReceivedData.visibility.value"
           name="visibility"
           type="text"
           placeholder="Enter visibility"
@@ -96,7 +96,7 @@
       <div class="input-box">
         <label>RVR</label>
         <input
-          [(ngModel)]="ReceivedData.rvr.name"
+          [(ngModel)]="ReceivedData.rvr.value"
           name="rvr"
           type="text"
           placeholder="Enter RVR"
@@ -106,7 +106,7 @@
       <div class="input-box">
         <label>Present weather</label>
         <input
-          [(ngModel)]="ReceivedData.presentweather.name"
+          [(ngModel)]="ReceivedData.presentweather.value"
           name="presentweather"
           type="text"
           placeholder="Enter present weather"
@@ -116,10 +116,10 @@
       <div class="input-box">
         <label> Clouds</label>
         <input
-          [(ngModel)]="ReceivedData.clouds.name"
+          [(ngModel)]="ReceivedData.clouds.value"
           name="clouds"
           type="text"
-          placeholder="Enter present weather"
+          placeholder="Enter clouds"
           required
         />
       </div>
@@ -127,34 +127,34 @@
         <div class="temp-grid-item-1">
           <label>Temperature</label>
           <input
-            [(ngModel)]="ReceivedData.temperature.name"
+            [(ngModel)]="ReceivedData.temperature.value"
             name="temperature"
             type="text"
-            placeholder="Enter present weather"
+            placeholder="Enter temperature"
             required
           />
         </div>
         <div class="temp-grid-item-2">
           <label>Dewpoint</label>
           <input
-            [(ngModel)]="ReceivedData.dewpoint.name"
+            [(ngModel)]="ReceivedData.dewpoint.value"
             name="dewpoint"
             type="text"
-            placeholder="Enter present weather"
+            placeholder="Enter dewpoint"
             required
           />
         </div>
         <div class="temp-grid-item-3">
           <label>QNH</label>
-          <input type="text" placeholder="Enter present weather" required />
+          <input type="text" placeholder="Enter QNH" required />
         </div>
         <div class="temp-grid-item-4">
           <label>QFE</label>
           <input
-            [(ngModel)]="ReceivedData.qfe.name"
+            [(ngModel)]="ReceivedData.qfe.value"
             name="qfe"
             type="text"
-            placeholder="Enter present weather"
+            placeholder="Enter QFE"
             required
           />
         </div>
@@ -162,7 +162,7 @@
 
       <div class="input-box">
         <label>Freetext</label>
-        <input type="text" placeholder="Enter present weather" required />
+        <input type="text" placeholder="Freetext" required />
       </div>
       <div class="fixed-text">
         <label>Fixedtext</label>
@@ -181,7 +181,9 @@
         <button>Manual</button>
         <button>SemiAuto</button>
         <button>Auto</button>
-        <button class="broadcast">Broadcast</button>
+        <button class="broadcast" (click)="sendMessageToWebsocket()">
+          Broadcast
+        </button>
       </div>
     </form>
   </section>
