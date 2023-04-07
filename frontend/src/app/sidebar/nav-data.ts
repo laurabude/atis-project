@@ -5,14 +5,9 @@ export const navbarData = [
     label: 'Dashboard',
   },
   {
-    routeLink: 'products',
-    icon: 'fa fa-box-open',
-    label: 'Products',
-  },
-  {
-    routeLink: 'statistics',
-    icon: 'fa fa-chart-bar',
-    label: 'Statistics',
+    routeLink: 'atis-report',
+    icon: 'fa-plane fa',
+    label: 'Atis Report',
   },
   {
     routeLink: 'coupens',

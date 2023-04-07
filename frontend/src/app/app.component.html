@@ -1,18 +1,4 @@
-<app-atis-form
-  [ReceivedData]="received.content.atisFields"
-  [collapsed]="isSideNavCollapsed"
-  [screenWidth]="screenWidth"
-></app-atis-form>
-<div class="row">
-  <div class="column">
-    <textarea
-      [(ngModel)]="content"
-      name="contentInput"
-      cols="40"
-      rows="5"
-    ></textarea>
-    <br />
-    <button (click)="sendMsg()">Send Message</button>
-  </div>
-</div>
 <app-sidebar (onToggleSideNav)="onToggleSideNav($event)"></app-sidebar>
+
+<app-body [collapsed]="isSideNavCollapsed"
+[screenWidth]="screenWidth"></app-body>

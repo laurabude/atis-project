@@ -1,5 +1,4 @@
-<div class="body" [ngClass]="getBodyClass()">
-  <section class="container">
+<section class="container">
     <header>ATIS Report</header>
 
     <form action="#" class="form">
@@ -39,7 +38,6 @@
             </select>
           </div>
         </div>
-        <div></div>
         <div class="grid-item">
           <label>Holding delay</label>
           <input
@@ -54,20 +52,21 @@
           <label>Transition Level</label>
           <input type="text" placeholder="Enter transition level" required />
         </div>
-        <div></div>
         <div class="grid-item">
           <label>Wind direction</label>
           <input type="text" placeholder="Enter wind direction" required />
         </div>
         <div class="grid-item">
           <label>Varying between</label>
+          <div class="extended-input">
           <input type="text" placeholder="..." required />
           <label class="and">and</label>
           <input type="text" placeholder="..." required />
         </div>
-        <div></div>
+        </div>
         <div class="grid-item">
           <label>Wind speed</label>
+          <div class="extended-input">
           <input
             [(ngModel)]="ReceivedData.mrl.wind.gusts.name"
             name="holding"
@@ -76,11 +75,14 @@
             required
           />
           <label>kt</label>
+          </div>
         </div>
         <div class="grid-item">
           <label>Gusting To</label>
+          <div class="extended-input">
           <input type="text" placeholder="..." required />
           <label>kt</label>
+          </div>
         </div>
       </div>
       <div class="input-box">
@@ -160,11 +162,11 @@
         </div>
       </div>
 
-      <div class="input-box">
+      <div class="input-box textbox">
         <label>Freetext</label>
-        <input type="text" placeholder="Freetext" required />
+        <textarea placeholder="Freetext" required></textarea>
       </div>
-      <div class="fixed-text">
+      <div class="input-box" id="select-div">
         <label>Fixedtext</label>
         <div class="select-box">
           <select>
@@ -184,7 +186,7 @@
         <button class="broadcast" (click)="sendMessageToWebsocket()">
           Broadcast
         </button>
+        <button (click)="sendSubscribeMsg()">Send Message</button>
       </div>
     </form>
   </section>
-</div>

@@ -47,4 +47,15 @@ export class AtisFormComponent {
     this.sent.push(message);
     this.WebsocketService.messages.next(message);
   }
+
+  sendSubscribeMsg() {
+    let message = {
+      topic: '/ATIS_ARRDEP/ENFL',
+      type: 'SUBSCRIBE',
+      content: null,
+    };
+
+    this.sent.push(message);
+    this.WebsocketService.messages.next(message);
+  }
 }

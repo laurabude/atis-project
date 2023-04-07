@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { AtisFormComponent } from './atis-form/atis-form.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { BodyComponent } from './body/body.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AtisFormComponent,
-    SidebarComponent
+    SidebarComponent,
+    BodyComponent
     ],
   imports: [
     FormsModule,
