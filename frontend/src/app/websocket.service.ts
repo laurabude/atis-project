@@ -16,7 +16,20 @@ export class ReceivedMessage implements SentMessage {
   content: Content;
 }
 export class Content {
-  atisFields: object;
+  atisFields: AtisFields;
+  atisCode: string;
+}
+export class AtisFields {
+  obstime: { value: String };
+  holding: { value: String };
+  'mrl.wind.gusts': { value: String };
+  visibility: { value: String };
+  rvr: { value: String };
+  presentweather: { value: String };
+  clouds: { value: String };
+  temperature: { value: String };
+  dewpoint: { value: String };
+  qfe: { value: String };
 }
 @Injectable()
 export class WebsocketService {

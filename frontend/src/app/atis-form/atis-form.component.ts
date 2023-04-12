@@ -1,5 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { ReceivedMessage, WebsocketService } from '../websocket.service';
+import {
+  AtisFields,
+  Content,
+  ReceivedMessage,
+  WebsocketService,
+} from '../websocket.service';
 
 @Component({
   selector: 'app-atis-form',
@@ -8,25 +13,10 @@ import { ReceivedMessage, WebsocketService } from '../websocket.service';
   providers: [WebsocketService],
 })
 export class AtisFormComponent {
-  @Input() ReceivedData;
+  messageContent: Content;
+  formAtisFields: AtisFields;
 
   ngOnInit() {}
-  @Input() collapsed = false;
-  @Input() screenWidth = 0;
-
-  getBodyClass(): string {
-    let styleClass = '';
-    if (this.collapsed && this.screenWidth > 768) {
-      styleClass = 'body-trimmed';
-    } else if (
-      this.collapsed &&
-      this.screenWidth <= 768 &&
-      this.screenWidth > 0
-    ) {
-      styleClass = 'body-md-screen';
-    }
-    return styleClass;
-  }
 
   received: ReceivedMessage;
   sent = [];
@@ -34,12 +24,13 @@ export class AtisFormComponent {
   constructor(private WebsocketService: WebsocketService) {
     WebsocketService.messages.subscribe((msg) => {
       this.received = msg;
-      console.log('Response from websocket: ' + msg);
+      this.formAtisFields = msg.content.atisFields;
+      console.log('Response from websocket: ' + JSON.stringify(msg));
     });
   }
   sendMessageToWebsocket() {
     let message = {
-      content: this.ReceivedData,
+      content: this.messageContent,
       topic: '/ATIS_ARRDEP/ENFL',
       type: 'PUBLICATION',
     };
