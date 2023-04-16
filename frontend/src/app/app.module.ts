@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AtisFormComponent } from './atis-form/atis-form.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BodyComponent } from './body/body.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { BodyComponent } from './body/body.component';
     AppComponent,
     AtisFormComponent,
     SidebarComponent,
-    BodyComponent
+    BodyComponent,
+    HomePageComponent
     ],
   imports: [
     FormsModule,

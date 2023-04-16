@@ -1,8 +1,8 @@
 export const navbarData = [
   {
-    routeLink: 'dashboard',
+    routeLink: 'home',
     icon: 'fa fa-home',
-    label: 'Dashboard',
+    label: 'Home',
   },
   {
     routeLink: 'atis-report',

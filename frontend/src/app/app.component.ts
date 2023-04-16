@@ -12,6 +12,9 @@ interface SideNavToggle {
   providers: [WebsocketService],
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   isSideNavCollapsed = false;
   screenWidth = 0;
 
