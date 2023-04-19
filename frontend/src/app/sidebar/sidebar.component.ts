@@ -9,6 +9,7 @@ import {
   Component,
   EventEmitter,
   HostListener,
+  Input,
   OnInit,
   Output,
 } from '@angular/core';
@@ -49,6 +50,8 @@ interface SideNavToggle {
 })
 export class SidebarComponent implements OnInit {
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
+  @Input() username = '';
+  @Input() isLoggedIn = false;
   collapsed = false;
   screenWidth = 0;
   navData = navbarData;
@@ -67,7 +70,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
-    console.log(this.screenWidth);
+    console.log(this.username);
   }
 
   toggleCollapse(): void {

@@ -10,22 +10,22 @@ export const navbarData = [
     label: 'Atis Report',
   },
   {
-    routeLink: 'coupens',
+    routeLink: 'login',
     icon: 'fa fa-tags',
     label: 'Coupens',
   },
   {
-    routeLink: 'pages',
+    routeLink: 'register',
     icon: 'fa fa-file',
     label: 'Pages',
   },
   {
-    routeLink: 'media',
+    routeLink: 'profile',
     icon: 'fa fa-camera',
     label: 'Media',
   },
   {
-    routeLink: 'settings',
+    routeLink: 'user',
     icon: 'fa fa-cog',
     label: 'Settings',
   },
