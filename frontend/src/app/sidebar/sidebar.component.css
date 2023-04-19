@@ -110,3 +110,8 @@
     background-color: #fff;
     color-scheme: #263238;
 }
+
+.active>.sidenav-link-icon,
+.active>.sidenav-link-text {
+    color: green;
+}

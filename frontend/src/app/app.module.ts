@@ -8,6 +8,7 @@ import { AtisFormComponent } from './atis-form/atis-form.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BodyComponent } from './body/body.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { HomePageComponent } from './home-page/home-page.component';
   imports: [
     FormsModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule
   ],
   providers: [],
