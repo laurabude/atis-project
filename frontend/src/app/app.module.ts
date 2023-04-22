@@ -19,7 +19,6 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,16 +32,16 @@ import { httpInterceptorProviders } from './_helpers/http.interceptor';
     HomeComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent
-    ],
+    RegisterComponent,
+  ],
   imports: [
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [httpInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

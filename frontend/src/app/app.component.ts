@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import {WebsocketService } from './websocket.service';
+import { WebsocketService } from './websocket.service';
 import { AuthService } from './_services/auth.service';
 import { StorageService } from './_services/storage.service';
 import { EventBusService } from './_shared/event-bus.service';
@@ -16,7 +16,6 @@ interface SideNavToggle {
   styleUrls: ['./app.component.css'],
   providers: [WebsocketService],
 })
-
 export class AppComponent {
   private roles: string[] = [];
   isLoggedIn = false;
@@ -25,7 +24,7 @@ export class AppComponent {
   username?: string;
 
   eventBusSub?: Subscription;
-  
+
   constructor(
     private storageService: StorageService,
     private authService: AuthService,
@@ -52,15 +51,15 @@ export class AppComponent {
 
   logout(): void {
     this.authService.logout().subscribe({
-      next: res => {
+      next: (res) => {
         console.log(res);
         this.storageService.clean();
 
         window.location.reload();
       },
-      error: err => {
+      error: (err) => {
         console.log(err);
-      }
+      },
     });
   }
 
