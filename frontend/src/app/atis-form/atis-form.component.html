@@ -1,11 +1,10 @@
 <section class="container">
   <header>ATIS Report</header>
-
   <form action="#" class="form">
     <div class="input-box">
       <label>Observation time</label>
       <input
-        [(ngModel)]="messageContent.atisFields.obstime.value"
+        [(ngModel)]="formAtisFields.obstime.value"
         name="obstime"
         type="text"
         placeholder="Enter observation time"
@@ -186,7 +185,7 @@
       <button class="broadcast" (click)="sendMessageToWebsocket()">
         Broadcast
       </button>
-      <button (click)="sendSubscribeMsg()">Send Message</button>
+      <button (click)="sendSubscribeMsg()">Subscribe</button>
     </div>
   </form>
 </section>
