@@ -21,6 +21,7 @@ import { httpInterceptorProviders } from './_helpers/http.interceptor';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    CommonModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

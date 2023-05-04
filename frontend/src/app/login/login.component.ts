@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   email = new FormControl('', [Validators.required, Validators.email]);
-
+  backgorund = document.getElementById('bkg');
   constructor(
     private authService: AuthService,
     private storageService: StorageService
@@ -29,6 +29,11 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
     }
+    this.backgorund.style.backgroundImage = 'url(login.png)';
+  }
+
+  ngOnDestroy(): void {
+    this.backgorund.style.backgroundImage = '';
   }
 
   onSubmit(): void {

@@ -5,6 +5,11 @@
   box-sizing: border-box;
   overflow: hidden;
 }
+.bk-img {
+  width: calc(100% - 5rem);
+  height: 100vh;
+  background-image: url("login.png");
+}
 .wave {
   position: fixed;
   bottom: 0;
@@ -21,7 +26,9 @@
   grid-gap: 7rem;
   padding: 0 2rem;
 }
-
+.card-container {
+  background-color: #f6f6f6;
+}
 .img {
   display: flex;
   justify-content: flex-end;
@@ -38,7 +45,22 @@
 .img img {
   width: 500px;
 }
-
+.profile-img-card {
+  width: 50%;
+  display: flex;
+  align-self: center;
+  border-radius: 100%;
+}
+.welcome {
+  font-weight: bold;
+  font-size: 30px;
+  color: #263238;
+  text-align: center;
+  margin-top: 3%;
+}
+.inputs {
+  width: 360px;
+}
 form {
   width: 360px;
 }
@@ -165,7 +187,7 @@ a:hover {
   border-radius: 25px;
   outline: none;
   border: none;
-  background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+  background-image: linear-gradient(to right, #57b1fa, #6fd6ff);
   background-size: 200%;
   font-size: 1.2rem;
   color: #fff;
@@ -216,4 +238,7 @@ a:hover {
   .login-content {
     justify-content: center;
   }
+}
+:host {
+  margin-left: 51%;
 }

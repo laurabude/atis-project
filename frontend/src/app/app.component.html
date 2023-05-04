@@ -1,3 +1,10 @@
-<app-sidebar (onToggleSideNav)="onToggleSideNav($event)" [isLoggedIn]="isLoggedIn" [username]="username"></app-sidebar>
+<app-sidebar
+  (onToggleSideNav)="onToggleSideNav($event)"
+  [isLoggedIn]="isLoggedIn"
+  [username]="username"
+></app-sidebar>
 
-<app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-body>
+<app-body
+  [collapsed]="isSideNavCollapsed"
+  [screenWidth]="screenWidth"
+></app-body>

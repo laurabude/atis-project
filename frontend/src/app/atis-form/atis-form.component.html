@@ -1,191 +1,269 @@
 <section class="container">
   <header>ATIS Report</header>
-  <form action="#" class="form">
-    <div class="input-box">
-      <label>Observation time</label>
-      <input
-        [(ngModel)]="formAtisFields.obstime.value"
-        name="obstime"
-        type="text"
-        placeholder="Enter observation time"
-        required
-      />
-    </div>
-    <div class="grid">
-      <div class="grid-item">
-        <label>Active runway</label>
-        <div class="select-box">
-          <select>
-            <option hidden>Runway</option>
-            <option>07</option>
-            <option>10</option>
-            <option>14</option>
-            <option>25</option>
-            <option>28</option>
-            <option>32</option>
-          </select>
-        </div>
-      </div>
-      <div class="grid-item">
-        <label>Type of Approach</label>
-        <div class="select-box">
-          <select>
-            <option hidden>Approach</option>
-            <option>ILS</option>
-            <option>VOR</option>
-            <option>NDB</option>
-          </select>
-        </div>
-      </div>
-      <div class="grid-item">
-        <label>Holding delay</label>
-        <input
-          [(ngModel)]="messageContent.atisFields.holding.value"
-          name="holding"
-          type="text"
-          placeholder="Enter holding delay"
-          required
-        />
-      </div>
-      <div class="grid-item">
-        <label>Transition Level</label>
-        <input type="text" placeholder="Enter transition level" required />
-      </div>
-      <div class="grid-item">
-        <label>Wind direction</label>
-        <input type="text" placeholder="Enter wind direction" required />
-      </div>
-      <div class="grid-item">
-        <label>Varying between</label>
-        <div class="extended-input">
-          <input type="text" placeholder="..." required />
-          <label class="and">and</label>
-          <input type="text" placeholder="..." required />
-        </div>
-      </div>
-      <div class="grid-item">
-        <label>Wind speed</label>
-        <div class="extended-input">
-          <input
-            [(ngModel)]="messageContent.atisFields['mrl.wind.gusts.value']"
-            name="holding"
-            type="text"
-            placeholder="Enter wind speed"
-            required
-          />
-          <label>kt</label>
-        </div>
-      </div>
-      <div class="grid-item">
-        <label>Gusting To</label>
-        <div class="extended-input">
-          <input type="text" placeholder="..." required />
-          <label>kt</label>
-        </div>
-      </div>
-    </div>
-    <div class="input-box">
-      <label>Visibility</label>
-      <input
-        [(ngModel)]="messageContent.atisFields.visibility.value"
-        name="visibility"
-        type="text"
-        placeholder="Enter visibility"
-        required
-      />
-    </div>
-    <div class="input-box">
-      <label>RVR</label>
-      <input
-        [(ngModel)]="messageContent.atisFields.rvr.value"
-        name="rvr"
-        type="text"
-        placeholder="Enter RVR"
-        required
-      />
-    </div>
-    <div class="input-box">
-      <label>Present weather</label>
-      <input
-        [(ngModel)]="messageContent.atisFields.presentweather.value"
-        name="presentweather"
-        type="text"
-        placeholder="Enter present weather"
-        required
-      />
-    </div>
-    <div class="input-box">
-      <label> Clouds</label>
-      <input
-        [(ngModel)]="messageContent.atisFields.clouds.value"
-        name="clouds"
-        type="text"
-        placeholder="Enter clouds"
-        required
-      />
-    </div>
-    <div class="temperature-related-grid">
-      <div class="temp-grid-item-1">
-        <label>Temperature</label>
-        <input
-          [(ngModel)]="messageContent.atisFields.temperature.value"
-          name="temperature"
-          type="text"
-          placeholder="Enter temperature"
-          required
-        />
-      </div>
-      <div class="temp-grid-item-2">
-        <label>Dewpoint</label>
-        <input
-          [(ngModel)]="messageContent.atisFields.dewpoint.value"
-          name="dewpoint"
-          type="text"
-          placeholder="Enter dewpoint"
-          required
-        />
-      </div>
-      <div class="temp-grid-item-3">
-        <label>QNH</label>
-        <input type="text" placeholder="Enter QNH" required />
-      </div>
-      <div class="temp-grid-item-4">
-        <label>QFE</label>
-        <input
-          [(ngModel)]="messageContent.atisFields.qfe.value"
-          name="qfe"
-          type="text"
-          placeholder="Enter QFE"
-          required
-        />
-      </div>
-    </div>
 
-    <div class="input-box textbox">
-      <label>Freetext</label>
-      <textarea placeholder="Freetext" required></textarea>
-    </div>
-    <div class="input-box" id="select-div">
-      <label>Fixedtext</label>
+  <div class="input-box">
+    <label>Observation time </label>
+    <input
+      [(ngModel)]="formAtisFields.obstime.value"
+      name="obstime"
+      placeholder="Enter observation time"
+      [style.backgroundColor]="isChanged['obstime'] ? '#000080' : '#DC143C'"
+      [style.color]="isChanged['obstime'] ? 'white' : 'white'"
+      (keyup)="onInputChange($event)"
+    />
+  </div>
+  <div class="grid">
+    <div class="grid-item">
+      <label>Active runway</label>
       <div class="select-box">
         <select>
           <option hidden>Runway</option>
-          <option>INITIAL CLEARED ALTITUDE 4000 FEET</option>
-          <option>GROUND FREQUENCY 132.60</option>
-          <option>BIRD ACTIVITY NORTHEAST OF THRESHOLD RWY11</option>
+          <option>07</option>
+          <option>10</option>
+          <option>14</option>
+          <option>25</option>
+          <option>28</option>
+          <option>32</option>
         </select>
       </div>
     </div>
-    <div class="broadcast-mode-buttons">
-      <label>Broadcast mode</label>
-      <br />
-      <button>Manual</button>
-      <button>SemiAuto</button>
-      <button>Auto</button>
-      <button class="broadcast" (click)="sendMessageToWebsocket()">
-        Broadcast
-      </button>
-      <button (click)="sendSubscribeMsg()">Subscribe</button>
+    <div class="grid-item">
+      <label>Type of Approach</label>
+      <div class="select-box">
+        <select>
+          <option hidden>Approach</option>
+          <option>ILS</option>
+          <option>VOR</option>
+          <option>NDB</option>
+        </select>
+      </div>
     </div>
-  </form>
+    <div class="grid-item">
+      <label>Holding delay</label>
+      <input
+        [(ngModel)]="formAtisFields.holding.value"
+        name="holding"
+        type="text"
+        placeholder="Enter holding delay"
+        [style.background]="isChanged['holding'] ? '#000080' : '#DC143C'"
+        [style.color]="isChanged['holding'] ? 'white' : 'white'"
+        (keyup)="onInputChange($event)"
+      />
+    </div>
+    <div class="grid-item">
+      <label>Transition Level</label>
+      <input
+        [(ngModel)]="formAtisFields.tl.value"
+        type="text"
+        placeholder="Enter transition level"
+        [style.background]="isChanged['tl'] ? '#000080' : '#DC143C'"
+        [style.color]="isChanged['tl'] ? 'white' : 'white'"
+        (keyup)="onInputChange($event)"
+      />
+    </div>
+    <div class="grid-item">
+      <label>Wind direction</label>
+      <input
+        [(ngModel)]="formAtisFields['mrl.wind.dir.value']"
+        type="text"
+        placeholder="Enter wind direction"
+        [style.background]="
+          isChanged['mrl.wind.dir.value'] ? '#000080' : '#DC143C'
+        "
+        [style.color]="isChanged['mrl.wind.dir.value'] ? 'white' : 'white'"
+        (keyup)="onInputChange($event)"
+      />
+    </div>
+    <div class="grid-item">
+      <label>Varying between</label>
+      <div class="extended-input">
+        <input
+          [(ngModel)]="formAtisFields['mrl.wind.var.min.value']"
+          type="text"
+          placeholder="..."
+          [style.background]="
+            isChanged['mrl.wind.var.min.value'] ? '#000080' : '#DC143C'
+          "
+          [style.color]="
+            isChanged['mrl.wind.var.min.value'] ? 'white' : 'white'
+          "
+          (keyup)="onInputChange($event)"
+        />
+        <label class="and">and</label>
+        <input
+          [(ngModel)]="formAtisFields['mrl.wind.var.max.value']"
+          type="text"
+          placeholder="..."
+          [style.background]="
+            isChanged['mrl.wind.var.max.value'] ? '#000080' : '#DC143C'
+          "
+          [style.color]="
+            isChanged['mrl.wind.var.max.value'] ? 'white' : 'white'
+          "
+          (keyup)="onInputChange($event)"
+        />
+      </div>
+    </div>
+    <div class="grid-item">
+      <label>Wind speed</label>
+      <div class="extended-input">
+        <input
+          [(ngModel)]="formAtisFields['mrl.wind.gusts.value']"
+          name="holding"
+          type="text"
+          placeholder="Enter wind speed"
+          [style.background]="
+            isChanged['mrl.wind.gusts.value'] ? '#000080' : '#DC143C'
+          "
+          [style.color]="isChanged['mrl.wind.gusts.value'] ? 'white' : 'white'"
+          (keyup)="onInputChange($event)"
+        />
+        <label>kt</label>
+      </div>
+    </div>
+    <div class="grid-item">
+      <label>Gusting To</label>
+      <div class="extended-input">
+        <input
+          type="text"
+          placeholder="..."
+          [style.background]="isChanged ? '#000080' : '#DC143C'"
+          [style.color]="isChanged ? 'white' : 'white'"
+          (keyup)="onInputChange($event)"
+        />
+
+        <label>kt</label>
+      </div>
+    </div>
+  </div>
+  <div class="input-box">
+    <label>Visibility</label>
+    <input
+      [(ngModel)]="formAtisFields.visibility.value"
+      name="visibility"
+      type="text"
+      placeholder="Enter visibility"
+      [style.background]="isChanged['visibility'] ? '#000080' : '#DC143C'"
+      [style.color]="isChanged['visibility'] ? 'white' : 'white'"
+      (keyup)="onInputChange($event)"
+    />
+  </div>
+  <div class="input-box">
+    <label>RVR</label>
+    <input
+      [(ngModel)]="formAtisFields.rvr.value"
+      name="rvr"
+      type="text"
+      placeholder="Enter RVR"
+      [style.background]="isChanged['rvr'] ? '#000080' : '#DC143C'"
+      [style.color]="isChanged['rvr'] ? 'white' : 'white'"
+      (keyup)="onInputChange($event)"
+    />
+  </div>
+  <div class="input-box">
+    <label>Present weather</label>
+    <input
+      [(ngModel)]="formAtisFields.presentweather.value"
+      name="presentweather"
+      type="text"
+      placeholder="Enter present weather"
+      [style.background]="isChanged['presentweather'] ? '#000080' : '#DC143C'"
+      [style.color]="isChanged['presentweather'] ? 'white' : 'white'"
+      (keyup)="onInputChange($event)"
+    />
+  </div>
+  <div class="input-box">
+    <label> Clouds</label>
+    <input
+      [(ngModel)]="formAtisFields.clouds.value"
+      name="clouds"
+      type="text"
+      placeholder="Enter clouds"
+      [style.background]="isChanged['clouds'] ? '#000080' : '#DC143C'"
+      [style.color]="isChanged['clouds'] ? 'white' : 'white'"
+      (keyup)="onInputChange($event)"
+    />
+  </div>
+  <div class="temperature-related-grid">
+    <div class="temp-grid-item-1">
+      <label>Temperature</label>
+      <input
+        [(ngModel)]="formAtisFields.temperature.value"
+        name="temperature"
+        type="text"
+        placeholder="Enter temperature"
+        [style.background]="isChanged['temperature'] ? '#000080' : '#DC143C'"
+        [style.color]="isChanged['temperature'] ? 'white' : 'white'"
+        (keyup)="onInputChange($event)"
+      />
+    </div>
+    <div class="temp-grid-item-2">
+      <label>Dewpoint</label>
+      <input
+        [(ngModel)]="formAtisFields.dewpoint.value"
+        name="dewpoint"
+        type="text"
+        placeholder="Enter dewpoint"
+        [style.background]="isChanged['dewpoint'] ? '#000080' : '#DC143C'"
+        [style.color]="isChanged['dewpoint'] ? 'white' : 'white'"
+        (keyup)="onInputChange($event)"
+      />
+    </div>
+    <div class="temp-grid-item-3">
+      <label>QNH</label>
+      <input
+        [(ngModel)]="formAtisFields.qnh.value"
+        type="text"
+        placeholder="Enter QNH"
+        [style.background]="isChanged['qnh'] ? '#000080' : '#DC143C'"
+        [style.color]="isChanged['qnh'] ? 'white' : 'white'"
+        (keyup)="onInputChange($event)"
+      />
+    </div>
+    <div class="temp-grid-item-4">
+      <label>QFE</label>
+      <input
+        [(ngModel)]="formAtisFields.qfe.value"
+        name="qfe"
+        type="text"
+        placeholder="Enter QFE"
+        [style.background]="isChanged['qfe'] ? '#000080' : '#DC143C'"
+        [style.color]="isChanged['qfe'] ? 'white' : 'white'"
+        (keyup)="onInputChange($event)"
+      />
+    </div>
+  </div>
+
+  <div class="input-box textbox">
+    <label>Freetext</label>
+    <textarea
+      [(ngModel)]="formAtisFields.freetext.value"
+      placeholder="Freetext"
+      [style.background]="isChanged['freetext'] ? '#000080' : '#DC143C'"
+      [style.color]="isChanged['freetext'] ? 'white' : 'white'"
+      (keyup)="onInputChange($event)"
+    ></textarea>
+  </div>
+  <div class="input-box" id="select-div">
+    <label>Fixedtext</label>
+    <div class="select-box" [ngClass]="{ selected: isOptionSelected }">
+      <select (change)="onSelect()" [ngClass]="{ selected: isOptionSelected }">
+        <option hidden>Runway</option>
+        <option>INITIAL CLEARED ALTITUDE 4000 FEET</option>
+        <option>GROUND FREQUENCY 132.60</option>
+        <option>BIRD ACTIVITY NORTHEAST OF THRESHOLD RWY11</option>
+      </select>
+    </div>
+  </div>
+  <div class="broadcast-mode-buttons">
+    <label>Broadcast mode</label>
+    <br />
+    <button>Manual</button>
+    <button>SemiAuto</button>
+    <button>Auto</button>
+    <button class="broadcast" (click)="sendMessageToWebsocket()">
+      Broadcast
+    </button>
+    <button (click)="sendSubscribeMsg()">Subscribe</button>
+  </div>
 </section>
