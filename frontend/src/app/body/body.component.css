@@ -1,7 +1,7 @@
 .body {
-  width: calc(100% - 5rem);
-  height: 100vh;
-  margin-left: 5rem;
+  width: calc(100% - 4vw);
+  height: auto;
+  margin-left: 4vw;
   z-index: 0;
   position: relative;
   top: 0;
@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: rgb(56, 143, 170);
+  background: #607d8b;
 }
 
 .body-trimmed {

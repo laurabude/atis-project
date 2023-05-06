@@ -1,0 +1,25 @@
+<div class="grid">
+  <span title="Florø Airport Norway" class="title">ENFL</span>
+  <div [ngClass]="state ? 'led-green' : 'led-red'"></div>
+</div>
+<mat-tab-group class="custom-tab-group">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span class="tabName">ATIS Report </span>
+    </ng-template>
+    <div class="container">
+      <app-atis-form
+        (isSubscribed)="getSubscribeState($event)"
+        (currentBroadcast)="getCurrentBroadcast($event)"
+      ></app-atis-form>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span class="tabName">Overview </span>
+    </ng-template>
+    <div class="container">
+      <app-overview [currentBroadcast]="message"></app-overview>
+    </div>
+  </mat-tab>
+</mat-tab-group>

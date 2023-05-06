@@ -22,7 +22,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-
+import { TabsComponent } from './tabs/tabs.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { OverviewComponent } from './overview/overview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +39,8 @@ import { CommonModule } from '@angular/common';
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
+    TabsComponent,
+    OverviewComponent,
   ],
   imports: [
     FormsModule,
@@ -49,6 +53,7 @@ import { CommonModule } from '@angular/common';
     MatInputModule,
     MatButtonModule,
     CommonModule,
+    MatTabsModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

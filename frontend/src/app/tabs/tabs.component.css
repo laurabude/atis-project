@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:host {
+  width: 96%;
+  height: 95%;
+}
+
+span {
+  font-size: 2rem;
+  color: #eceff1;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 5px;
+  display: inline-block;
+  margin-right: 50%;
+}
+.container {
+  position: relative;
+  width: 100%;
+  padding: 1%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin-top: 0.5%;
+}
+
+.tabName {
+  font-size: 1.5rem;
+  color: #eceff1;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 0.07fr);
+  grid-template-rows: 0.2fr;
+  grid-column-gap: 0%;
+  grid-row-gap: 0px;
+}
+
+.led-green {
+  align-self: center;
+  width: 33px;
+  height: 33px;
+  background-color: #8af168;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
+    #8af168 0 2px 12px;
+}
+.led-red {
+  align-self: center;
+  width: 33px;
+  height: 33px;
+  background-color: #ec3232;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
+    #ec3232 0 2px 12px;
+}

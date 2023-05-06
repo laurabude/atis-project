@@ -16,12 +16,14 @@ export class ReceivedMessage implements SentMessage {
   content: Content;
 }
 export interface Content {
+  messageText: { ENGLISH: string };
   atisFields: AtisFields;
   atisCode: string;
 }
 export interface AtisFields {
   obstime: { name: string; value: string };
   holding: { name: string; value: string };
+  activeRunway: { name: string; value: string };
   'mrl.wind.gusts': { name: string; value: string };
   'mrl.wind.dir': { name: string; value: string };
   'mrl.wind.var.min': { name: string; value: string };
@@ -32,6 +34,8 @@ export interface AtisFields {
   clouds: { name: string; value: string };
   temperature: { name: string; value: string };
   dewpoint: { name: string; value: string };
+  fixedtext: { name: string; value: string };
+  apptype: { name: string; value: string };
   qfe: { name: string; value: string };
   qnh: { name: string; value: string };
   tl: { name: string; value: string };

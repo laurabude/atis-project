@@ -1,4 +1,10 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import {
   AtisFields,
   Content,
@@ -17,6 +23,7 @@ export class AtisFormComponent {
   messageContent: Content;
   public formAtisFields: AtisFields = {
     obstime: { name: 'obstime', value: '' },
+    activeRunway: { name: 'activrunway', value: '' },
     holding: { name: 'holding', value: '' },
     'mrl.wind.gusts': { name: 'holding', value: '' },
     'mrl.wind.dir': { name: 'mrl.wind.dir', value: '' },
@@ -29,11 +36,13 @@ export class AtisFormComponent {
     temperature: { name: 'temperature', value: '' },
     dewpoint: { name: 'dewpoint', value: '' },
     qfe: { name: 'qfe', value: '' },
+    fixedtext: { name: 'fixedtext', value: '' },
+    apptype: { name: 'apptype', value: '' },
     qnh: { name: 'qnh', value: '' },
     tl: { name: 'tl', value: '' },
     freetext: { name: 'freetext', value: '' },
   };
-  isChanged: object = {
+  isChanged: { [key: string]: boolean } = {
     obstime: false,
     holding: false,
     'mrl.wind.gusts': false,
@@ -50,11 +59,12 @@ export class AtisFormComponent {
     tl: false,
     freetext: false,
   };
+  ENGLISH: string = '';
   isOptionSelected: boolean = false;
   fieldName: string = '';
   fieldValue: string = '';
-
-  ngOnInit() {}
+  @Output() currentBroadcast = new EventEmitter<string>();
+  @Output() isSubscribed = new EventEmitter<boolean>();
 
   received: ReceivedMessage;
   sent = [];
@@ -62,6 +72,9 @@ export class AtisFormComponent {
   constructor(private WebsocketService: WebsocketService) {
     WebsocketService.messages.subscribe((msg) => {
       console.log('Response from websocket: ' + JSON.stringify(msg));
+      if (msg.content.messageText != null) {
+        this.currentBroadcast.emit(msg.content.messageText.ENGLISH);
+      }
       if (msg.type === 'PUBLICATION') {
         this.received = msg;
         if (this.fieldName === '') {
@@ -79,19 +92,28 @@ export class AtisFormComponent {
     });
   }
 
-  sendMessageToWebsocket() {
-    this.messageContent = {
-      atisFields: this.formAtisFields,
-      atisCode: '/',
-    };
-    let message = {
-      content: this.messageContent,
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.sendSubscribeMsg();
+    }, 100);
+  }
+
+  sendBroadcastMessage() {
+    Object.entries(this.isChanged).forEach(([key, value]) => {
+      if (value) console.log(`${key} gri`);
+      // Add your own logic here
+    });
+    let broadcastMessage = {
+      content: {
+        type: 'ATIS_RELEASE_REQUEST',
+        airport: 'ENFL',
+        reportType: 'ATIS_ARRDEP',
+      },
       topic: '/ATIS_ARRDEP/ENFL',
       type: 'PUBLICATION',
     };
 
-    this.sent.push(message);
-    this.WebsocketService.messages.next(message);
+    this.sendMessage(broadcastMessage);
   }
 
   sendSubscribeMsg() {
@@ -103,13 +125,19 @@ export class AtisFormComponent {
 
     this.sent.push(message);
     this.WebsocketService.messages.next(message);
+    this.isSubscribed.emit(true);
   }
-  sendUpdateMessage(updateMessage) {
-    this.sent.push(updateMessage);
-    this.WebsocketService.messages.next(updateMessage);
+  sendMessage(messageToSend) {
+    this.sent.push(messageToSend);
+    this.WebsocketService.messages.next(messageToSend);
   }
-  onInputChange(event: KeyboardEvent) {
-    this.fieldName = (event.target as HTMLInputElement).name;
+
+  onInputChange(event, name?: string) {
+    if (name) {
+      this.fieldName = name;
+    } else {
+      this.fieldName = (event.target as HTMLInputElement).name;
+    }
     this.fieldValue = this.formAtisFields[this.fieldName].value;
     if (this.fieldValue != undefined) {
       let updateMessage = {
@@ -123,11 +151,12 @@ export class AtisFormComponent {
         topic: '/ATIS_ARRDEP/ENFL',
         type: 'PUBLICATION',
       };
-      this.sendUpdateMessage(updateMessage);
+      this.sendMessage(updateMessage);
     } else {
       this.isChanged[this.fieldName] = false;
     }
   }
+
   onSelect() {
     this.isOptionSelected = true;
   }

@@ -17,7 +17,7 @@
 }
 
 .logo-container .logo {
-  background: #fff;
+  background: #eceff1;
   text-align: center;
   width: 3rem;
   min-width: 3rem;
@@ -33,7 +33,7 @@
   margin-left: 1.5rem;
   font-size: 24px;
   font-weight: 700;
-  color: #fff;
+  color: #eceff1;
 }
 
 .logo-container .btn-close {
@@ -47,7 +47,7 @@
 }
 
 .btn-close .fa-times {
-  color: #fff;
+  color: #eceff1;
   font-size: 24px;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .sidenav-nav .sidenav-nav-item:hover .sidenav-nav-link {
-  background-color: #fff;
+  background-color: #eceff1;
   color: #000;
 }
 
@@ -106,7 +106,7 @@
 }
 
 .active {
-  background-color: #fff;
+  background-color: #eceff1;
   color-scheme: #263238;
 }
 
@@ -131,6 +131,6 @@
   margin-right: 3%;
 }
 .btns-login:hover {
-  background-color: #fff;
+  background-color: #eceff1;
   color: #000;
 }
