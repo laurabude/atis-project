@@ -8,4 +8,5 @@ import { Input } from '@angular/core';
 export class OverviewComponent {
   broadcast: string;
   @Input('currentBroadcast') message: string;
+  @Input('nextBroadcast') nextMessage: string;
 }

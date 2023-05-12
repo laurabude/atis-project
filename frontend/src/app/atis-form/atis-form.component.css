@@ -1,6 +1,7 @@
 /* Import Google font - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
+  font-size: 1vw;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,11 +15,25 @@
 .select-box:has(.ng-dirty) {
   background-color: #000080;
 }
+
+.select-box:has(.greyDropdown) {
+  background-color: #707070 !important;
+}
+
+.select-box:has(.readonly-select) {
+  background-color: #707070;
+}
+
 .ng-dirty {
   background-color: #000080;
 }
 select option {
   background-color: white;
+  color: #707070;
+}
+
+.greyDropdown {
+  background-color: #707070 !important;
 }
 
 body {
@@ -36,22 +51,24 @@ body {
   align-items: center;
   grid-template-columns: max-content max-content;
   grid-gap: 10px;
+  caret-color: black;
 }
 .input-box textarea {
-  height: 80px;
+  height: 100%;
   width: 100%;
   outline: none;
   font-size: 1rem;
-  color: #707070;
+  color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 6px;
   padding: 0 15px;
-  margin: 1% 0%;
+  margin: 0.5% 0%;
   resize: none;
   padding: 5px 15px;
 }
 .textbox {
-  height: 100px;
+  height: 50px;
+  margin-bottom: 0.5%;
   display: flex;
   align-items: first baseline;
 }
@@ -73,11 +90,12 @@ body {
   width: 100%;
   outline: none;
   font-size: 1rem;
-  color: #707070;
+  color: white;
   border: 1px solid #ddd;
   border-radius: 6px;
   padding: 0 15px;
-  margin: 1% 0%;
+  margin: 0.5% 0%;
+  caret-color: black;
 }
 .input-box input input:focus {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
@@ -89,11 +107,11 @@ body {
   width: 70%;
   outline: none;
   font-size: 1rem;
-  color: #707070;
+  color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 6px;
   padding: 0 15px;
-  margin: 1% 0%;
+  margin: 0.5% 0%;
 }
 
 .grid {
@@ -102,8 +120,6 @@ body {
   grid-template-rows: repeat(4, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  margin-bottom: -0.3%;
-  margin-top: 0.2%;
 }
 
 .grid-item label {
@@ -117,12 +133,13 @@ body {
   width: 70%;
   outline: none;
   font-size: 1rem;
-  color: #707070;
+  color: white;
   margin-right: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
   padding: 0 15px;
-  margin: 1% 0%;
+  margin: 0.5% 0%;
+  caret-color: black;
 }
 
 .grid input:focus {
@@ -169,14 +186,15 @@ body {
 .temperature-related-grid input {
   position: relative;
   height: 35px;
-  width: 22%;
+  width: 23%;
   outline: none;
   font-size: 1rem;
-  color: #707070;
+  color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 6px;
   padding: 0 15px;
-  margin: 0.5%;
+  margin: 0.5% 0;
+  caret-color: black;
 }
 .temperature-related-grid input:focus {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
@@ -228,6 +246,11 @@ body {
   font-size: 1rem;
 }
 
+.select-box .ng-dirty,
+.select-box-2 .ng-dirty {
+  color: white;
+}
+
 .fixed-text {
   display: flex;
   align-items: center;
@@ -270,8 +293,21 @@ select {
 }
 
 .select-box .selected {
-  color: white;
   background-color: #000080;
+}
+input[readonly],
+textarea[readonly] {
+  background-color: #747474 !important;
+  color: #dbdbdb !important;
+}
+.readonly-select {
+  background-color: transparent;
+  color: white !important;
+}
+.disabled-button {
+  background-color: gray;
+  color: white;
+  cursor: not-allowed;
 }
 
 /*Responsive*/

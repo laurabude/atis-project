@@ -1,24 +1,20 @@
 <div class="input-box">
   <label>Observation time </label>
-  <input
-    [(ngModel)]="formAtisFields.obstime.value"
-    name="obstime"
-    #obstime="ngModel"
-    [style.background]="
-      !obstime.dirty ? 'white' : isChanged['obstime'] ? '#000080' : '#DC143C'
-    "
-    [style.color]="isChanged['obstime'] ? 'white' : 'white'"
-    (keyup)="onInputChange($event)"
-  />
+  <input [(ngModel)]="formAtisFields['obstime'].value" readonly />
 </div>
 <div class="grid">
   <div class="grid-item">
     <label>Active runway</label>
     <div class="select-box">
       <select
-        name="activeRunway"
-        [(ngModel)]="formAtisFields.activeRunway.value"
-        (ngModelChange)="onInputChange($event, 'activeRunway')"
+        name="mlr"
+        [ngClass]="{
+          greyDropdown: lastValue['mlr'] == formAtisFields['mlr'].value
+        }"
+        [(ngModel)]="formAtisFields['mlr'].value"
+        (ngModelChange)="onInputChange($event, 'mlr')"
+        [disabled]="readonlyMode"
+        [ngClass]="{ 'readonly-select': readonlyMode }"
       >
         <option></option>
         <option>07</option>
@@ -34,8 +30,13 @@
     <label>Type of Approach</label>
     <div class="select-box">
       <select
-        [(ngModel)]="formAtisFields.apptype.value"
+        [(ngModel)]="formAtisFields['apptype'].value"
         (ngModelChange)="onInputChange($event, 'apptype')"
+        [ngClass]="{
+          greyDropdown: lastValue['apptype'] == formAtisFields['apptype'].value
+        }"
+        [disabled]="readonlyMode"
+        [ngClass]="{ 'readonly-select': readonlyMode }"
       >
         <option></option>
         <option>ILS</option>
@@ -47,44 +48,80 @@
   <div class="grid-item">
     <label>Holding delay</label>
     <input
-      [(ngModel)]="formAtisFields.holding.value"
+      [(ngModel)]="formAtisFields['holding'].value"
       name="holding"
       #holding="ngModel"
       type="text"
       [style.background]="
-        !visibility.dirty
+        !holding.dirty || (lastValue['holding'] == null && holding.value == '')
           ? 'white'
+          : lastValue['holding'] == holding.value
+          ? '#707070'
           : isChanged['holding']
           ? '#000080'
           : '#DC143C'
       "
-      [style.color]="isChanged['holding'] ? 'white' : 'white'"
+      [style.caret-color]="
+        !holding.dirty || (lastValue['holding'] == null && holding.value == '')
+          ? 'black'
+          : 'white'
+      "
+      [readonly]="readonlyMode"
+      [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
   </div>
   <div class="grid-item">
     <label>Transition Level</label>
     <input
-      [(ngModel)]="formAtisFields.tl.value"
+      [(ngModel)]="formAtisFields['tl'].value"
+      name="tl"
       type="text"
       #tl="ngModel"
       [style.background]="
-        !tl.dirty ? 'white' : isChanged['tl'] ? '#000080' : '#DC143C'
+        !tl.dirty || (lastValue['tl'] == null && tl.value == '')
+          ? 'white'
+          : lastValue['tl'] == tl.value
+          ? '#707070'
+          : isChanged['tl']
+          ? '#000080'
+          : '#DC143C'
       "
-      [style.color]="isChanged['tl'] ? 'white' : 'white'"
+      [style.caret-color]="
+        !tl.dirty || (lastValue['tl'] == null && tl.value == '')
+          ? 'black'
+          : 'white'
+      "
+      [readonly]="readonlyMode"
+      [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
   </div>
   <div class="grid-item">
     <label>Wind direction</label>
     <input
-      [(ngModel)]="formAtisFields['mrl.wind.dir'].value"
+      [(ngModel)]="formAtisFields['mlr.wind.dir'].value"
       type="text"
-      placeholder="Enter wind direction"
+      name="mlr.wind.dir"
+      #winddir="ngModel"
       [style.background]="
-        isChanged['mrl.wind.dir.value'] ? '#000080' : '#DC143C'
+        !winddir.dirty ||
+        (lastValue['mlr.wind.dir'] == null && winddir.value == '')
+          ? 'white'
+          : lastValue['mlr.wind.dir'] == winddir.value
+          ? '#707070'
+          : isChanged['mlr.wind.dir']
+          ? '#000080'
+          : '#DC143C'
       "
-      [style.color]="isChanged['mrl.wind.dir.value'] ? 'white' : 'white'"
+      [style.caret-color]="
+        !winddir.dirty ||
+        (lastValue['mlr.wind.dir'] == null && winddir.value == '')
+          ? 'black'
+          : 'white'
+      "
+      [readonly]="readonlyMode"
+      [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
   </div>
@@ -92,24 +129,54 @@
     <label>Varying between</label>
     <div class="extended-input">
       <input
-        [(ngModel)]="formAtisFields['mrl.wind.var.min.value']"
+        [(ngModel)]="formAtisFields['mlr.wind.var.min'].value"
+        name="mlr.wind.var.min"
         type="text"
-        placeholder="..."
+        #windvarmin="ngModel"
         [style.background]="
-          isChanged['mrl.wind.var.min.value'] ? '#000080' : '#DC143C'
+          !windvarmin.dirty ||
+          (lastValue['mlr.wind.var.min'] == null && windvarmin.value == '')
+            ? 'white'
+            : lastValue['mlr.wind.var.min'] == windvarmin.value
+            ? '#707070'
+            : isChanged['mlr.wind.var.min']
+            ? '#000080'
+            : '#DC143C'
         "
-        [style.color]="isChanged['mrl.wind.var.min.value'] ? 'white' : 'white'"
+        [style.caret-color]="
+          !windvarmin.dirty ||
+          (lastValue['mlr.wind.var.min'] == null && windvarmin.value == '')
+            ? 'black'
+            : 'white'
+        "
+        [readonly]="readonlyMode"
+        [class.readonly-input]="readonlyMode"
         (keyup)="onInputChange($event)"
       />
       <label class="and">and</label>
       <input
-        [(ngModel)]="formAtisFields['mrl.wind.var.max.value']"
+        [(ngModel)]="formAtisFields['mlr.wind.var.max'].value"
         type="text"
-        placeholder="..."
+        #windvarmax="ngModel"
+        name="mlr.wind.var.max"
         [style.background]="
-          isChanged['mrl.wind.var.max.value'] ? '#000080' : '#DC143C'
+          !windvarmax.dirty ||
+          (lastValue['mlr.wind.var.max'] == null && windvarmax.value == '')
+            ? 'white'
+            : lastValue['mlr.wind.var.max'] == windvarmax.value
+            ? '#707070'
+            : isChanged['mlr.wind.var.max']
+            ? '#000080'
+            : '#DC143C'
         "
-        [style.color]="isChanged['mrl.wind.var.max.value'] ? 'white' : 'white'"
+        [style.caret-color]="
+          !windvarmax.dirty ||
+          (lastValue['mlr.wind.var.max'] == null && windvarmax.value == '')
+            ? 'black'
+            : 'white'
+        "
+        [readonly]="readonlyMode"
+        [class.readonly-input]="readonlyMode"
         (keyup)="onInputChange($event)"
       />
     </div>
@@ -118,14 +185,28 @@
     <label>Wind speed</label>
     <div class="extended-input">
       <input
-        [(ngModel)]="formAtisFields['mrl.wind.gusts.value']"
-        name="holding"
+        [(ngModel)]="formAtisFields['mlr.wind.speed'].value"
+        name="mlr.wind.speed"
+        #windspeed="ngModel"
         type="text"
-        placeholder="Enter wind speed"
         [style.background]="
-          isChanged['mrl.wind.gusts.value'] ? '#000080' : '#DC143C'
+          !windspeed.dirty ||
+          (lastValue['mlr.wind.speed'] == null && windspeed.value == '')
+            ? 'white'
+            : lastValue['mlr.wind.speed'] == windspeed.value
+            ? '#707070'
+            : isChanged['mlr.wind.speed']
+            ? '#000080'
+            : '#DC143C'
         "
-        [style.color]="isChanged['mrl.wind.gusts.value'] ? 'white' : 'white'"
+        [style.caret-color]="
+          !windspeed.dirty ||
+          (lastValue['mlr.wind.speed'] == null && windspeed.value == '')
+            ? 'black'
+            : 'white'
+        "
+        [readonly]="readonlyMode"
+        [class.readonly-input]="readonlyMode"
         (keyup)="onInputChange($event)"
       />
       <label>kt</label>
@@ -135,10 +216,28 @@
     <label>Gusting To</label>
     <div class="extended-input">
       <input
+        [(ngModel)]="formAtisFields['mlr.wind.gusts'].value"
+        name="mlr.wind.gusts"
+        #windgusts="ngModel"
         type="text"
-        placeholder="..."
-        [style.background]="isChanged ? '#000080' : '#DC143C'"
-        [style.color]="isChanged ? 'white' : 'white'"
+        [style.background]="
+          !windgusts.dirty ||
+          (lastValue['mlr.wind.gusts'] == null && windgusts.value == '')
+            ? 'white'
+            : lastValue['mlr.wind.gusts'] == windgusts.value
+            ? '#707070'
+            : isChanged['mlr.wind.gusts']
+            ? '#000080'
+            : '#DC143C'
+        "
+        [style.caret-color]="
+          !windgusts.dirty ||
+          (lastValue['mlr.wind.gusts'] == null && windgusts.value == '')
+            ? 'black'
+            : 'white'
+        "
+        [readonly]="readonlyMode"
+        [class.readonly-input]="readonlyMode"
         (keyup)="onInputChange($event)"
       />
 
@@ -149,68 +248,108 @@
 <div class="input-box">
   <label>Visibility</label>
   <input
-    [(ngModel)]="formAtisFields.visibility.value"
+    [(ngModel)]="formAtisFields['visibility'].value"
     name="visibility"
     #visibility="ngModel"
     type="text"
     [style.background]="
-      !visibility.dirty
+      !visibility.dirty ||
+      (lastValue['visibility'] == null && visibility.value == '')
         ? 'white'
+        : lastValue['visibility'] == visibility.value
+        ? '#707070'
         : isChanged['visibility']
         ? '#000080'
         : '#DC143C'
     "
-    [style.color]="isChanged['visibility'] ? 'white' : 'white'"
+    [style.caret-color]="
+      !visibility.dirty ||
+      (lastValue['visibility'] == null && visibility.value == '')
+        ? 'black'
+        : 'white'
+    "
+    [readonly]="readonlyMode"
+    [class.readonly-input]="readonlyMode"
     (keyup)="onInputChange($event)"
   />
 </div>
 <div class="input-box">
   <label>RVR</label>
   <input
-    [(ngModel)]="formAtisFields.rvr.value"
+    [(ngModel)]="formAtisFields['rvr'].value"
     name="rvr"
     #rvr="ngModel"
     type="text"
     [style.background]="
-      !rvr.dirty ? 'white' : isChanged['rvr'] ? '#000080' : '#DC143C'
+      !rvr.dirty || (lastValue['rvr'] == null && rvr.value == '')
+        ? 'white'
+        : lastValue['rvr'] == rvr.value
+        ? '#707070'
+        : isChanged['rvr']
+        ? '#000080'
+        : '#DC143C'
     "
-    [style.color]="isChanged['rvr'] ? 'white' : 'white'"
+    [style.caret-color]="
+      !rvr.dirty || (lastValue['rvr'] == null && rvr.value == '')
+        ? 'black'
+        : 'white'
+    "
+    [readonly]="readonlyMode"
+    [class.readonly-input]="readonlyMode"
     (keyup)="onInputChange($event)"
   />
 </div>
 <div class="input-box">
   <label>Present weather</label>
   <input
-    [(ngModel)]="formAtisFields.presentweather.value"
+    [(ngModel)]="formAtisFields['presentweather'].value"
     name="presentweather"
     #presentweather="ngModel"
     type="text"
     [style.background]="
-      !presentweather.dirty
+      !presentweather.dirty ||
+      (lastValue['presentweather'] == null && presentweather.value == '')
         ? 'white'
+        : lastValue['presentweather'] == presentweather.value
+        ? '#707070'
         : isChanged['presentweather']
         ? '#000080'
         : '#DC143C'
     "
-    [style.color]="isChanged['presentweather'] ? 'white' : 'white'"
+    [style.caret-color]="
+      !presentweather.dirty ||
+      (lastValue['presentweather'] == null && presentweather.value == '')
+        ? 'black'
+        : 'white'
+    "
+    [readonly]="readonlyMode"
+    [class.readonly-input]="readonlyMode"
     (keyup)="onInputChange($event)"
   />
 </div>
 <div class="input-box">
   <label> Clouds</label>
   <input
-    [(ngModel)]="formAtisFields.clouds.value"
+    [(ngModel)]="formAtisFields['clouds'].value"
     name="clouds"
     #clouds="ngModel"
     type="text"
     [style.background]="
-      !clouds.dirty
+      !clouds.dirty || (lastValue['clouds'] == null && clouds.value == '')
         ? 'white'
-        : isChanged['presentweather']
+        : lastValue['clouds'] == clouds.value
+        ? '#707070'
+        : isChanged['clouds']
         ? '#000080'
         : '#DC143C'
     "
-    [style.color]="isChanged['clouds'] ? 'white' : 'white'"
+    [style.caret-color]="
+      !clouds.dirty || (lastValue['clouds'] == null && clouds.value == '')
+        ? 'black'
+        : 'white'
+    "
+    [readonly]="readonlyMode"
+    [class.readonly-input]="readonlyMode"
     (keyup)="onInputChange($event)"
   />
 </div>
@@ -218,63 +357,110 @@
   <div class="temp-grid-item-1">
     <label>Temperature</label>
     <input
-      [(ngModel)]="formAtisFields.temperature.value"
+      [(ngModel)]="formAtisFields['temperature'].value"
       name="temperature"
       #temperature="ngModel"
       type="text"
       [style.background]="
-        !temperature.dirty
+        !temperature.dirty ||
+        (lastValue['temperature'] == null && temperature.value == '')
           ? 'white'
+          : lastValue['temperature'] == temperature.value
+          ? '#707070'
           : isChanged['temperature']
           ? '#000080'
           : '#DC143C'
       "
-      [style.color]="isChanged['temperature'] ? 'white' : 'white'"
+      [style.caret-color]="
+        !temperature.dirty ||
+        (lastValue['temperature'] == null && temperature.value == '')
+          ? 'black'
+          : 'white'
+      "
+      [readonly]="readonlyMode"
+      [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
   </div>
   <div class="temp-grid-item-2">
     <label>Dewpoint</label>
     <input
-      [(ngModel)]="formAtisFields.dewpoint.value"
+      [(ngModel)]="formAtisFields['dewpoint'].value"
       name="dewpoint"
       #dewpoint="ngModel"
       type="text"
       [style.background]="
-        !dewpoint.dirty
+        !dewpoint.dirty ||
+        (lastValue['dewpoint'] == null && dewpoint.value == '')
           ? 'white'
+          : lastValue['dewpoint'] == dewpoint.value
+          ? '#707070'
           : isChanged['dewpoint']
           ? '#000080'
           : '#DC143C'
       "
-      [style.color]="isChanged['dewpoint'] ? 'white' : 'white'"
+      [style.caret-color]="
+        !dewpoint.dirty ||
+        (lastValue['dewpoint'] == null && dewpoint.value == '')
+          ? 'black'
+          : 'white'
+      "
+      [readonly]="readonlyMode"
+      [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
   </div>
   <div class="temp-grid-item-3">
     <label>QNH</label>
     <input
-      [(ngModel)]="formAtisFields.qnh.value"
-      #qnh="ngModel"
+      [(ngModel)]="formAtisFields['pressure'].value"
+      name="pressure"
+      #pressure="ngModel"
       type="text"
       [style.background]="
-        !qnh.dirty ? 'white' : isChanged['qnh'] ? '#000080' : '#DC143C'
+        !pressure.dirty ||
+        (lastValue['pressure'] == null && pressure.value == '')
+          ? 'white'
+          : lastValue['pressure'] == pressure.value
+          ? '#707070'
+          : isChanged['pressure']
+          ? '#000080'
+          : '#DC143C'
       "
-      [style.color]="isChanged['qnh'] ? 'white' : 'white'"
+      [style.caret-color]="
+        !pressure.dirty ||
+        (lastValue['pressure'] == null && pressure.value == '')
+          ? 'black'
+          : 'white'
+      "
+      [readonly]="readonlyMode"
+      [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
   </div>
   <div class="temp-grid-item-4">
     <label>QFE</label>
     <input
-      [(ngModel)]="formAtisFields.qfe.value"
+      [(ngModel)]="formAtisFields['qfe'].value"
       name="qfe"
       #qfe="ngModel"
       type="text"
       [style.background]="
-        !qfe.dirty ? 'white' : isChanged['qfe'] ? '#000080' : '#DC143C'
+        !qfe.dirty || (lastValue['qfe'] == null && qfe.value == '')
+          ? 'white'
+          : lastValue['qfe'] == qfe.value
+          ? '#707070'
+          : isChanged['qfe']
+          ? '#000080'
+          : '#DC143C'
       "
-      [style.color]="isChanged['qfe'] ? 'white' : 'white'"
+      [style.caret-color]="
+        !qfe.dirty || (lastValue['qfe'] == null && qfe.value == '')
+          ? 'black'
+          : 'white'
+      "
+      [readonly]="readonlyMode"
+      [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
   </div>
@@ -283,12 +469,25 @@
 <div class="input-box textbox">
   <label>Freetext</label>
   <textarea
-    [(ngModel)]="formAtisFields.freetext.value"
+    [(ngModel)]="formAtisFields['freetext'].value"
+    name="freetext"
     #freetext="ngModel"
     [style.background]="
-      !freetext.dirty ? 'white' : isChanged['freetext'] ? '#000080' : '#DC143C'
+      !freetext.dirty || (lastValue['freetext'] == null && freetext.value == '')
+        ? 'white'
+        : lastValue['freetext'] == freetext.value
+        ? '#707070'
+        : isChanged['freetext']
+        ? '#000080'
+        : '#DC143C'
     "
-    [style.color]="isChanged['freetext'] ? 'white' : 'white'"
+    [style.caret-color]="
+      !freetext.dirty || (lastValue['freetext'] == null && freetext.value == '')
+        ? 'black'
+        : 'white'
+    "
+    [readonly]="readonlyMode"
+    [class.readonly-input]="readonlyMode"
     (keyup)="onInputChange($event)"
   ></textarea>
 </div>
@@ -296,9 +495,15 @@
   <label>Fixedtext</label>
   <div class="select-box" [ngClass]="{ selected: isOptionSelected }">
     <select
-      [(ngModel)]="formAtisFields.fixedtext.value"
+      [(ngModel)]="formAtisFields['fixedtext'].value"
       [ngClass]="{ selected: isOptionSelected }"
+      [ngClass]="{
+        greyDropdown:
+          lastValue['fixedtext'] == formAtisFields['fixedtext'].value
+      }"
       (ngModelChange)="onInputChange($event, 'fixedtext')"
+      [disabled]="readonlyMode"
+      [ngClass]="{ 'readonly-select': readonlyMode }"
     >
       <option hidden>Runway</option>
       <option>INITIAL CLEARED ALTITUDE 4000 FEET</option>
@@ -310,8 +515,15 @@
 <div class="broadcast-mode-buttons">
   <label>Broadcast mode</label>
   <br />
-  <button>Manual</button>
-  <button>SemiAuto</button>
-  <button>Auto</button>
-  <button class="broadcast" (click)="sendBroadcastMessage()">Broadcast</button>
+  <button (click)="manualMode()">Manual</button>
+  <button (click)="semiAutoMode()">SemiAuto</button>
+  <button (click)="autoMode()">Auto</button>
+  <button
+    class="broadcast"
+    (click)="sendBroadcastMessage()"
+    [disabled]="isBroadcastBtnDisabled"
+    [ngClass]="{ 'disabled-button': isBroadcastBtnDisabled }"
+  >
+    Broadcast
+  </button>
 </div>

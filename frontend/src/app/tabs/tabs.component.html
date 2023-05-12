@@ -1,6 +1,12 @@
-<div class="grid">
-  <span title="Florø Airport Norway" class="title">ENFL</span>
-  <div [ngClass]="state ? 'led-green' : 'led-red'"></div>
+<div class="outter-grid">
+  <div class="grid">
+    <span title="Florø Airport Norway" class="title">ENFL</span>
+    <div [ngClass]="state ? 'led-green' : 'led-red'"></div>
+    <p class="lastBroadcast">Last broadcast: {{ broadcastTime }}</p>
+  </div>
+
+  <p>({{ currentCode }}) (Current)</p>
+  <p>({{ nextCode }}) (Next)</p>
 </div>
 <mat-tab-group class="custom-tab-group">
   <mat-tab>
@@ -9,8 +15,12 @@
     </ng-template>
     <div class="container">
       <app-atis-form
+        (lastBroadcastTime)="getBroadcastTime($event)"
         (isSubscribed)="getSubscribeState($event)"
         (currentBroadcast)="getCurrentBroadcast($event)"
+        (nextBroadcast)="getNextBroadcast($event)"
+        (currentAtisCode)="getCurrentCode($event)"
+        (nextAtisCode)="getNextCode($event)"
       ></app-atis-form>
     </div>
   </mat-tab>
@@ -19,7 +29,10 @@
       <span class="tabName">Overview </span>
     </ng-template>
     <div class="container">
-      <app-overview [currentBroadcast]="message"></app-overview>
+      <app-overview
+        [currentBroadcast]="message"
+        [nextBroadcast]="nextMessage"
+      ></app-overview>
     </div>
   </mat-tab>
 </mat-tab-group>

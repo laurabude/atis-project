@@ -6,6 +6,7 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
 textarea {
   width: 100%;
   outline: none;
@@ -21,7 +22,7 @@ textarea {
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 0.2fr 24.2fr;
+  grid-template-rows: 0.2fr 20.3fr;
   grid-column-gap: 14%;
   grid-row-gap: 0px;
 }

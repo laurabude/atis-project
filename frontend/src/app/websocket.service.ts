@@ -16,30 +16,21 @@ export class ReceivedMessage implements SentMessage {
   content: Content;
 }
 export interface Content {
-  messageText: { ENGLISH: string };
+  nextMessageText: { DATIS: string; ENGLISH: string };
+  messageText: { DATIS: string; ENGLISH: string };
   atisFields: AtisFields;
   atisCode: string;
+  type: string;
+  fieldName: string;
+  value: string;
+  releaseTime: string;
+  nextIcaoCode: string;
 }
 export interface AtisFields {
-  obstime: { name: string; value: string };
-  holding: { name: string; value: string };
-  activeRunway: { name: string; value: string };
-  'mrl.wind.gusts': { name: string; value: string };
-  'mrl.wind.dir': { name: string; value: string };
-  'mrl.wind.var.min': { name: string; value: string };
-  'mrl.wind.var.max': { name: string; value: string };
-  visibility: { name: string; value: string };
-  rvr: { name: string; value: string };
-  presentweather: { name: string; value: string };
-  clouds: { name: string; value: string };
-  temperature: { name: string; value: string };
-  dewpoint: { name: string; value: string };
-  fixedtext: { name: string; value: string };
-  apptype: { name: string; value: string };
-  qfe: { name: string; value: string };
-  qnh: { name: string; value: string };
-  tl: { name: string; value: string };
-  freetext: { name: string; value: string };
+  [key: string]: {
+    name: string;
+    value: string;
+  };
 }
 @Injectable()
 export class WebsocketService {

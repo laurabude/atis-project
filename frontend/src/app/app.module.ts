@@ -25,6 +25,7 @@ import { CommonModule } from '@angular/common';
 import { TabsComponent } from './tabs/tabs.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { OverviewComponent } from './overview/overview.component';
+import { HeaderAtisComponent } from './header-atis/header-atis.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { OverviewComponent } from './overview/overview.component';
     RegisterComponent,
     TabsComponent,
     OverviewComponent,
+    HeaderAtisComponent,
   ],
   imports: [
     FormsModule,

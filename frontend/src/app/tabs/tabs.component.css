@@ -17,7 +17,7 @@ span {
   text-align: center;
   margin-top: 5px;
   display: inline-block;
-  margin-right: 50%;
+  margin-right: 75%;
 }
 .container {
   position: relative;
@@ -36,16 +36,16 @@ span {
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 0.07fr);
-  grid-template-rows: 0.2fr;
-  grid-column-gap: 0%;
+  grid-template-columns: repeat(2, 0.35fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
 
 .led-green {
   align-self: center;
-  width: 33px;
-  height: 33px;
+  width: 30px;
+  height: 30px;
   background-color: #8af168;
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
@@ -53,10 +53,22 @@ span {
 }
 .led-red {
   align-self: center;
-  width: 33px;
-  height: 33px;
+  width: 30px;
+  height: 30px;
   background-color: #ec3232;
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
     #ec3232 0 2px 12px;
+}
+.lastBroadcast {
+  font-size: 1vw;
+  color: white;
+  margin-top: 3%;
+}
+.outter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
