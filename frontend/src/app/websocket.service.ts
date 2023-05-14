@@ -25,6 +25,7 @@ export interface Content {
   value: string;
   releaseTime: string;
   nextIcaoCode: string;
+  fieldState: string;
 }
 export interface AtisFields {
   [key: string]: {

@@ -5,7 +5,7 @@
 <div class="outter-grid">
   <div class="grid">
     <div class="container-title">
-      <span title="Florø Airport Norway" class="title">ENFL</span>
+      <span title="Aeroparque Jorge Newbery" class="title">SABE</span>
       <div [ngClass]="state ? 'led-green' : 'led-red'"></div>
     </div>
     <p class="lastBroadcast">Last broadcast: {{ broadcastTime }}</p>
@@ -29,14 +29,14 @@
       <span class="tabName">ATIS Report </span>
     </ng-template>
     <div class="container">
-      <app-atis-form
+      <app-atis-form-sabe
         (lastBroadcastTime)="getBroadcastTime($event)"
         (isSubscribed)="getSubscribeState($event)"
         (currentBroadcast)="getCurrentBroadcast($event)"
         (nextBroadcast)="getNextBroadcast($event)"
         (currentAtisCode)="getCurrentCode($event)"
         (nextAtisCode)="getNextCode($event)"
-      ></app-atis-form>
+      ></app-atis-form-sabe>
     </div>
   </mat-tab>
   <mat-tab>
@@ -44,10 +44,10 @@
       <span class="tabName">Overview </span>
     </ng-template>
     <div class="container">
-      <app-overview
+      <app-overview-sabe
         [currentBroadcast]="message"
         [nextBroadcast]="nextMessage"
-      ></app-overview>
+      ></app-overview-sabe>
     </div>
   </mat-tab>
 </mat-tab-group>

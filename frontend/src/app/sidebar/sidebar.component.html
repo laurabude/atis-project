@@ -31,10 +31,21 @@
     <li>
       <ng-container *ngIf="collapsed">
         <ng-container *ngIf="isLoggedIn; else elseBlock">
-          <div>Hello, {{ username }}!</div>
-          <button class="sign-in" @fadeInOut>Sign out</button>
+          <div class="logged-in">
+            <div class="hello-user">Hello, {{ username }}!</div>
+            <button class="sign-out" @fadeInOut (click)="signOut()">
+              Sign out
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+            </button>
+          </div>
         </ng-container>
         <ng-template #elseBlock>
+          <a routerLink="/register">
+            <button class="btns-login" @fadeInOut>
+              Sign In
+              <i class="fa fa-sign-in"></i>
+            </button>
+          </a>
           <a routerLink="/login">
             <button class="btns-login" @fadeInOut>
               Login
@@ -43,11 +54,6 @@
               ></span>
             </button>
           </a>
-
-          <button class="btns-login" @fadeInOut>
-            Sign In
-            <i class="fa-solid fa-right-from-bracket"></i>
-          </button>
         </ng-template>
       </ng-container>
     </li>

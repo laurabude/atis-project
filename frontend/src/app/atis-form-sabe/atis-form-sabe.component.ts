@@ -13,77 +13,61 @@ import {
 } from '../websocket.service';
 
 @Component({
-  selector: 'app-atis-form',
-  templateUrl: './atis-form.component.html',
-  styleUrls: ['./atis-form.component.css'],
-  providers: [WebsocketService],
+  selector: 'app-atis-form-sabe',
+  templateUrl: './atis-form-sabe.component.html',
+  styleUrls: ['./atis-form-sabe.component.css'],
 })
-export class AtisFormComponent {
+export class AtisFormSabeComponent {
   @ViewChild('myInput') myInput: ElementRef;
   messageContent: Content;
   public formAtisFields: AtisFields = {
     obstime: { name: 'obstime', value: '' },
     mlr: { name: 'mlr', value: '' },
+    apptype1: { name: 'apptype', value: '' },
     holding: { name: 'holding', value: '' },
-    'mlr.wind.speed': { name: 'mlr.wind.speed', value: '' },
-    'mlr.wind.gusts': { name: 'mlr.wind.gusts', value: '' },
+    tl: { name: 'tl', value: '' },
+    temperature: { name: 'temperature', value: '' },
     'mlr.wind.dir': { name: 'mlr.wind.dir', value: '' },
     'mlr.wind.var.min': { name: 'mlr.wind.var.min', value: '' },
     'mlr.wind.var.max': { name: 'mlr.wind.var.max', value: '' },
-    visibility: { name: 'visibility', value: '' },
-    rvr: { name: 'rvr', value: '' },
-    presentweather: { name: 'presentweather', value: '' },
-    clouds: { name: 'clouds', value: '' },
-    temperature: { name: 'temperature', value: '' },
     dewpoint: { name: 'dewpoint', value: '' },
-    qfe: { name: 'qfe', value: '' },
-    fixedtext: { name: 'fixedtext', value: '' },
-    apptype: { name: 'apptype', value: '' },
+    'mlr.wind.speed': { name: 'mlr.wind.speed', value: '' },
+    'mlr.wind.gusts': { name: 'mlr.wind.gusts', value: '' },
     pressure: { name: 'pressure', value: '' }, //QNH
-    tl: { name: 'tl', value: '' },
-    freetext: { name: 'freetext', value: '' },
+    visibility: { name: 'visibility', value: '' },
+    rvrTdz: { name: 'rvrTdz', value: '' },
+    rvrMid: { name: 'rvrMid', value: '' },
+    rvrEnd: { name: 'rvrEnd', value: '' },
+    presentweather: { name: 'presentweather', value: '' },
+    cloud1: { name: 'clouds', value: '' },
+    cbtcu: { name: 'cbtcu', value: '' },
+    remarksEnglish: { name: 'remarksEnglish', value: '' },
+    remarksSpanish: { name: 'remarksSpanish', value: '' },
   };
   isChanged: { [key: string]: number } = {
     obstime: 0,
+    apptype1: 0,
     holding: 0,
-    mlr: 0,
-    'mlr.wind.speed': 0,
-    'mlr.wind.gusts': 0,
+    tl: 0,
+    temperature: 0,
     'mlr.wind.dir': 0,
     'mlr.wind.var.min': 0,
     'mlr.wind.var.max': 0,
-    visibility: 0,
-    rvr: 0,
-    presentweather: 0,
-    clouds: 0,
-    temperature: 0,
     dewpoint: 0,
+    'mlr.wind.speed': 0,
+    'mlr.wind.gusts': 0,
     pressure: 0,
-    qfe: 0,
-    tl: 0,
-    freetext: 0,
-    fixedtext: 0,
-    apptype: 0,
+    visibility: 0,
+    rvrTdz: 0,
+    rvrMid: 0,
+    rvrEnd: 0,
+    presentweather: 0,
+    cloud1: 0,
+    cbtcu: 0,
+    remarksEnglish: 0,
+    remarksSpanish: 0,
   };
-  lastValue: { [key: string]: string } = {
-    obstime: null,
-    holding: null,
-    'mlr.wind.speed': null,
-    'mlr.wind.gusts': null,
-    'mlr.wind.dir': null,
-    'mlr.wind.var.min': null,
-    'mlr.wind.var.max': null,
-    visibility: null,
-    rvr: null,
-    presentweather: null,
-    clouds: null,
-    temperature: null,
-    dewpoint: null,
-    pressure: null,
-    qnh: null,
-    tl: null,
-    freetext: null,
-  };
+
   ENGLISH: string = '';
   isOptionSelected: boolean = false;
   fieldName: string = '';
@@ -139,10 +123,10 @@ export class AtisFormComponent {
     let broadcastMessage = {
       content: {
         type: 'ATIS_RELEASE_REQUEST',
-        airport: 'ENFL',
+        airport: 'SABE',
         reportType: 'ATIS_ARRDEP',
       },
-      topic: '/ATIS_ARRDEP/ENFL',
+      topic: '/ATIS_ARRDEP/SABE',
       type: 'PUBLICATION',
     };
 
@@ -151,7 +135,7 @@ export class AtisFormComponent {
 
   sendSubscribeMsg() {
     let message = {
-      topic: '/ATIS_ARRDEP/ENFL',
+      topic: '/ATIS_ARRDEP/SABE',
       type: 'SUBSCRIBE',
       content: null,
     };
@@ -180,7 +164,7 @@ export class AtisFormComponent {
       let updateMessage = {
         content: {
           type: 'ATIS_FIELD_UPDATE',
-          airport: 'ENFL',
+          airport: 'SABE',
           reportType: 'ATIS_ARRDEP',
           fieldName: this.fieldName,
           value: this.fieldValue,

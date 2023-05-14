@@ -13,6 +13,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { StorageService } from '../_services/storage.service';
 import { navbarData } from './nav-data';
 
 interface SideNavToggle {
@@ -55,7 +56,7 @@ export class SidebarComponent implements OnInit {
   collapsed = false;
   screenWidth = 0;
   navData = navbarData;
-
+  constructor(private storageService: StorageService) {}
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.screenWidth = window.innerWidth;
@@ -87,5 +88,9 @@ export class SidebarComponent implements OnInit {
       collapsed: this.collapsed,
       screenWidth: this.screenWidth,
     });
+  }
+  signOut() {
+    this.storageService.clean();
+    this.isLoggedIn = false;
   }
 }

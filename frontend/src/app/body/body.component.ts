@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-body',
@@ -8,11 +9,18 @@ import { Component, Input } from '@angular/core';
 export class BodyComponent {
   @Input() collapsed = false;
   @Input() screenWidth = 0;
-
+  constructor(private router: Router) {}
   getBodyClass(): string {
     let styleClass = '';
     if (this.collapsed && this.screenWidth > 768) {
-      styleClass = 'body-trimmed';
+      if (
+        this.router.url === '/atis-report-enfl' ||
+        this.router.url === '/atis-report-sabe'
+      ) {
+        styleClass = 'body-trimmed-atis';
+      } else {
+        styleClass = 'body-trimmed';
+      }
     } else if (
       this.collapsed &&
       this.screenWidth <= 768 &&
@@ -20,6 +28,7 @@ export class BodyComponent {
     ) {
       styleClass = 'body-md-screen';
     }
+
     return styleClass;
   }
 }

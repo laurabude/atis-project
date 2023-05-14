@@ -5,9 +5,14 @@ export const navbarData = [
     label: 'Home',
   },
   {
-    routeLink: 'atis-report',
+    routeLink: 'atis-report-enfl',
     icon: 'fa-plane fa',
-    label: 'Atis Report',
+    label: 'ENFL',
+  },
+  {
+    routeLink: 'atis-report-sabe',
+    icon: 'fa fa-fighter-jet',
+    label: 'SABE',
   },
   {
     routeLink: 'login',

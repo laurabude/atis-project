@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,7 +24,9 @@ import { CommonModule } from '@angular/common';
 import { TabsComponent } from './tabs/tabs.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { OverviewComponent } from './overview/overview.component';
-import { HeaderAtisComponent } from './header-atis/header-atis.component';
+import { AtisFormSabeComponent } from './atis-form-sabe/atis-form-sabe.component';
+import { TabsSabeComponent } from './tabs-sabe/tabs-sabe.component';
+import { OverviewSabeComponent } from './overview-sabe/overview-sabe.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,9 @@ import { HeaderAtisComponent } from './header-atis/header-atis.component';
     RegisterComponent,
     TabsComponent,
     OverviewComponent,
-    HeaderAtisComponent,
+    AtisFormSabeComponent,
+    TabsSabeComponent,
+    OverviewSabeComponent,
   ],
   imports: [
     FormsModule,

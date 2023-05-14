@@ -1,11 +1,12 @@
 import { formatDate } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+
 @Component({
-  selector: 'app-tabs',
-  templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.css'],
+  selector: 'app-tabs-sabe',
+  templateUrl: './tabs-sabe.component.html',
+  styleUrls: ['./tabs-sabe.component.css'],
 })
-export class TabsComponent {
+export class TabsSabeComponent {
   message: string;
   nextMessage: string;
   state: boolean;

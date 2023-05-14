@@ -134,3 +134,37 @@
   background-color: #eceff1;
   color: #000;
 }
+.hello-user {
+  color: #eceff1;
+  float: right;
+  font-size: 15px;
+}
+.logged-in {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 2fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  float: right;
+  margin-top: 100px;
+}
+.sign-out {
+  float: right;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  color: #f3f3f3;
+  height: 2rem;
+  text-decoration: none;
+  border-radius: 0.625rem;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  margin-right: 3%;
+}
+
+.sign-out:hover {
+  background-color: #eceff1;
+  color: #000;
+}
