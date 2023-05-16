@@ -16,8 +16,8 @@ export class ReceivedMessage implements SentMessage {
   content: Content;
 }
 export interface Content {
-  nextMessageText: { DATIS: string; ENGLISH: string };
-  messageText: { DATIS: string; ENGLISH: string };
+  nextMessageText: { DATIS: string; ENGLISH: string; SPANISH: string };
+  messageText: { DATIS: string; ENGLISH: string; SPANISH: string };
   atisFields: AtisFields;
   atisCode: string;
   type: string;

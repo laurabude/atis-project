@@ -2,7 +2,9 @@ label {
   display: block;
   margin-top: 10px;
 }
-
+:host {
+  background-image: url("register.png");
+}
 .card-container.card {
   max-width: 400px !important;
   padding: 40px 40px;

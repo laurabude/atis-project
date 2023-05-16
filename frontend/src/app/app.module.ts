@@ -26,7 +26,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { OverviewComponent } from './overview/overview.component';
 import { AtisFormSabeComponent } from './atis-form-sabe/atis-form-sabe.component';
 import { TabsSabeComponent } from './tabs-sabe/tabs-sabe.component';
-import { OverviewSabeComponent } from './overview-sabe/overview-sabe.component';
+import { OverviewESComponent } from './overview-es/overview-es.component';
+import { OverviewDATISComponent } from './overview-datis/overview-datis.component';
+import { AirportsComponent } from './airports/airports.component';
+import { MapComponent } from './map/map.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +48,10 @@ import { OverviewSabeComponent } from './overview-sabe/overview-sabe.component';
     OverviewComponent,
     AtisFormSabeComponent,
     TabsSabeComponent,
-    OverviewSabeComponent,
+    OverviewESComponent,
+    OverviewDATISComponent,
+    AirportsComponent,
+    MapComponent,
   ],
   imports: [
     FormsModule,

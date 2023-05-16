@@ -32,8 +32,8 @@
       <app-atis-form
         (lastBroadcastTime)="getBroadcastTime($event)"
         (isSubscribed)="getSubscribeState($event)"
-        (currentBroadcast)="getCurrentBroadcast($event)"
-        (nextBroadcast)="getNextBroadcast($event)"
+        (currentBroadcastENGLISH)="getCurrentBroadcast($event)"
+        (nextBroadcastENGLISH)="getNextBroadcast($event)"
         (currentAtisCode)="getCurrentCode($event)"
         (nextAtisCode)="getNextCode($event)"
       ></app-atis-form>
@@ -45,8 +45,8 @@
     </ng-template>
     <div class="container">
       <app-overview
-        [currentBroadcast]="message"
-        [nextBroadcast]="nextMessage"
+        [currentBroadcastEN]="message"
+        [nextBroadcastEN]="nextMessage"
       ></app-overview>
     </div>
   </mat-tab>

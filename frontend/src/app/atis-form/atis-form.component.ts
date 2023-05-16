@@ -65,25 +65,6 @@ export class AtisFormComponent {
     fixedtext: 0,
     apptype: 0,
   };
-  lastValue: { [key: string]: string } = {
-    obstime: null,
-    holding: null,
-    'mlr.wind.speed': null,
-    'mlr.wind.gusts': null,
-    'mlr.wind.dir': null,
-    'mlr.wind.var.min': null,
-    'mlr.wind.var.max': null,
-    visibility: null,
-    rvr: null,
-    presentweather: null,
-    clouds: null,
-    temperature: null,
-    dewpoint: null,
-    pressure: null,
-    qnh: null,
-    tl: null,
-    freetext: null,
-  };
   ENGLISH: string = '';
   isOptionSelected: boolean = false;
   fieldName: string = '';
@@ -113,6 +94,7 @@ export class AtisFormComponent {
         this.nextBroadcast.emit(msg.content.nextMessageText.ENGLISH);
         this.nextAtisCode.emit(msg.content.nextIcaoCode);
       } else if (msg.content.type === 'ATIS_FIELD_UPDATED') {
+        this.isBroadcastBtnDisabled = false;
         if (msg.content.fieldState === 'CHANGED_BEFORE_BROADCAST') {
           this.formAtisFields[msg.content.fieldName].value = msg.content.value;
           this.isChanged[msg.content.fieldName] = 1; // albastru

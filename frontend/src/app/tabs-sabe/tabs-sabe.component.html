@@ -32,8 +32,12 @@
       <app-atis-form-sabe
         (lastBroadcastTime)="getBroadcastTime($event)"
         (isSubscribed)="getSubscribeState($event)"
-        (currentBroadcast)="getCurrentBroadcast($event)"
-        (nextBroadcast)="getNextBroadcast($event)"
+        (currentBroadcastEnglish)="getCurrentBroadcastEN($event)"
+        (nextBroadcastEnglish)="getNextBroadcastEN($event)"
+        (currentBroadcastSpanish)="getCurrentBroadcastES($event)"
+        (nextBroadcastSpanish)="getNextBroadcastES($event)"
+        (currentBroadcastDATIS)="getCurrentBroadcastDATIS($event)"
+        (nextBroadcastDATIS)="getNextBroadcastDATIS($event)"
         (currentAtisCode)="getCurrentCode($event)"
         (nextAtisCode)="getNextCode($event)"
       ></app-atis-form-sabe>
@@ -41,13 +45,35 @@
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>
-      <span class="tabName">Overview </span>
+      <span class="tabName">Overview English </span>
     </ng-template>
     <div class="container">
-      <app-overview-sabe
-        [currentBroadcast]="message"
-        [nextBroadcast]="nextMessage"
-      ></app-overview-sabe>
+      <app-overview
+        [currentBroadcastEN]="messageEnglish"
+        [nextBroadcastEN]="nextMessageEnglish"
+      ></app-overview>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span class="tabName">Overview Spanish </span>
+    </ng-template>
+    <div class="container">
+      <app-overview-es
+        [currentBroadcastES]="messageES"
+        [nextBroadcastES]="nextMessageES"
+      ></app-overview-es>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span class="tabName">DATIS </span>
+    </ng-template>
+    <div class="container">
+      <app-overview-datis
+        [currentBroadcastDATIS]="messageDATIS"
+        [nextBroadcastDATIS]="nextMessageDATIS"
+      ></app-overview-datis>
     </div>
   </mat-tab>
 </mat-tab-group>

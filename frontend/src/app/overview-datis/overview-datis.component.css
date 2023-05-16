@@ -22,7 +22,7 @@ textarea {
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 0.2fr 19.9fr;
+  grid-template-rows: 0.2fr 19fr;
   grid-column-gap: 14%;
   grid-row-gap: 0px;
 }

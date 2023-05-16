@@ -34,6 +34,7 @@
       <select
         [(ngModel)]="formAtisFields['apptype1'].value"
         (ngModelChange)="onInputChange($event, 'apptype1')"
+        name="apptype1"
         [style.background]="
           isChanged['apptype1'] == 0
             ? 'white'

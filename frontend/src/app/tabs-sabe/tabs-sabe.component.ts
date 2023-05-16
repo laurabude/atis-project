@@ -7,8 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./tabs-sabe.component.css'],
 })
 export class TabsSabeComponent {
-  message: string;
-  nextMessage: string;
+  messageEnglish: string;
+  nextMessageEnglish: string;
+  messageES: string;
+  nextMessageES: string;
+  messageDATIS: string;
+  nextMessageDATIS: string;
   state: boolean;
   broadcastTime: string;
   currentCode: string;
@@ -26,14 +30,26 @@ export class TabsSabeComponent {
   getBroadcastTime(broadcastTime) {
     this.broadcastTime = formatDate(broadcastTime, 'HH:mm', 'en-US', '+0000');
   }
-  getCurrentBroadcast(message) {
-    this.message = message;
+  getCurrentBroadcastEN(messageEnglish) {
+    this.messageEnglish = messageEnglish;
+  }
+  getCurrentBroadcastES(messageES) {
+    this.messageES = messageES;
+  }
+  getCurrentBroadcastDATIS(messageDATIS) {
+    this.messageDATIS = messageDATIS;
   }
   getSubscribeState(state) {
     this.state = state;
   }
-  getNextBroadcast(nextMessage) {
-    this.nextMessage = nextMessage;
+  getNextBroadcastEN(nextMessageEnglish) {
+    this.nextMessageEnglish = nextMessageEnglish;
+  }
+  getNextBroadcastES(nextMessageES) {
+    this.nextMessageES = nextMessageES;
+  }
+  getNextBroadcastDATIS(nextMessageDATIS) {
+    this.nextMessageDATIS = nextMessageDATIS;
   }
   addClass() {
     if (this.currentCode === 'N/A') {

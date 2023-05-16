@@ -1,3 +1,14 @@
+export const subTags = [
+  {
+    routeLink: 'atis-report/enfl',
+    label: 'ENFL',
+  },
+  {
+    routeLink: 'atis-report/sabe',
+    label: 'SABE',
+  },
+];
+
 export const navbarData = [
   {
     routeLink: 'home',
@@ -5,29 +16,15 @@ export const navbarData = [
     label: 'Home',
   },
   {
-    routeLink: 'atis-report-enfl',
+    routeLink: 'atis-report',
     icon: 'fa-plane fa',
-    label: 'ENFL',
+    label: 'Airports',
+    subtags: subTags,
   },
   {
-    routeLink: 'atis-report-sabe',
-    icon: 'fa fa-fighter-jet',
-    label: 'SABE',
-  },
-  {
-    routeLink: 'login',
-    icon: 'fa fa-tags',
-    label: 'Coupens',
-  },
-  {
-    routeLink: 'register',
-    icon: 'fa fa-file',
-    label: 'Pages',
-  },
-  {
-    routeLink: 'profile',
-    icon: 'fa fa-camera',
-    label: 'Media',
+    routeLink: 'map',
+    icon: 'fa fa-globe',
+    label: 'Map',
   },
   {
     routeLink: 'user',

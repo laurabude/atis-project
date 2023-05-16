@@ -13,21 +13,41 @@
   </div>
 
   <ul class="sidenav-nav">
-    <li class="sidenav-nav-item" *ngFor="let data of navData">
-      <a
-        class="sidenav-nav-link"
-        [routerLink]="[data.routeLink]"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <i class="sidenav-link-icon" [class]="data.icon"></i>
-        <ng-container *ngIf="collapsed">
-          <div class="sidenav-link-text" @fadeInOut>
-            {{ data.label }}
-          </div>
-        </ng-container>
-      </a>
-    </li>
+    <div *ngFor="let data of navData">
+      <li class="sidenav-nav-item">
+        <a
+          class="sidenav-nav-link"
+          [routerLink]="[data.routeLink]"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: collapsed }"
+        >
+          <i class="sidenav-link-icon" [class]="data.icon"></i>
+          <ng-container *ngIf="collapsed">
+            <div class="sidenav-link-text" @fadeInOut>
+              {{ data.label }}
+            </div>
+          </ng-container>
+        </a>
+      </li>
+      <ng-container *ngIf="data.subtags && collapsed">
+        <li class="sidenav-nav-item subTag" *ngFor="let subTag of data.subtags">
+          <a
+            class="sidenav-nav-link"
+            [routerLink]="[subTag.routeLink]"
+            routerLinkActive="active"
+          >
+            <i
+              class="fa fa-fighter-jet sidenav-link-icon"
+              aria-hidden="true"
+            ></i>
+            <div class="sidenav-link-text" @fadeInOut>
+              {{ subTag.label }}
+            </div>
+          </a>
+        </li>
+      </ng-container>
+    </div>
+
     <li>
       <ng-container *ngIf="collapsed">
         <ng-container *ngIf="isLoggedIn; else elseBlock">

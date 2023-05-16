@@ -51,6 +51,15 @@
   font-size: 24px;
 }
 
+.subTag {
+  margin-left: 2.5rem !important;
+  width: 82% !important;
+}
+
+.subTag i {
+  font-size: 18px !important;
+}
+
 .sidenav-collapsed {
   width: 16.5625rem;
 }

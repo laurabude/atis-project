@@ -23,7 +23,7 @@ export class AtisFormSabeComponent {
   public formAtisFields: AtisFields = {
     obstime: { name: 'obstime', value: '' },
     mlr: { name: 'mlr', value: '' },
-    apptype1: { name: 'apptype', value: '' },
+    apptype1: { name: 'apptype1', value: '' },
     holding: { name: 'holding', value: '' },
     tl: { name: 'tl', value: '' },
     temperature: { name: 'temperature', value: '' },
@@ -39,7 +39,7 @@ export class AtisFormSabeComponent {
     rvrMid: { name: 'rvrMid', value: '' },
     rvrEnd: { name: 'rvrEnd', value: '' },
     presentweather: { name: 'presentweather', value: '' },
-    cloud1: { name: 'clouds', value: '' },
+    cloud1: { name: 'cloud1', value: '' },
     cbtcu: { name: 'cbtcu', value: '' },
     remarksEnglish: { name: 'remarksEnglish', value: '' },
     remarksSpanish: { name: 'remarksSpanish', value: '' },
@@ -47,6 +47,7 @@ export class AtisFormSabeComponent {
   isChanged: { [key: string]: number } = {
     obstime: 0,
     apptype1: 0,
+    mlr: 0,
     holding: 0,
     tl: 0,
     temperature: 0,
@@ -75,9 +76,13 @@ export class AtisFormSabeComponent {
   readonlyMode = false;
   isBroadcastBtnDisabled = false;
   messageReceived = false;
-  @Output() currentBroadcast = new EventEmitter<string>();
+  @Output() currentBroadcastEnglish = new EventEmitter<string>();
+  @Output() currentBroadcastSpanish = new EventEmitter<string>();
+  @Output() currentBroadcastDATIS = new EventEmitter<string>();
   @Output() isSubscribed = new EventEmitter<boolean>();
-  @Output() nextBroadcast = new EventEmitter<string>();
+  @Output() nextBroadcastEnglish = new EventEmitter<string>();
+  @Output() nextBroadcastSpanish = new EventEmitter<string>();
+  @Output() nextBroadcastDATIS = new EventEmitter<string>();
   @Output() lastBroadcastTime = new EventEmitter<string>();
   @Output() currentAtisCode = new EventEmitter<string>();
   @Output() nextAtisCode = new EventEmitter<string>();
@@ -94,14 +99,20 @@ export class AtisFormSabeComponent {
         this.handleSubscribeMessage(msg);
       } else if (msg.content.type == 'ATIS_NEXT_UPDATE') {
         //Update next message
-        this.nextBroadcast.emit(msg.content.nextMessageText.ENGLISH);
+        this.nextBroadcastEnglish.emit(msg.content.nextMessageText.ENGLISH);
+        this.nextBroadcastSpanish.emit(msg.content.nextMessageText.SPANISH);
+        this.nextBroadcastDATIS.emit(msg.content.nextMessageText.DATIS);
         this.nextAtisCode.emit(msg.content.nextIcaoCode);
       } else if (msg.content.type === 'ATIS_FIELD_UPDATED') {
+        this.isBroadcastBtnDisabled = false;
         if (msg.content.fieldState === 'CHANGED_BEFORE_BROADCAST') {
           this.formAtisFields[msg.content.fieldName].value = msg.content.value;
           this.isChanged[msg.content.fieldName] = 1; // albastru
         } else if (msg.content.fieldState === 'CHANGED_AFTER_BROADCAST') {
           this.isChanged[msg.content.fieldName] = 2; // gri
+        }
+        if (msg.content.value == '') {
+          this.isChanged[msg.content.fieldName] = 1; // albastru
         }
       } else if (msg.type === 'ERROR') {
         this.isChanged[this.fieldName] = 3; // rosu
@@ -229,7 +240,9 @@ export class AtisFormSabeComponent {
   }
 
   handleSubscribeMessage(msg: ReceivedMessage) {
-    this.currentBroadcast.emit(msg.content.messageText.ENGLISH);
+    this.currentBroadcastEnglish.emit(msg.content.messageText.ENGLISH);
+    this.currentBroadcastSpanish.emit(msg.content.messageText.SPANISH);
+    this.currentBroadcastDATIS.emit(msg.content.messageText.DATIS);
     this.lastBroadcastTime.emit(msg.content.releaseTime);
     Object.entries(this.formAtisFields).forEach(([key, field]) => {
       this.formAtisFields[field.name].value =
