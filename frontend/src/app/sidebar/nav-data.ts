@@ -7,6 +7,10 @@ export const subTags = [
     routeLink: 'atis-report/sabe',
     label: 'SABE',
   },
+  {
+    routeLink: 'atis-report/evra',
+    label: 'EVRA',
+  },
 ];
 
 export const navbarData = [

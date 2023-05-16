@@ -316,7 +316,12 @@ textarea[readonly] {
   color: white;
   cursor: not-allowed;
 }
-
+.select-box:has(select[style="background: rgb(0, 0, 128);"]) {
+  background-color: #000080;
+}
+select[style="background: rgb(0, 0, 128);"] {
+  color: white !important;
+}
 /*Responsive*/
 @media screen and (max-width: 500px) {
   .column {

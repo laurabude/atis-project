@@ -105,13 +105,12 @@ export class AtisFormSabeComponent {
         this.nextAtisCode.emit(msg.content.nextIcaoCode);
       } else if (msg.content.type === 'ATIS_FIELD_UPDATED') {
         this.isBroadcastBtnDisabled = false;
+        this.formAtisFields[msg.content.fieldName].value = msg.content.value;
         if (msg.content.fieldState === 'CHANGED_BEFORE_BROADCAST') {
-          this.formAtisFields[msg.content.fieldName].value = msg.content.value;
           this.isChanged[msg.content.fieldName] = 1; // albastru
         } else if (msg.content.fieldState === 'CHANGED_AFTER_BROADCAST') {
           this.isChanged[msg.content.fieldName] = 2; // gri
-        }
-        if (msg.content.fieldState === 'NORMAL') {
+        } else if (msg.content.fieldState === 'NORMAL') {
           this.isChanged[msg.content.fieldName] = 0; //alb
           // schimb culoare text
         }
@@ -199,7 +198,7 @@ export class AtisFormSabeComponent {
           fieldName: this.fieldName,
           value: this.fieldValue,
         },
-        topic: '/ATIS_ARRDEP/ENFL',
+        topic: '/ATIS_ARRDEP/SABE',
         type: 'PUBLICATION',
       };
       this.sendMessage(updateMessage);
@@ -216,11 +215,11 @@ export class AtisFormSabeComponent {
     let manualModeMessage = {
       content: {
         type: 'ATIS_RELEASE_MODE_UPDATE',
-        airport: 'ENFL',
+        airport: 'SABE',
         reportType: 'ATIS_ARRDEP',
         releaseMode: 'MANUAL',
       },
-      topic: '/ATIS_ARRDEP/ENFL',
+      topic: '/ATIS_ARRDEP/SABE',
       type: 'PUBLICATION',
     };
     this.sendMessage(manualModeMessage);
@@ -233,11 +232,11 @@ export class AtisFormSabeComponent {
     let semiAutoModeMessage = {
       content: {
         type: 'ATIS_RELEASE_MODE_UPDATE',
-        airport: 'ENFL',
+        airport: 'SABE',
         reportType: 'ATIS_ARRDEP',
         releaseMode: 'SEMI_AUTOMATIC',
       },
-      topic: '/ATIS_ARRDEP/ENFL',
+      topic: '/ATIS_ARRDEP/SABE',
       type: 'PUBLICATION',
     };
     this.sendMessage(semiAutoModeMessage);
@@ -248,11 +247,11 @@ export class AtisFormSabeComponent {
     let autoModeMessage = {
       content: {
         type: 'ATIS_RELEASE_MODE_UPDATE',
-        airport: 'ENFL',
+        airport: 'SABE',
         reportType: 'ATIS_ARRDEP',
         releaseMode: 'AUTOMATIC',
       },
-      topic: '/ATIS_ARRDEP/ENFL',
+      topic: '/ATIS_ARRDEP/SABE',
       type: 'PUBLICATION',
     };
     this.sendMessage(autoModeMessage);

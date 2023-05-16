@@ -30,6 +30,8 @@ import { OverviewESComponent } from './overview-es/overview-es.component';
 import { OverviewDATISComponent } from './overview-datis/overview-datis.component';
 import { AirportsComponent } from './airports/airports.component';
 import { MapComponent } from './map/map.component';
+import { TabsEvraComponent } from './tabs-evra/tabs-evra.component';
+import { AtisFormEvraComponent } from './atis-form-evra/atis-form-evra.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,8 @@ import { MapComponent } from './map/map.component';
     OverviewDATISComponent,
     AirportsComponent,
     MapComponent,
+    TabsEvraComponent,
+    AtisFormEvraComponent,
   ],
   imports: [
     FormsModule,

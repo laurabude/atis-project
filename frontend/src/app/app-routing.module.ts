@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { TabsEvraComponent } from './tabs-evra/tabs-evra.component';
 import { TabsSabeComponent } from './tabs-sabe/tabs-sabe.component';
 import { TabsComponent } from './tabs/tabs.component';
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'atis-report', component: AirportsComponent },
   { path: 'atis-report/enfl', component: TabsComponent },
   { path: 'atis-report/sabe', component: TabsSabeComponent },
+  { path: 'atis-report/evra', component: TabsEvraComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'map', component: MapComponent },

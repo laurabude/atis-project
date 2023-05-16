@@ -15,7 +15,8 @@ export class BodyComponent {
     if (this.collapsed && this.screenWidth > 768) {
       if (
         this.router.url === '/atis-report/enfl' ||
-        this.router.url === '/atis-report/sabe'
+        this.router.url === '/atis-report/sabe' ||
+        this.router.url === '/atis-report/evra'
       ) {
         styleClass = 'body-trimmed-atis';
       } else {
