@@ -41,7 +41,7 @@
       <span class="tabName">ATIS Report </span>
     </ng-template>
     <div class="container">
-      <app-atis-form-evra
+      <app-atis-form-sabe
         (lastBroadcastTime)="getBroadcastTime($event)"
         (isSubscribed)="getSubscribeState($event)"
         (currentBroadcastEnglish)="getCurrentBroadcastEN($event)"
@@ -52,7 +52,7 @@
         (nextBroadcastDATIS)="getNextBroadcastDATIS($event)"
         (currentAtisCode)="getCurrentCode($event)"
         (nextAtisCode)="getNextCode($event)"
-      ></app-atis-form-evra>
+      ></app-atis-form-sabe>
     </div>
   </mat-tab>
   <mat-tab>

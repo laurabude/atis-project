@@ -70,7 +70,7 @@ span {
 }
 .outter-grid {
   display: grid;
-  grid-template-columns: 0.4fr repeat(2, 1fr);
+  grid-template-columns: 0.7fr repeat(2, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
@@ -79,7 +79,7 @@ span {
   display: flex;
 }
 .atis-code {
-  font-size: 1.6vw;
+  font-size: 2.2vw;
   color: white;
   font-weight: bold;
   text-shadow: 0.2px 0.2px 1px rgb(92, 92, 92);

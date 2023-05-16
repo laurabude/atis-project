@@ -11,25 +11,14 @@
     <p class="lastBroadcast">Last broadcast: {{ broadcastTime }}</p>
   </div>
   <div class="current">
-    <p class="atis-code" [class.red]="isRed">
-      ({{ currentCode }}) (Current EN)
-    </p>
-    <button class="icon-button">
-      <i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
-    </button>
-    <p class="atis-code" [class.red]="isRed">
-      ({{ currentCode }}) (Current ES)
-    </p>
+    <p class="atis-code" [class.red]="isRed">({{ currentCode }}) (Current)</p>
+
     <button class="icon-button">
       <i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
     </button>
   </div>
   <div class="next">
-    <p class="atis-code">({{ nextCode }}) (Next EN)</p>
-    <button class="icon-button">
-      <i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
-    </button>
-    <p class="atis-code">({{ nextCode }}) (Next ES)</p>
+    <p class="atis-code">({{ nextCode }}) (Next)</p>
     <button class="icon-button">
       <i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
     </button>
@@ -64,17 +53,6 @@
         [currentBroadcastEN]="messageEnglish"
         [nextBroadcastEN]="nextMessageEnglish"
       ></app-overview>
-    </div>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <span class="tabName">Overview Spanish </span>
-    </ng-template>
-    <div class="container">
-      <app-overview-es
-        [currentBroadcastES]="messageES"
-        [nextBroadcastES]="nextMessageES"
-      ></app-overview-es>
     </div>
   </mat-tab>
   <mat-tab>

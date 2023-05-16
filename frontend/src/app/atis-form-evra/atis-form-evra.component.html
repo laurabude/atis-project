@@ -5,7 +5,7 @@
   </div>
   <div class="grid-item-1">
     <label>Type of Approach</label>
-    <div class="select-box">
+    <div class="select-box typeapp">
       <select
         [(ngModel)]="formAtisFields['apptype1'].value"
         (ngModelChange)="onInputChange($event, 'apptype1')"
@@ -180,7 +180,7 @@
       [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
-    <label>kt</label>
+    <label class="kt">kt</label>
   </div>
   <div class="grid-item-2">
     <label>Gusting From</label>
@@ -204,8 +204,7 @@
       [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
-    <label>kt</label>
-    <label>to</label>
+    <label> to</label>
     <input
       [(ngModel)]="formAtisFields['mlr.wind.gusts'].value"
       name="mlr.wind.gusts"
@@ -224,7 +223,7 @@
       [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
-    <label>kt</label>
+    <label></label>
   </div>
 
   <div class="grid-item-1">
@@ -316,7 +315,7 @@
       [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
-    <label>kt</label>
+    <label class="kt">kt</label>
   </div>
   <div class="grid-item-2">
     <label>Gusting From</label>
@@ -340,7 +339,6 @@
       [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
-    <label>kt</label>
     <label>to</label>
     <input
       [(ngModel)]="formAtisFields['mlr.mid.wind.gusts'].value"
@@ -362,7 +360,7 @@
       [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
-    <label>kt</label>
+    <label></label>
   </div>
 
   <div class="grid-item-1">
@@ -387,7 +385,7 @@
       [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
-    <label>kt</label>
+    <label class="kt">kt</label>
   </div>
   <div class="grid-item-2">
     <label>Gusting From</label>
@@ -411,7 +409,6 @@
       [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
-    <label>kt</label>
     <label>to</label>
     <input
       [(ngModel)]="formAtisFields['mlr.end.wind.gusts'].value"
@@ -433,7 +430,7 @@
       [class.readonly-input]="readonlyMode"
       (keyup)="onInputChange($event)"
     />
-    <label>kt</label>
+    <label></label>
   </div>
 </div>
 <div class="input-box">
@@ -544,21 +541,21 @@
   />
 </div>
 <div class="input-box">
-  <label>Cloud</label>
+  <label>Clouds</label>
   <input
-    [(ngModel)]="formAtisFields['cloud1'].value"
-    name="cloud1"
+    [(ngModel)]="formAtisFields['clouds'].value"
+    name="clouds"
     type="text"
     [style.background]="
-      isChanged['cloud1'] == 0
+      isChanged['clouds'] == 0
         ? 'white'
-        : isChanged['cloud1'] == 1
+        : isChanged['clouds'] == 1
         ? '#000080'
-        : isChanged['cloud1'] == 2
+        : isChanged['clouds'] == 2
         ? '#707070'
         : '#DC143C'
     "
-    [style.caret-color]="isChanged['cloud1'] == 0 ? 'black' : 'white'"
+    [style.caret-color]="isChanged['clouds'] == 0 ? 'black' : 'white'"
     [readonly]="readonlyMode"
     [class.readonly-input]="readonlyMode"
     (keyup)="onInputChange($event)"

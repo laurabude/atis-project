@@ -63,7 +63,7 @@ body {
 
 .input-box label {
   color: #333;
-  width: 23%;
+  width: 24.5%;
 }
 
 #select-div label {
@@ -76,7 +76,7 @@ body {
 .input-box input {
   position: relative;
   height: 35px;
-  width: 75%;
+  width: 45%;
   outline: none;
   font-size: 1rem;
   color: white;
@@ -93,7 +93,7 @@ body {
 :where(.select-box, .select-box-2) {
   position: relative;
   height: 35px;
-  width: 82%;
+  width: 50%;
   outline: none;
   font-size: 1rem;
   color: #ffffff;
@@ -109,11 +109,6 @@ body {
   grid-template-rows: repeat(7, 0fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-}
-
-.grid-item label {
-  color: #333;
-  width: 100%;
 }
 
 .grid input {
@@ -137,7 +132,7 @@ body {
 
 .grid-item-2 {
   display: grid;
-  grid-template-columns: 0.74fr 0.7fr 0.7fr 0.6fr 0.5fr 0.5fr;
+  grid-template-columns: 0.27fr 0.125fr 0.25fr 0.125fr 0.5fr;
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
@@ -149,35 +144,20 @@ body {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
-
+.kt {
+  margin-left: -470%;
+}
 .grid-item-1 label,
 .grid-item-2 label {
   display: flex;
   align-items: center;
-  width: 130%;
 }
-.extended-input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
+.grid-item-2 input {
+  width: 100%;
 }
-.extended {
-  display: grid;
-  grid-template-columns: 0.465fr 0.5fr 0.1fr 0.5fr;
-  grid-gap: 0px;
-}
-.extended input {
-  width: 60%;
-}
-.and {
-  margin-left: -91%;
-}
-.extended-input label {
-  margin-left: 2%;
-}
-.extended-input input {
-  width: 70%;
+.grid-item-2 label {
+  display: block;
+  text-align: center;
 }
 
 .select-box select,
@@ -197,14 +177,14 @@ body {
 .rvr-grid {
   display: grid;
   grid-template-columns: repeat(3, 3fr);
-  grid-column-gap: -2%;
+  grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
 .rvr-grid .input-box {
   width: 50%;
 }
 .rvr-grid label {
-  width: 127%;
+  width: 82%;
 }
 button {
   height: 40px;
@@ -259,7 +239,9 @@ textarea[readonly] {
   color: white;
   cursor: not-allowed;
 }
-
+.typeapp {
+  width: 55%;
+}
 /*Responsive*/
 @media screen and (max-width: 500px) {
   .column {
