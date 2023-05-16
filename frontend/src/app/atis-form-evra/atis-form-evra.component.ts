@@ -11,60 +11,125 @@ import {
   ReceivedMessage,
   WebsocketService,
 } from '../websocket.service';
-
 @Component({
-  selector: 'app-atis-form',
-  templateUrl: './atis-form.component.html',
-  styleUrls: ['./atis-form.component.css'],
-  providers: [WebsocketService],
+  selector: 'app-atis-form-evra',
+  templateUrl: './atis-form-evra.component.html',
+  styleUrls: ['./atis-form-evra.component.css'],
 })
-export class AtisFormComponent {
+export class AtisFormEvraComponent {
   @ViewChild('myInput') myInput: ElementRef;
   messageContent: Content;
   public formAtisFields: AtisFields = {
     obstime: { name: 'obstime', value: '', state: '' },
     mlr: { name: 'mlr', value: '', state: '' },
+    apptype1: { name: 'apptype1', value: '', state: '' },
     holding: { name: 'holding', value: '', state: '' },
-    'mlr.wind.speed': { name: 'mlr.wind.speed', value: '', state: '' },
-    'mlr.wind.gusts': { name: 'mlr.wind.gusts', value: '', state: '' },
+    tl: { name: 'tl', value: '', state: '' },
     'mlr.wind.dir': { name: 'mlr.wind.dir', value: '', state: '' },
     'mlr.wind.var.min': { name: 'mlr.wind.var.min', value: '', state: '' },
     'mlr.wind.var.max': { name: 'mlr.wind.var.max', value: '', state: '' },
+    'mlr.wind.gusts.min': { name: 'mlr.wind.gusts.min', value: '', state: '' },
+    'mlr.wind.gusts': { name: 'mlr.wind.gusts', value: '', state: '' },
+    'mlr.wind.speed': { name: 'mlr.wind.speed', value: '', state: '' },
+
+    'mlr.mid.wind.dir': { name: 'mlr.mid.wind.dir', value: '', state: '' },
+    'mlr.mid.wind.var.min': {
+      name: 'mlr.mid.wind.var.min',
+      value: '',
+      state: '',
+    },
+    'mlr.mid.wind.var.max': {
+      name: 'mlr.mid.wind.var.max',
+      value: '',
+      state: '',
+    },
+    'mlr.mid.wind.gusts.min': {
+      name: 'mlr.mid.wind.gusts.min',
+      value: '',
+      state: '',
+    },
+    'mlr.mid.wind.gusts': { name: 'mlr.mid.wind.gusts', value: '', state: '' },
+    'mlr.mid.wind.speed': { name: 'mlr.mid.wind.speed', value: '', state: '' },
+
+    'mlr.end.wind.dir': { name: 'mlr.end.wind.dir', value: '', state: '' },
+    'mlr.end.wind.var.min': {
+      name: 'mlr.end.wind.var.min',
+      value: '',
+      state: '',
+    },
+    'mlr.end.wind.var.max': {
+      name: 'mlr.end.wind.var.max',
+      value: '',
+      state: '',
+    },
+    'mlr.end.wind.gusts.min': {
+      name: 'mlr.end.wind.gusts.min',
+      value: '',
+      state: '',
+    },
+    'mlr.end.wind.gusts': { name: 'mlr.end.wind.gusts', value: '', state: '' },
+    'mlr.end.speed': { name: 'mlr.end.speed', value: '', state: '' },
     visibility: { name: 'visibility', value: '', state: '' },
-    rvr: { name: 'rvr', value: '', state: '' },
+    rvrTdz: { name: 'rvrTdz', value: '', state: '' },
+    rvrMid: { name: 'rvrMid', value: '', state: '' },
+    rvrEnd: { name: 'rvrEnd', value: '', state: '' },
     presentweather: { name: 'presentweather', value: '', state: '' },
     clouds: { name: 'clouds', value: '', state: '' },
     temperature: { name: 'temperature', value: '', state: '' },
-    dewpoint: { name: 'dewpoint', value: '', state: '' },
     qfe: { name: 'qfe', value: '', state: '' },
-    fixedtext: { name: 'fixedtext', value: '', state: '' },
-    apptype: { name: 'apptype', value: '', state: '' },
-    pressure: { name: 'pressure', value: '', state: '' }, //QNH
-    tl: { name: 'tl', value: '', state: '' },
-    freetext: { name: 'freetext', value: '', state: '' },
+    dewpoint: { name: 'dewpoint', value: '', state: '' },
+    pressure: { name: 'pressure', value: '', state: '' },
+    windsheartype: { name: 'windsheartype', value: '', state: '' },
+    windshearintensity: { name: 'windshearintensity', value: '', state: '' },
+    windshearlocation: { name: 'windshearlocation', value: '', state: '' },
+    windshearrwy: { name: 'windshearrwy', value: '', state: '' },
+    windsheartime: { name: 'windsheartime', value: '', state: '' },
+    turbulenceintensity: { name: 'turbulenceintensity', value: '', state: '' },
+    turbulencelocation: { name: 'turbulencelocation', value: '', state: '' },
   };
   isChanged: { [key: string]: number } = {
     obstime: 0,
-    holding: 0,
     mlr: 0,
-    'mlr.wind.speed': 0,
-    'mlr.wind.gusts': 0,
+    apptype1: 0,
+    holding: 0,
+    tl: 0,
     'mlr.wind.dir': 0,
     'mlr.wind.var.min': 0,
     'mlr.wind.var.max': 0,
+    'mlr.wind.gusts.min': 0,
+    'mlr.wind.gusts': 0,
+    'mlr.wind.speed': 0,
+    'mlr.mid.wind.dir': 0,
+    'mlr.mid.wind.var.min': 0,
+    'mlr.mid.wind.var.max': 0,
+    'mlr.mid.wind.gusts.min': 0,
+    'mlr.mid.wind.gusts': 0,
+    'mlr.mid.wind.speed': 0,
+    'mlr.end.wind.dir': 0,
+    'mlr.end.wind.var.min': 0,
+    'mlr.end.wind.var.max': 0,
+    'mlr.end.wind.gusts.min': 0,
+    'mlr.end.wind.gusts': 0,
+    'mlr.end.speed': 0,
     visibility: 0,
-    rvr: 0,
+    rvrTdz: 0,
+    rvrMid: 0,
+    rvrEnd: 0,
     presentweather: 0,
     clouds: 0,
     temperature: 0,
+    qfe: 0,
     dewpoint: 0,
     pressure: 0,
-    qfe: 0,
-    tl: 0,
-    freetext: 0,
-    fixedtext: 0,
-    apptype: 0,
+    windsheartype: 0,
+    windshearintensity: 0,
+    windshearlocation: 0,
+    windshearrwy: 0,
+    windsheartime: 0,
+    turbulenceintensity: 0,
+    turbulencelocation: 0,
   };
+
   ENGLISH: string = '';
   isOptionSelected: boolean = false;
   fieldName: string = '';
@@ -72,9 +137,11 @@ export class AtisFormComponent {
   readonlyMode = false;
   isBroadcastBtnDisabled = false;
   messageReceived = false;
-  @Output() currentBroadcast = new EventEmitter<string>();
+  @Output() currentBroadcastEnglish = new EventEmitter<string>();
+  @Output() currentBroadcastDATIS = new EventEmitter<string>();
   @Output() isSubscribed = new EventEmitter<boolean>();
-  @Output() nextBroadcast = new EventEmitter<string>();
+  @Output() nextBroadcastEnglish = new EventEmitter<string>();
+  @Output() nextBroadcastDATIS = new EventEmitter<string>();
   @Output() lastBroadcastTime = new EventEmitter<string>();
   @Output() currentAtisCode = new EventEmitter<string>();
   @Output() nextAtisCode = new EventEmitter<string>();
@@ -89,17 +156,24 @@ export class AtisFormComponent {
       if (msg.content.type === 'SUBSCRIBE') {
         this.isSubscribed.emit(true);
         this.handleSubscribeMessage(msg);
-      } else if (msg.content.type == 'ATIS_NEXT_UPDATE') {
+      } else if (msg.content.type === 'ATIS_NEXT_UPDATE') {
         //Update next message
-        this.nextBroadcast.emit(msg.content.nextMessageText.ENGLISH);
+        this.nextBroadcastEnglish.emit(msg.content.nextMessageText.ENGLISH);
+        this.nextBroadcastDATIS.emit(msg.content.nextMessageText.DATIS);
         this.nextAtisCode.emit(msg.content.nextIcaoCode);
       } else if (msg.content.type === 'ATIS_FIELD_UPDATED') {
         this.isBroadcastBtnDisabled = false;
+        this.formAtisFields[msg.content.fieldName].value = msg.content.value;
         if (msg.content.fieldState === 'CHANGED_BEFORE_BROADCAST') {
-          this.formAtisFields[msg.content.fieldName].value = msg.content.value;
           this.isChanged[msg.content.fieldName] = 1; // albastru
         } else if (msg.content.fieldState === 'CHANGED_AFTER_BROADCAST') {
           this.isChanged[msg.content.fieldName] = 2; // gri
+        } else if (msg.content.fieldState === 'NORMAL') {
+          this.isChanged[msg.content.fieldName] = 0; //alb
+          // schimb culoare text
+        }
+        if (msg.content.value == '') {
+          this.isChanged[msg.content.fieldName] = 1; // albastru
         }
       } else if (msg.type === 'ERROR') {
         this.isChanged[this.fieldName] = 3; // rosu
@@ -107,9 +181,8 @@ export class AtisFormComponent {
       } else if (msg.content.type === 'ATIS_RELEASED') {
         this.currentAtisCode.emit(msg.content.atisCode);
         this.lastBroadcastTime.emit(msg.content.releaseTime);
-        this.currentBroadcast.emit(msg.content.messageText.ENGLISH);
-        this.currentBroadcast.emit(msg.content.messageText.SPANISH);
-        this.currentBroadcast.emit(msg.content.messageText.DATIS);
+        this.currentBroadcastEnglish.emit(msg.content.messageText.ENGLISH);
+        this.currentBroadcastDATIS.emit(msg.content.messageText.DATIS);
         Object.entries(this.formAtisFields).forEach(([key, field]) => {
           this.formAtisFields[field.name].state =
             msg.content.atisFields[field.name].state;
@@ -136,10 +209,10 @@ export class AtisFormComponent {
     let broadcastMessage = {
       content: {
         type: 'ATIS_RELEASE_REQUEST',
-        airport: 'ENFL',
+        airport: 'EVRA',
         reportType: 'ATIS_ARRDEP',
       },
-      topic: '/ATIS_ARRDEP/ENFL',
+      topic: '/ATIS_ARRDEP/EVRA',
       type: 'PUBLICATION',
     };
 
@@ -148,7 +221,7 @@ export class AtisFormComponent {
 
   sendSubscribeMsg() {
     let message = {
-      topic: '/ATIS_ARRDEP/ENFL',
+      topic: '/ATIS_ARRDEP/EVRA',
       type: 'SUBSCRIBE',
       content: null,
     };
@@ -177,12 +250,12 @@ export class AtisFormComponent {
       let updateMessage = {
         content: {
           type: 'ATIS_FIELD_UPDATE',
-          airport: 'ENFL',
+          airport: 'EVRA',
           reportType: 'ATIS_ARRDEP',
           fieldName: this.fieldName,
           value: this.fieldValue,
         },
-        topic: '/ATIS_ARRDEP/ENFL',
+        topic: '/ATIS_ARRDEP/EVRA',
         type: 'PUBLICATION',
       };
       this.sendMessage(updateMessage);
@@ -199,11 +272,11 @@ export class AtisFormComponent {
     let manualModeMessage = {
       content: {
         type: 'ATIS_RELEASE_MODE_UPDATE',
-        airport: 'ENFL',
+        airport: 'EVRA',
         reportType: 'ATIS_ARRDEP',
         releaseMode: 'MANUAL',
       },
-      topic: '/ATIS_ARRDEP/ENFL',
+      topic: '/ATIS_ARRDEP/EVRA',
       type: 'PUBLICATION',
     };
     this.sendMessage(manualModeMessage);
@@ -216,11 +289,11 @@ export class AtisFormComponent {
     let semiAutoModeMessage = {
       content: {
         type: 'ATIS_RELEASE_MODE_UPDATE',
-        airport: 'ENFL',
+        airport: 'EVRA',
         reportType: 'ATIS_ARRDEP',
         releaseMode: 'SEMI_AUTOMATIC',
       },
-      topic: '/ATIS_ARRDEP/ENFL',
+      topic: '/ATIS_ARRDEP/EVRA',
       type: 'PUBLICATION',
     };
     this.sendMessage(semiAutoModeMessage);
@@ -231,18 +304,21 @@ export class AtisFormComponent {
     let autoModeMessage = {
       content: {
         type: 'ATIS_RELEASE_MODE_UPDATE',
-        airport: 'ENFL',
+        airport: 'EVRA',
         reportType: 'ATIS_ARRDEP',
         releaseMode: 'AUTOMATIC',
       },
-      topic: '/ATIS_ARRDEP/ENFL',
+      topic: '/ATIS_ARRDEP/EVRA',
       type: 'PUBLICATION',
     };
     this.sendMessage(autoModeMessage);
   }
 
   handleSubscribeMessage(msg: ReceivedMessage) {
-    this.currentBroadcast.emit(msg.content.messageText.ENGLISH);
+    this.currentBroadcastEnglish.emit(msg.content.messageText.ENGLISH);
+    this.currentBroadcastDATIS.emit(msg.content.messageText.DATIS);
+    this.nextBroadcastEnglish.emit(msg.content.nextMessageText.ENGLISH);
+    this.nextBroadcastDATIS.emit(msg.content.nextMessageText.DATIS);
     this.lastBroadcastTime.emit(msg.content.releaseTime);
     Object.entries(this.formAtisFields).forEach(([key, field]) => {
       this.formAtisFields[field.name].value =
