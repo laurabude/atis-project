@@ -11,10 +11,16 @@ export class RegisterComponent implements OnInit {
     username: null,
     email: null,
     password: null,
+    photo: ''
   };
+  userPhoto= '//ssl.gstatic.com/accounts/ui/avatar_2x.png';
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  photos: string[] = ['/assets/photo1.jpg', '/assets/photo2.jpg', '/assets/photo3.jpg'];
+  selectedPhoto: string;
+  showModal: boolean = false;
+  confirmedPhoto: string;
   backgorund = document.getElementById('bkg');
   constructor(private authService: AuthService) {}
 
@@ -24,6 +30,18 @@ export class RegisterComponent implements OnInit {
   }
   ngOnDestroy(): void {
     this.backgorund.style.backgroundImage = '';
+  }
+
+  selectPhoto(photo: string): void {
+    this.selectedPhoto = photo;
+  }
+  
+  confirmSelection(): void {
+    if (this.selectedPhoto) {
+      this.form.photo = this.selectedPhoto;
+    }
+    this.closeModal();
+    this.userPhoto = this.selectedPhoto;
   }
 
   onSubmit(): void {
@@ -40,5 +58,13 @@ export class RegisterComponent implements OnInit {
         this.isSignUpFailed = true;
       },
     });
+  }
+
+  openModal(): void {
+    this.showModal = true;
+  }
+
+  closeModal(): void {
+    this.showModal = false;
   }
 }
