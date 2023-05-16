@@ -29,6 +29,7 @@ export interface Content {
 }
 export interface AtisFields {
   [key: string]: {
+    state: string;
     name: string;
     value: string;
   };

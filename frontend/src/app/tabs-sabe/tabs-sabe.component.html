@@ -15,8 +15,16 @@
     <button class="icon-button">
       <i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
     </button>
+    <p class="atis-code" [class.red]="isRed">({{ currentCode }}) (Current)</p>
+    <button class="icon-button">
+      <i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
+    </button>
   </div>
   <div class="next">
+    <p class="atis-code">({{ nextCode }}) (Next)</p>
+    <button class="icon-button">
+      <i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
+    </button>
     <p class="atis-code">({{ nextCode }}) (Next)</p>
     <button class="icon-button">
       <i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>

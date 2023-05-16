@@ -21,28 +21,28 @@ export class AtisFormSabeComponent {
   @ViewChild('myInput') myInput: ElementRef;
   messageContent: Content;
   public formAtisFields: AtisFields = {
-    obstime: { name: 'obstime', value: '' },
-    mlr: { name: 'mlr', value: '' },
-    apptype1: { name: 'apptype1', value: '' },
-    holding: { name: 'holding', value: '' },
-    tl: { name: 'tl', value: '' },
-    temperature: { name: 'temperature', value: '' },
-    'mlr.wind.dir': { name: 'mlr.wind.dir', value: '' },
-    'mlr.wind.var.min': { name: 'mlr.wind.var.min', value: '' },
-    'mlr.wind.var.max': { name: 'mlr.wind.var.max', value: '' },
-    dewpoint: { name: 'dewpoint', value: '' },
-    'mlr.wind.speed': { name: 'mlr.wind.speed', value: '' },
-    'mlr.wind.gusts': { name: 'mlr.wind.gusts', value: '' },
-    pressure: { name: 'pressure', value: '' }, //QNH
-    visibility: { name: 'visibility', value: '' },
-    rvrTdz: { name: 'rvrTdz', value: '' },
-    rvrMid: { name: 'rvrMid', value: '' },
-    rvrEnd: { name: 'rvrEnd', value: '' },
-    presentweather: { name: 'presentweather', value: '' },
-    cloud1: { name: 'cloud1', value: '' },
-    cbtcu: { name: 'cbtcu', value: '' },
-    remarksEnglish: { name: 'remarksEnglish', value: '' },
-    remarksSpanish: { name: 'remarksSpanish', value: '' },
+    obstime: { name: 'obstime', value: '', state: '' },
+    mlr: { name: 'mlr', value: '', state: '' },
+    apptype1: { name: 'apptype1', value: '', state: '' },
+    holding: { name: 'holding', value: '', state: '' },
+    tl: { name: 'tl', value: '', state: '' },
+    temperature: { name: 'temperature', value: '', state: '' },
+    'mlr.wind.dir': { name: 'mlr.wind.dir', value: '', state: '' },
+    'mlr.wind.var.min': { name: 'mlr.wind.var.min', value: '', state: '' },
+    'mlr.wind.var.max': { name: 'mlr.wind.var.max', value: '', state: '' },
+    dewpoint: { name: 'dewpoint', value: '', state: '' },
+    'mlr.wind.speed': { name: 'mlr.wind.speed', value: '', state: '' },
+    'mlr.wind.gusts': { name: 'mlr.wind.gusts', value: '', state: '' },
+    pressure: { name: 'pressure', value: '', state: '' }, //QNH
+    visibility: { name: 'visibility', value: '', state: '' },
+    rvrTdz: { name: 'rvrTdz', value: '', state: '' },
+    rvrMid: { name: 'rvrMid', value: '', state: '' },
+    rvrEnd: { name: 'rvrEnd', value: '', state: '' },
+    presentweather: { name: 'presentweather', value: '', state: '' },
+    cloud1: { name: 'cloud1', value: '', state: '' },
+    cbtcu: { name: 'cbtcu', value: '', state: '' },
+    remarksEnglish: { name: 'remarksEnglish', value: '', state: '' },
+    remarksSpanish: { name: 'remarksSpanish', value: '', state: '' },
   };
   isChanged: { [key: string]: number } = {
     obstime: 0,
@@ -97,7 +97,7 @@ export class AtisFormSabeComponent {
       if (msg.content.type === 'SUBSCRIBE') {
         this.isSubscribed.emit(true);
         this.handleSubscribeMessage(msg);
-      } else if (msg.content.type == 'ATIS_NEXT_UPDATE') {
+      } else if (msg.content.type === 'ATIS_NEXT_UPDATE') {
         //Update next message
         this.nextBroadcastEnglish.emit(msg.content.nextMessageText.ENGLISH);
         this.nextBroadcastSpanish.emit(msg.content.nextMessageText.SPANISH);
@@ -111,6 +111,10 @@ export class AtisFormSabeComponent {
         } else if (msg.content.fieldState === 'CHANGED_AFTER_BROADCAST') {
           this.isChanged[msg.content.fieldName] = 2; // gri
         }
+        if (msg.content.fieldState === 'NORMAL') {
+          this.isChanged[msg.content.fieldName] = 0; //alb
+          // schimb culoare text
+        }
         if (msg.content.value == '') {
           this.isChanged[msg.content.fieldName] = 1; // albastru
         }
@@ -120,6 +124,21 @@ export class AtisFormSabeComponent {
       } else if (msg.content.type === 'ATIS_RELEASED') {
         this.currentAtisCode.emit(msg.content.atisCode);
         this.lastBroadcastTime.emit(msg.content.releaseTime);
+        this.currentBroadcastEnglish.emit(msg.content.messageText.ENGLISH);
+        this.currentBroadcastSpanish.emit(msg.content.messageText.SPANISH);
+        this.currentBroadcastDATIS.emit(msg.content.messageText.DATIS);
+        Object.entries(this.formAtisFields).forEach(([key, field]) => {
+          this.formAtisFields[field.name].state =
+            msg.content.atisFields[field.name].state;
+          if (msg.content.atisFields[field.name].state === 'NORMAL') {
+            this.isChanged[field.name] = 0;
+          } else if (
+            msg.content.atisFields[field.name].state ===
+            'CHANGED_AFTER_BROADCAST'
+          ) {
+            this.isChanged[field.name] = 2;
+          }
+        });
       }
     });
   }
@@ -243,6 +262,9 @@ export class AtisFormSabeComponent {
     this.currentBroadcastEnglish.emit(msg.content.messageText.ENGLISH);
     this.currentBroadcastSpanish.emit(msg.content.messageText.SPANISH);
     this.currentBroadcastDATIS.emit(msg.content.messageText.DATIS);
+    this.nextBroadcastEnglish.emit(msg.content.nextMessageText.ENGLISH);
+    this.nextBroadcastSpanish.emit(msg.content.nextMessageText.SPANISH);
+    this.nextBroadcastDATIS.emit(msg.content.nextMessageText.DATIS);
     this.lastBroadcastTime.emit(msg.content.releaseTime);
     Object.entries(this.formAtisFields).forEach(([key, field]) => {
       this.formAtisFields[field.name].value =
