@@ -626,7 +626,187 @@
     />
   </div>
 </div>
+<div class="wind-shear-grid">
+  <div class="grid-item">
+    <label>Wind Shear</label>
+    <div class="select-box typeapp">
+      <select
+        [(ngModel)]="formAtisFields['windsheartype'].value"
+        (ngModelChange)="onInputChange($event, 'windsheartype')"
+        name="windsheartype"
+        [style.background]="
+          isChanged['windsheartype'] == 0
+            ? 'white'
+            : isChanged['windsheartype'] == 1
+            ? '#000080'
+            : isChanged['windsheartype'] == 2
+            ? '#707070'
+            : '#DC143C'
+        "
+        [disabled]="readonlyMode"
+        [ngClass]="{ 'readonly-select': readonlyMode }"
+      >
+        <option></option>
+        <option>ILS</option>
+        <option>VOR</option>
+        <option>NDB</option>
+      </select>
+    </div>
+  </div>
+  <div class="grid-item">
+    <label>REP</label>
+    <div class="select-box typeapp">
+      <select
+        [(ngModel)]="formAtisFields['windshearintensity'].value"
+        (ngModelChange)="onInputChange($event, 'windshearintensity')"
+        name="windshearintensity"
+        [style.background]="
+          isChanged['windshearintensity'] == 0
+            ? 'white'
+            : isChanged['windshearintensity'] == 1
+            ? '#000080'
+            : isChanged['windshearintensity'] == 2
+            ? '#707070'
+            : '#DC143C'
+        "
+        [disabled]="readonlyMode"
+        [ngClass]="{ 'readonly-select': readonlyMode }"
+      >
+        <option></option>
+        <option>ILS</option>
+        <option>VOR</option>
+        <option>NDB</option>
+      </select>
+    </div>
+  </div>
+  <div class="grid-item">
+    <label>WS</label>
+    <div class="select-box typeapp">
+      <select
+        [(ngModel)]="formAtisFields['windshearlocation'].value"
+        (ngModelChange)="onInputChange($event, 'windshearlocation')"
+        name="windshearlocation"
+        [style.background]="
+          isChanged['windshearlocation'] == 0
+            ? 'white'
+            : isChanged['windshearlocation'] == 1
+            ? '#000080'
+            : isChanged['windshearlocation'] == 2
+            ? '#707070'
+            : '#DC143C'
+        "
+        [disabled]="readonlyMode"
+        [ngClass]="{ 'readonly-select': readonlyMode }"
+      >
+        <option></option>
+        <option>ILS</option>
+        <option>VOR</option>
+        <option>NDB</option>
+      </select>
+    </div>
+  </div>
+  <div class="grid-item">
+    <div class="select-box typeapp">
+      <select
+        [(ngModel)]="formAtisFields['windshearrwy'].value"
+        (ngModelChange)="onInputChange($event, 'windshearrwy')"
+        name="windshearrwy"
+        [style.background]="
+          isChanged['windshearrwy'] == 0
+            ? 'white'
+            : isChanged['windshearrwy'] == 1
+            ? '#000080'
+            : isChanged['windshearrwy'] == 2
+            ? '#707070'
+            : '#DC143C'
+        "
+        [disabled]="readonlyMode"
+        [ngClass]="{ 'readonly-select': readonlyMode }"
+      >
+        <option></option>
+        <option>ILS</option>
+        <option>VOR</option>
+        <option>NDB</option>
+      </select>
+    </div>
+  </div>
 
+  <div class="input-box grid-item">
+    <label>AT</label>
+    <input
+      [(ngModel)]="formAtisFields['windsheartime'].value"
+      name="windsheartime"
+      type="text"
+      [style.background]="
+        isChanged['windsheartime'] == 0
+          ? 'white'
+          : isChanged['windsheartime'] == 1
+          ? '#000080'
+          : isChanged['windsheartime'] == 2
+          ? '#707070'
+          : '#DC143C'
+      "
+      [style.caret-color]="isChanged['windsheartime'] == 0 ? 'black' : 'white'"
+      [readonly]="readonlyMode"
+      [class.readonly-input]="readonlyMode"
+      (keyup)="onInputChange($event)"
+    />
+  </div>
+</div>
+<div class="turbulence-grid">
+  <div class="grid-item">
+    <label>Turbulence</label>
+    <div class="select-box typeapp">
+      <select
+        [(ngModel)]="formAtisFields['turbulenceintensity'].value"
+        (ngModelChange)="onInputChange($event, 'turbulenceintensity')"
+        name="turbulenceintensity"
+        [style.background]="
+          isChanged['turbulenceintensity'] == 0
+            ? 'white'
+            : isChanged['turbulenceintensity'] == 1
+            ? '#000080'
+            : isChanged['turbulenceintensity'] == 2
+            ? '#707070'
+            : '#DC143C'
+        "
+        [disabled]="readonlyMode"
+        [ngClass]="{ 'readonly-select': readonlyMode }"
+      >
+        <option></option>
+        <option>ILS</option>
+        <option>VOR</option>
+        <option>NDB</option>
+      </select>
+    </div>
+  </div>
+  <div class="grid-item">
+    <label>TURB</label>
+    <div class="select-box typeapp">
+      <select
+        [(ngModel)]="formAtisFields['turbulencelocation'].value"
+        (ngModelChange)="onInputChange($event, 'turbulencelocation')"
+        name="turbulencelocation"
+        [style.background]="
+          isChanged['turbulencelocation'] == 0
+            ? 'white'
+            : isChanged['turbulencelocation'] == 1
+            ? '#000080'
+            : isChanged['turbulencelocation'] == 2
+            ? '#707070'
+            : '#DC143C'
+        "
+        [disabled]="readonlyMode"
+        [ngClass]="{ 'readonly-select': readonlyMode }"
+      >
+        <option></option>
+        <option>ILS</option>
+        <option>VOR</option>
+        <option>NDB</option>
+      </select>
+    </div>
+  </div>
+</div>
 <div class="broadcast-mode-buttons">
   <label>Broadcast mode</label>
   <br />

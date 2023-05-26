@@ -83,7 +83,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 6px;
   padding: 0 15px;
-  margin: 0.5% 0%;
+  margin: 0.2% 0%;
   caret-color: black;
 }
 .input-box input input:focus {
@@ -100,7 +100,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 6px;
   padding: 0 15px;
-  margin: 0.5% 0%;
+  margin: 0.2% 0%;
 }
 
 .grid {
@@ -122,7 +122,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 6px;
   padding: 0 15px;
-  margin: 0.5% 0%;
+  margin: 0.2% 0%;
   caret-color: black;
 }
 
@@ -148,7 +148,8 @@ body {
   margin-left: -470%;
 }
 .grid-item-1 label,
-.grid-item-2 label {
+.grid-item-2 label,
+.grid-item label {
   display: flex;
   align-items: center;
 }
@@ -156,8 +157,12 @@ body {
   width: 100%;
 }
 .grid-item-2 label {
-  display: block;
+  display: grid;
   text-align: center;
+}
+.grid-item {
+  display: flex;
+  align-items: center;
 }
 
 .select-box select,
@@ -210,7 +215,8 @@ button:focus {
 }
 
 .broadcast-mode-buttons {
-  margin-top: 0.5%;
+  margin-top: 0.2%;
+  margin-bottom: -0.85%;
 }
 
 select option:checked {
@@ -241,6 +247,22 @@ textarea[readonly] {
 }
 .typeapp {
   width: 55%;
+}
+.wind-shear-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 2fr);
+  grid-template-rows: 1fr;
+  grid-row-gap: 0px;
+  grid-column-gap: 2px;
+}
+.turbulence-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-row-gap: 0px;
+}
+.turbulence-grid label {
+  margin-right: 10%;
 }
 /*Responsive*/
 @media screen and (max-width: 500px) {
