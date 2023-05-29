@@ -1,0 +1,26 @@
+:host {
+  width: 100%;
+  height: 96vh;
+}
+
+.container {
+  width: 96%;
+  height: 96%;
+  padding: 1%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin-left: 2.6%;
+  margin-top: 1.5%;
+}
+:host .airports {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+.airport {
+  background-color: #fff;
+}

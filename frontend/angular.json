@@ -48,6 +48,10 @@
             },
             "development": {
               "buildOptimizer": false,
+              "allowedCommonJsDependencies": [
+                "earcut",
+                "mapbox-gl"
+              ],
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
