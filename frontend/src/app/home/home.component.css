@@ -3,24 +3,59 @@
   height: 96vh;
 }
 
-.container {
+.airport-card {
   width: 96%;
-  height: 96%;
+  height: 12rem;
   padding: 1%;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   margin-left: 2.6%;
-  margin-top: 1.5%;
+  margin-top: 2.6%;
+  display: grid;
+  grid-template-columns: 0.7fr 2fr 0.7fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
-:host .airports {
+.airports {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
-.airport {
-  background-color: #fff;
+
+.weather {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.weather textarea {
+  height: 6rem;
+  resize: none;
+}
+
+button {
+  height: 40px;
+  width: 10rem;
+  margin: 3px;
+  color: #eceff1;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #455a64;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
+}
+
+.functions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

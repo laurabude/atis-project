@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const dbConfig = require("./app/config/db.config");
 
@@ -48,6 +49,18 @@ db.mongoose
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
+
+// Create a proxy middleware for the Aviation Weather API
+const aviationWeatherProxy = createProxyMiddleware({
+  target: 'https://beta.aviationweather.gov', // Aviation Weather API base URL
+  changeOrigin: true,
+  pathRewrite: {
+    '^/api/aviation-weather': '' // Remove the '/api/aviation-weather' path prefix
+  }
+});
+
+// Proxy requests to the Aviation Weather API
+app.use('/api/aviation-weather', aviationWeatherProxy);
 
 // routes
 require("./app/routes/auth.routes")(app);

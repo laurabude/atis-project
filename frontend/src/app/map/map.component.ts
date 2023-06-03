@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ScatterplotLayer } from '@deck.gl/layers';
+import { IconLayer } from '@deck.gl/layers';
 import { MapboxOverlay as DeckOverlay } from '@deck.gl/mapbox';
-import mapboxgl from 'mapbox-gl';
+import * as mapboxgl from 'mapbox-gl';
 import axios from 'axios';
 
 const OPENSKY_API_URL = 'https://opensky-network.org/api/states/all';
-const REFRESH_INTERVAL = 5000; // 5 seconds
+const REFRESH_INTERVAL = 86400000; // a day
 
 interface FlightData {
   time: number;
@@ -22,29 +22,28 @@ export class MapComponent implements OnInit {
   private intervalId: any;
 
   ngOnInit(): void {
-    mapboxgl.accessToken =
+    (mapboxgl as typeof mapboxgl).accessToken =
       'pk.eyJ1IjoibGF1cmFnaCIsImEiOiJjbGk4cThscnMxdjY0M2VtbDc3Yjdsa25wIn0.S3BdCi6irPxokf4rJcGBMQ';
-
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v12',
+      style: 'mapbox://styles/mapbox/outdoors-v11', // Use a 2D map style
       center: [0.45, 51.47],
       zoom: 4,
-      bearing: 0,
-      pitch: 30,
     });
 
     this.deckOverlay = new DeckOverlay({
       layers: [],
     });
 
-    map.addControl(this.deckOverlay);
-    map.addControl(new mapboxgl.NavigationControl());
+    map.on('load', () => {
+      map.addControl(this.deckOverlay);
+      map.addControl(new mapboxgl.NavigationControl());
 
-    this.fetchFlightData(); // Fetch flight data initially
-    this.intervalId = setInterval(() => {
-      this.fetchFlightData(); // Fetch flight data periodically
-    }, REFRESH_INTERVAL);
+      this.fetchFlightData(); // Fetch flight data initially
+      this.intervalId = setInterval(() => {
+        this.fetchFlightData(); // Fetch flight data periodically
+      }, REFRESH_INTERVAL);
+    });
   }
 
   ngOnDestroy(): void {
@@ -71,24 +70,16 @@ export class MapComponent implements OnInit {
     }));
     return latestData;
   }
-
   private updateMap(data: any[]): void {
     const layers = [
-      new ScatterplotLayer({
+      new IconLayer({
         id: 'aircraft',
         data: data,
         pickable: true,
-        opacity: 0.8,
-        stroked: true,
-        filled: true,
-        radiusScale: 6,
-        radiusMinPixels: 1,
-        radiusMaxPixels: 100,
-        lineWidthMinPixels: 1,
+        iconAtlas: '/assets/airplane.svg',
+        getSize: () => 20,
         getPosition: (d: any) => [d.coordinates.lon, d.coordinates.lat],
-        getRadius: () => 15,
-        getFillColor: () => [255, 140, 0],
-        getLineColor: () => [0, 0, 0],
+        getColor: () => [255, 140, 0],
       }),
     ];
 

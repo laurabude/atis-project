@@ -1,5 +1,46 @@
-<div class="container">
-  <div class="airports">
-    <div class="airport"></div>
+<div class="airports">
+  <div class="airport-card">
+    <h3>ENFL</h3>
+    <div class="weather">
+      <div class="weather-buttons">
+        <button class="btn" (click)="onMetarRequest('ENFL')">
+          LATEST METAR
+        </button>
+        <button class="btn">LATEST TAF</button>
+      </div>
+      <textarea readonly>{{ weather.ENFL }}</textarea>
+    </div>
+    <div class="functions">
+      <button class="btn">ATIS REPORT</button>
+      <button class="btn">OVERVIEW</button>
+    </div>
+  </div>
+  <div class="airport-card">
+    <h3>ENFL</h3>
+    <div class="weather">
+      <div class="weather-buttons">
+        <button class="btn">LATEST METAR</button>
+        <button class="btn">LATEST TAF</button>
+      </div>
+      <textarea readonly></textarea>
+    </div>
+    <div class="functions">
+      <button class="btn">ATIS REPORT</button>
+      <button class="btn">OVERVIEW</button>
+    </div>
+  </div>
+  <div class="airport-card">
+    <h3>ENFL</h3>
+    <div class="weather">
+      <div class="weather-buttons">
+        <button class="btn">LATEST METAR</button>
+        <button class="btn">LATEST TAF</button>
+      </div>
+      <textarea readonly></textarea>
+    </div>
+    <div class="functions">
+      <button class="btn">ATIS REPORT</button>
+      <button class="btn">OVERVIEW</button>
+    </div>
   </div>
 </div>
