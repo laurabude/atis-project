@@ -1,16 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IconLayer } from '@deck.gl/layers';
-import { MapboxOverlay as DeckOverlay } from '@deck.gl/mapbox';
-import mapboxgl from 'mapbox-gl';
-import axios from 'axios';
+import mapboxgl, { LngLatLike } from 'mapbox-gl';
+import { Feature, Point, Geometry } from 'geojson';
+import { Socket, io } from 'socket.io-client';
 
-const OPENSKY_API_URL = 'https://opensky-network.org/api/states/all';
-const REFRESH_INTERVAL = 5000 * 60 * 60; // 5 seconds
-
-interface FlightData {
-  time: number;
-  states: number[][];
-}
+const OPENSKY_WEBSOCKET_URL = 'wss://opensky-network.org/api/states/all';
+const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibGF1cmFnaCIsImEiOiJjbGk4cThscnMxdjY0M2VtbDc3Yjdsa25wIn0.S3BdCi6irPxokf4rJcGBMQ';
 
 @Component({
   selector: 'app-map',
@@ -18,80 +12,100 @@ interface FlightData {
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnInit {
-  private deckOverlay: any;
-  private intervalId: any;
+  private map!: mapboxgl.Map;
+  private socket!: Socket;
 
   ngOnInit(): void {
-    mapboxgl.accessToken =
-      'pk.eyJ1IjoibGF1cmFnaCIsImEiOiJjbGk4cThscnMxdjY0M2VtbDc3Yjdsa25wIn0.S3BdCi6irPxokf4rJcGBMQ';
+    mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 
-    const map = new mapboxgl.Map({
+    this.initializeMap();
+    this.initializeWebSocket();
+  }
+
+  private initializeMap(): void {
+    this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/outdoors-v11',
       center: [0.45, 51.47],
       zoom: 4,
     });
 
-    this.deckOverlay = new DeckOverlay({
-      layers: [],
+    this.map.on('load', () => {
+      this.map.addControl(new mapboxgl.NavigationControl());
     });
-
-    map.addControl(this.deckOverlay);
-    map.addControl(new mapboxgl.NavigationControl());
-
-    this.fetchFlightData(); // Fetch flight data initially
-    this.intervalId = setInterval(() => {
-      this.fetchFlightData(); // Fetch flight data periodically
-    }, REFRESH_INTERVAL);
   }
 
-  ngOnDestroy(): void {
-    clearInterval(this.intervalId); // Stop the interval when the component is destroyed
+  private initializeWebSocket(): void {
+    this.socket = io(OPENSKY_WEBSOCKET_URL);
+
+    this.socket.on('message', (data: any) => {
+      const flightData = JSON.parse(data);
+      this.displayFlightData(flightData);
+    });
   }
 
-  private async fetchFlightData(): Promise<void> {
-    try {
-      const response = await axios.get(OPENSKY_API_URL);
-      const flightData: FlightData = response.data;
-      const transformedData = this.transformData(flightData);
-      this.updateMap(transformedData);
-    } catch (error) {
-      console.error('Error fetching flight data:', error);
+  private displayFlightData(data: any): void {
+    const airplanes: Feature<Point, {
+      heading: number;
+      callSign: string;
+      altitude: number;
+      speed: number;
+    }>[] = data.states.map(
+      (flightArr: any) =>
+        ({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [flightArr[5], flightArr[6]],
+          },
+          properties: {
+            heading: flightArr[10] || 0,
+            callSign: flightArr[1] || '',
+            altitude: flightArr[7] || 0,
+            speed: flightArr[9] || 0,
+          },
+        } as Feature<Point, {
+          heading: number;
+          callSign: string;
+          altitude: number;
+          speed: number;
+        }>)
+    );
+
+    const source = this.map.getSource('airplanes') as mapboxgl.GeoJSONSource;
+    if (source) {
+      source.setData({
+        type: 'FeatureCollection',
+        features: airplanes,
+      });
+    } else {
+      this.map.addSource('airplanes', {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: airplanes,
+        },
+      });
     }
-  }
 
-  private transformData(data: FlightData): any[] {
-    const latestData = data.states.map((flightArr: number[]) => ({
-      coordinates: {
-        lon: flightArr[5] !== null ? flightArr[5] : null,
-        lat: flightArr[6] !== null ? flightArr[6] : null,
-      },
-    }));
-    return latestData;
-  }
-
-  private updateMap(data: any[]): void {
-    const layers = [
-      new IconLayer({
-        id: 'aircraft',
-        data: data,
-        pickable: true,
-        opacity: 1,
-        iconAtlas: '/assets/airplane.svg', // Replace with the path to your aircraft icons atlas
-        iconMapping: {
-          airplane: { x: 0, y: 0, width: 100, height: 100, mask: false },
-        }, // Adjust the mapping according to your aircraft icons atlas
-        sizeScale: 15,
-        getPosition: (d: any) => [d.coordinates.lon, d.coordinates.lat],
-        getIcon: () => 'airplane',
-        getSize: () => 1,
-        getColor: () => [255, 140, 0],
-        outline: true,
-        outlineWidth: 1,
-        outlineColor: [0, 0, 0],
-      }),
-    ];
-
-    this.deckOverlay.setProps({ layers: layers });
+    this.map.loadImage('/assets/airplane.png', (error, image) => {
+      if (error) {
+        console.error('Error loading the airplane icon image:', error);
+      } else {
+        this.map.addImage('airplane-icon', image);
+        this.map.addLayer({
+          id: 'airplane-layer',
+          type: 'symbol',
+          source: 'airplanes',
+          layout: {
+            'icon-image': 'airplane-icon',
+            'icon-size': 0.02,
+            'icon-allow-overlap': true,
+            'icon-rotate': ['get', 'heading'],
+          },
+          paint: {},
+        });
+      }
+    });
   }
 }
