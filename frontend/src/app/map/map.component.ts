@@ -15,6 +15,9 @@ const MAPBOX_ACCESS_TOKEN =
 export class MapComponent implements OnInit {
   private map!: mapboxgl.Map;
   private popup!: mapboxgl.Popup;
+  searchCallsign: string = '';
+  airplanes: Feature<Point>[] = [];
+  private callsignMap: { [key: string]: Feature<Point> } = {};
 
   ngOnInit(): void {
     mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
@@ -52,13 +55,14 @@ export class MapComponent implements OnInit {
         if (this.popup && this.popup.isOpen()) {
           this.popup.remove();
         }
+        const altitudeInMeters = (altitude * 0.3048).toFixed(2);
 
         this.popup = new mapboxgl.Popup({ closeButton: false })
           .setLngLat(coordinates as LngLatLike)
           .setHTML(
             `<div>
               <strong>Call Sign:</strong> ${callSign}<br>
-              <strong>Altitude:</strong> ${altitude} ft<br>
+              <strong>Altitude:</strong> ${altitudeInMeters} m<br>
               <strong>Speed:</strong> ${speed} knots
             </div>`
           )
@@ -81,7 +85,7 @@ export class MapComponent implements OnInit {
     try {
       const response = await axios.get(OPENSKY_API_URL);
       const flightData = response.data.states;
-      const airplanes: Feature<Point>[] = flightData.map(
+      this.airplanes = flightData.map(
         (flightArr: any) =>
           ({
             type: 'Feature',
@@ -102,14 +106,14 @@ export class MapComponent implements OnInit {
       if (source) {
         source.setData({
           type: 'FeatureCollection',
-          features: airplanes,
+          features: this.airplanes,
         });
       } else {
         this.map.addSource('airplanes', {
           type: 'geojson',
           data: {
             type: 'FeatureCollection',
-            features: airplanes,
+            features: this.airplanes,
           },
         });
 
@@ -135,6 +139,58 @@ export class MapComponent implements OnInit {
       }
     } catch (error) {
       console.error('Error fetching flight data:', error);
+    }
+    this.preprocessCallsigns();
+  }
+
+  private preprocessCallsigns(): void {
+    this.airplanes.forEach((airplane: Feature<Point>) => {
+      const callsign = airplane.properties['callSign'];
+      const callsignWithoutSpaces = callsign.replace(/\s/g, '');
+      // Map the callsign without spaces to the airplane feature
+      this.callsignMap[callsignWithoutSpaces] = airplane;
+    });
+  }
+
+  searchByCallsign(): void {
+    // Retrieve the preprocessed callsign from the map
+    const foundAirplane = this.callsignMap[this.searchCallsign];
+
+    if (foundAirplane) {
+      const coordinates: LngLatLike = [
+        foundAirplane.geometry.coordinates[0],
+        foundAirplane.geometry.coordinates[1],
+      ];
+
+      // Center the map on the found airplane's coordinates
+      this.map.flyTo({
+        center: coordinates,
+        zoom: 10, // Adjust the zoom level as needed
+      });
+
+      // Create and open the popup for the found airplane
+      const altitudeInMeters = (
+        foundAirplane.properties['altitude'] * 0.3048
+      ).toFixed(2);
+      const { callSign, altitude, speed } = foundAirplane.properties;
+      const popupContent = `
+        <div>
+          <strong>Call Sign:</strong> ${callSign}<br>
+          <strong>Altitude:</strong> ${altitudeInMeters} m<br>
+          <strong>Speed:</strong> ${speed} knots
+        </div>
+      `;
+
+      if (this.popup && this.popup.isOpen()) {
+        // If a popup is already open, update its content and position
+        this.popup.setLngLat(coordinates).setHTML(popupContent);
+      } else {
+        // If no popup is open, create a new one and open it
+        this.popup = new mapboxgl.Popup({ closeButton: false })
+          .setLngLat(coordinates)
+          .setHTML(popupContent)
+          .addTo(this.map);
+      }
     }
   }
 }
