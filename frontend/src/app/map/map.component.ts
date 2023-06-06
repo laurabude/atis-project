@@ -93,6 +93,7 @@ export class MapComponent implements OnInit {
               callSign: flightArr[1] || '',
               altitude: flightArr[7] || 0,
               speed: flightArr[9] || 0,
+              heading: flightArr[10] || 0, // Add heading property
             },
           } as Feature<Point>)
       );
@@ -120,6 +121,7 @@ export class MapComponent implements OnInit {
             'icon-image': 'airplane-icon',
             'icon-size': 0.02,
             'icon-allow-overlap': true,
+            'icon-rotate': ['get', 'heading'], // Use heading property to rotate the icon
           },
           paint: {},
         });
