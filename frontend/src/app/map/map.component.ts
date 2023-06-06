@@ -119,7 +119,14 @@ export class MapComponent implements OnInit {
           source: 'airplanes',
           layout: {
             'icon-image': 'airplane-icon',
-            'icon-size': 0.02,
+            'icon-size': {
+              base: 1,
+              stops: [
+                [0, 0.001], // Set the initial icon size
+                [8, 0.04], // Increase the icon size at zoom level 8
+                [16, 0.2], // Increase the icon size at zoom level 16
+              ],
+            },
             'icon-allow-overlap': true,
             'icon-rotate': ['get', 'heading'], // Use heading property to rotate the icon
           },
