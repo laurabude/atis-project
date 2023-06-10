@@ -4,7 +4,7 @@ import { Feature, Point } from 'geojson';
 import axios from 'axios';
 import Papa from 'papaparse';
 
-const OPENSKY_API_URL = ''; //https://opensky-network.org/api/states/all
+const OPENSKY_API_URL = 'https://opensky-network.org/api/states/all'; //
 const MAPBOX_ACCESS_TOKEN =
   'pk.eyJ1IjoibGF1cmFnaCIsImEiOiJjbGk4cThscnMxdjY0M2VtbDc3Yjdsa25wIn0.S3BdCi6irPxokf4rJcGBMQ';
 
@@ -22,7 +22,9 @@ export class MapComponent implements OnInit {
   filteredAirplanes: Feature<Point>[] = [];
   private callsignMap: { [key: string]: Feature<Point> } = {};
   airportData: any[] = []; // Array to store the parsed airport data
-  showAirports: boolean = true;
+  showAirports: boolean = false;
+  hideAirplanes: boolean = false;
+  filterDropdownOpen: boolean = false;
 
   ngOnInit(): void {
     mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
@@ -34,6 +36,17 @@ export class MapComponent implements OnInit {
     });
     this.fetchFlightData();
   }
+
+  toggleFilterDropdown() {
+    this.filterDropdownOpen = !this.filterDropdownOpen;
+  }
+
+  toggleHideAirplanes(): void {
+    this.hideAirplanes = !this.hideAirplanes;
+    const layerVisibility = this.hideAirplanes ? 'none' : 'visible';
+    this.map.setLayoutProperty('airplane-layer', 'visibility', layerVisibility);
+  }
+
 
   parseCSVData(): Promise<any[]> {
     const csvUrl = 'assets/filtered_airports.csv'; // Path to your airport data file
@@ -87,16 +100,13 @@ export class MapComponent implements OnInit {
       }
     });
 
-    airportMarkers.forEach((marker) => {
-      marker.addTo(map);
-    });
+   
 
     // Toggle visibility of airport markers
     const toggleButton = document.getElementById('toggle-airports');
-    let airportsVisible = true;
 
     toggleButton?.addEventListener('click', () => {
-      if (airportsVisible) {
+      if (this.showAirports) {
         airportMarkers.forEach((marker) => {
           marker.remove();
         });
@@ -106,7 +116,7 @@ export class MapComponent implements OnInit {
         });
       }
 
-      airportsVisible = !airportsVisible;
+      this.showAirports = !this.showAirports;
     });
   }
 
@@ -220,6 +230,7 @@ export class MapComponent implements OnInit {
             },
             'icon-allow-overlap': true,
             'icon-rotate': ['get', 'heading'],
+            'visibility': this.hideAirplanes ? 'none' : 'visible',
           },
           paint: {},
         });

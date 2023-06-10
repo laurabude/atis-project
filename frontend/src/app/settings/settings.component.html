@@ -1,0 +1,64 @@
+<div class="settings">
+    <div class="settings-card">
+        <h3>User Settings</h3>
+    </div>
+    <div class="parallel">
+        <div class="user-info">
+            <div class="user-section">
+                <img [src]="userPhoto" alt="profile-picture" (click)="openModal()">
+                <div class="modal-background" *ngIf="showModal">
+                    <div class="modal-content">
+                      <button class="close-button" (click)="closeModal()">X</button> <!-- Close button -->
+                      <h3>Select Profile Picture</h3>
+                      <div class="profile-picture-picker">
+                        <div class="profile-picture" [ngClass]="{ 'selected': selectedPhoto === photo }" *ngFor="let photo of photos" (click)="selectPhoto(photo)">
+                          <img [src]="photo" alt="Profile Picture">
+                        </div>
+                      </div>
+                        <div class="preview-section" *ngIf="selectedPhoto">
+                        <h3>Preview:</h3>
+                        <img [src]="selectedPhoto" alt="Selected Profile Picture">
+                        <button class="photo-button" (click)="confirmSelection()">Confirm</button>
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+            <div class="border-left user-section">
+                Email:
+                <input type="text" placeholder="Email" /><br>
+                Password:
+                <input type="text" placeholder="Password" /><br>
+                <button class="edit-email">Change email</button>
+            </div>
+            <div class="border-left user-section">
+                Old Password:
+                <input type="text" placeholder="Old Password" /><br>
+                New Password:
+                <input type="text" placeholder="New Password" /><br>
+                Confirm New Password:
+                <input type="text" placeholder="Confrim New Password" /><br>
+                <button class="password-change">Change password</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="settings-card user-logs" (click)="toggleLogVisibility()" >
+        <h3>User Logs <i [class]="isLogVisible ? 'fa fa-chevron-up' : 'fa fa-chevron-down'" aria-hidden="true"></i></h3>
+      </div>
+      
+      <div [@slideInOut]="isLogVisible ? 'in' : 'out'" class="log-card settings-card">
+        User: Eu Date : <br>
+        OVERVIEW
+      </div>
+      <div [@slideInOut]="isLogVisible ? 'in' : 'out'" class="log-card settings-card">
+        User: Eu Date : <br>
+        OVERVIEW
+      </div>
+      <div [@slideInOut]="isLogVisible ? 'in' : 'out'" class="log-card settings-card">
+        User: Eu Date : <br>
+        OVERVIEW
+      </div>
+      
+    <button class="delete-account">Delete account</button>
+</div>

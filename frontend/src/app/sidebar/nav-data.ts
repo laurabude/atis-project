@@ -35,7 +35,7 @@ export const navbarData = [
     label: 'Map',
   },
   {
-    routeLink: 'user',
+    routeLink: 'settings',
     icon: 'fa fa-cog',
     label: 'Settings',
   },

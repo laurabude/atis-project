@@ -32,6 +32,7 @@ import { AirportsComponent } from './airports/airports.component';
 import { MapComponent } from './map/map.component';
 import { TabsEvraComponent } from './tabs-evra/tabs-evra.component';
 import { AtisFormEvraComponent } from './atis-form-evra/atis-form-evra.component';
+import { SettingsComponent } from './settings/settings.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +57,7 @@ import { AtisFormEvraComponent } from './atis-form-evra/atis-form-evra.component
     MapComponent,
     TabsEvraComponent,
     AtisFormEvraComponent,
+    SettingsComponent,
   ],
   imports: [
     FormsModule,
