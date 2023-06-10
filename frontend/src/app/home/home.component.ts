@@ -40,4 +40,10 @@ export class HomeComponent implements OnInit {
       this.weather[airport] = data;
     });
   }
+
+  onTafRequest(airport) {
+    this.weatherService.getTAFData(airport).subscribe((data: any) => {
+      this.weather[airport] = data;
+    });
+  }
 }

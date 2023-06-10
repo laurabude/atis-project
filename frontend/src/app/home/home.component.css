@@ -14,11 +14,22 @@
   margin-left: 2.6%;
   margin-top: 2.6%;
   display: grid;
-  grid-template-columns: 0.7fr 2fr 0.7fr;
+  grid-template-columns: 0.5fr 2.4fr 0.5fr;
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
+
+.airport-image img {
+  height: 10.2rem;
+  border-radius: 8px;
+}
+
+.airport-image {
+  display: flex;
+  justify-content: center;
+}
+
 .airports {
   display: grid;
   grid-template-columns: 1fr;
@@ -29,13 +40,21 @@
 
 .weather {
   display: flex;
-  justify-content: space-around;
-  flex-direction: column;
+  justify-content: center;
 }
 
 .weather textarea {
-  height: 6rem;
+  height: 10rem;
+  width: 97%;
   resize: none;
+  outline: none;
+  font-size: 1rem;
+  color: black;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
+  margin: 0.5% 0%;
+  caret-color: black;
 }
 
 button {
@@ -58,4 +77,24 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(108, 106, 106, 0.3);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(255, 255, 255, 0.3);
 }

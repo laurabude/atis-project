@@ -60,7 +60,7 @@ const aviationWeatherProxy = createProxyMiddleware({
 });
 
 const openskyProxy = createProxyMiddleware({
-  target: 'https://opensky-network.org',
+  target: 'https://opensky-network.org/api',
   changeOrigin: true,
   pathRewrite: {
     '^/api/opensky': '',

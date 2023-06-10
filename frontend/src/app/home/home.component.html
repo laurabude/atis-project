@@ -1,46 +1,41 @@
 <div class="airports">
   <div class="airport-card">
-    <h3>ENFL</h3>
+    <div class="airport-image">
+      <img src="\assets\EnflThumbnail.png" matTooltip="Test" />
+    </div>
     <div class="weather">
-      <div class="weather-buttons">
-        <button class="btn" (click)="onMetarRequest('ENFL')">
-          LATEST METAR
-        </button>
-        <button class="btn">LATEST TAF</button>
-      </div>
       <textarea readonly>{{ weather.ENFL }}</textarea>
     </div>
     <div class="functions">
-      <button class="btn">ATIS REPORT</button>
-      <button class="btn">OVERVIEW</button>
+      <button class="btn" (click)="onMetarRequest('ENFL')">LATEST METAR</button>
+      <button class="btn" (click)="onTafRequest('ENFL')">LATEST TAF</button>
+      <a href="atis-report/enfl"><button class="btn">ATIS REPORT</button></a>
     </div>
   </div>
   <div class="airport-card">
-    <h3>ENFL</h3>
+    <div class="airport-image">
+      <img src="\assets\SabeThumbnail.png" />
+    </div>
     <div class="weather">
-      <div class="weather-buttons">
-        <button class="btn">LATEST METAR</button>
-        <button class="btn">LATEST TAF</button>
-      </div>
-      <textarea readonly></textarea>
+      <textarea readonly>{{ weather.SABE }}</textarea>
     </div>
     <div class="functions">
-      <button class="btn">ATIS REPORT</button>
-      <button class="btn">OVERVIEW</button>
+      <button class="btn" (click)="onMetarRequest('SABE')">LATEST METAR</button>
+      <button class="btn" (click)="onTafRequest('SABE')">LATEST TAF</button>
+      <a href="atis-report/sabe"><button class="btn">ATIS REPORT</button></a>
     </div>
   </div>
   <div class="airport-card">
-    <h3>ENFL</h3>
+    <div class="airport-image">
+      <img src="\assets\EvraThumbnail.png" />
+    </div>
     <div class="weather">
-      <div class="weather-buttons">
-        <button class="btn">LATEST METAR</button>
-        <button class="btn">LATEST TAF</button>
-      </div>
-      <textarea readonly></textarea>
+      <textarea readonly>{{ weather.EVRA }}</textarea>
     </div>
     <div class="functions">
-      <button class="btn">ATIS REPORT</button>
-      <button class="btn">OVERVIEW</button>
+      <button class="btn" (click)="onMetarRequest('EVRA')">LATEST METAR</button>
+      <button class="btn" (click)="onTafRequest('EVRA')">LATEST TAF</button>
+      <a href="atis-report/evra"><button class="btn">ATIS REPORT</button></a>
     </div>
   </div>
 </div>

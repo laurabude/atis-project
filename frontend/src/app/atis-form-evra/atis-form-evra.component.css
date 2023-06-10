@@ -250,11 +250,42 @@ textarea[readonly] {
 }
 .wind-shear-grid {
   display: grid;
-  grid-template-columns: repeat(5, 2fr);
+  grid-template-columns: 6.5fr 5fr 4fr 6fr 1fr;
   grid-template-rows: 1fr;
   grid-row-gap: 0px;
   grid-column-gap: 2px;
 }
+
+.wind-shear-grid .wind-shear {
+  display: grid;
+  grid-template-columns: 1.17fr 2fr;
+  grid-template-rows: 1fr;
+  grid-row-gap: 0px;
+  grid-column-gap: 2px;
+}
+
+.wind-shear-grid .rep {
+  display: grid;
+  grid-template-columns: 2.15fr 1fr;
+}
+.rep .select-box {
+  width: 86%;
+  margin-left: 1px;
+}
+.rep label {
+  left: 60px;
+  position: relative;
+}
+
+.wind-shear-grid .ws {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+}
+
+.wind-shear .select-box {
+  width: 100%;
+}
+
 .turbulence-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
