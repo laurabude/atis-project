@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
-  photos: string[] = ['/assets/photo1.jpg', '/assets/photo2.jpg', '/assets/photo3.jpg'];
+  photos: string[] = ['/assets/photo(1).jpg', '/assets/photo(2).jpg', '/assets/photo(3).jpg', '/assets/photo(4).jpg', '/assets/photo(5).jpg', '/assets/photo.jpeg'];
   selectedPhoto: string;
   showModal: boolean = false;
   confirmedPhoto: string;
@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.backgorund.style.backgroundImage = 'url(register.png)';
+    this.backgorund.style.backgroundImage = 'url(../assets/register.png)';
     this.backgorund.style.backgroundSize = 'cover';
   }
   ngOnDestroy(): void {

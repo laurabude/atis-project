@@ -5,14 +5,29 @@
     placeholder="Search by callsign"
     [(ngModel)]="searchCallsign"
     (keyup.enter)="searchByCallsign()"
+    id="search"
   />
   <button id="search-button" (click)="searchByCallsign()">
     <i class="fa fa-search" aria-hidden="true"></i>
   </button>
-  <button id="filter-flying" (click)="toggleFilterInAir()">
-    Show only flying airplanes
-  </button>
-  <button id="toggle-airports" (click)="toggleFilterInAir()">
-    Show only airports
-  </button>
+
+  <!-- Filter dropdown -->
+  <div class="filter-dropdown">
+    <button id="filter-button" (click)="toggleFilterDropdown()">
+      Filter <i class="fa fa-chevron-down" aria-hidden="true"></i>
+    </button>
+    <div class="filter-content" [ngClass]="{ 'show': filterDropdownOpen }">
+      <button class="dropdown-button" (click)="toggleHideAirplanes()">Toggle Airplanes
+        <input type="checkbox" class="checkbox-color"  [(ngModel)] = "!hideAirplanes">
+      </button>
+      <button id="filter-flying" [disabled]="hideAirplanes" class="dropdown-button" (click)="toggleFilterInAir()">
+        Landed airplanes
+        <input type="checkbox" class="checkbox-color"  [(ngModel)] = "!showOnlyInAir && !hideAirplanes">
+      </button>
+      <button class="dropdown-button" id="toggle-airports">
+        Airports
+        <input type="checkbox" class="checkbox-color"  [(ngModel)] = "showAirports">
+      </button>
+    </div>
+  </div>
 </div>

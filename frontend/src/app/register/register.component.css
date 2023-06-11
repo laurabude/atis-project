@@ -22,8 +22,8 @@ label {
 }
 
 .profile-img-card {
-  width: 96px;
-  height: 96px;
+  width: 150px;
+  height: 150px;
   margin: 0 auto 10px;
   display: block;
   -moz-border-radius: 50%;
@@ -114,8 +114,9 @@ label {
 }
 
 .profile-picture.selected {
-  border: 2px solid rgb(0, 0, 0);
-  border-radius: 3%;
+  border-radius: 50%;
+  background-color: #455a64;
+    padding: 4px 4px 0px 4px;
 }
 
 .preview-section {
@@ -127,9 +128,15 @@ label {
   text-align: center;
 }
 
+.preview-section h3 {
+bottom: 15px;
+    position: relative;
+}
 .preview-section img {
-  max-width: 100%;
-  max-height: 200px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
   margin-bottom: 10px;
 }
 
@@ -143,4 +150,19 @@ label {
   cursor: pointer;
   font-size: 18px;
   color: #888;
+}
+
+.photo-button{
+  height: 40px;
+  width: 10rem;
+  margin: 3px;
+  color: #eceff1;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #455a64;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
 }
