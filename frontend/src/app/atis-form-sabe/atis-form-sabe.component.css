@@ -12,16 +12,16 @@
   height: 100%;
 }
 
-.select-box:has(select[style="background: rgb(0, 0, 128);"]) {
+.select-box:has(select[style="background-color: rgb(0, 0, 128);"]) {
   background-color: #000080;
 }
 
-.select-box:has(select[style="background: rgb(112, 112, 112);"]) {
+.select-box:has(select[style="background-color: rgb(112, 112, 112);"]) {
   background-color: #707070 !important;
 }
 
 .select-box:has(.readonly-select) {
-  background-color: #707070;
+  background-color: #707070 !important;
 }
 
 .ng-dirty {
@@ -32,11 +32,11 @@ select option {
   color: #707070;
 }
 
-.select-box select[style="background: rgb(112, 112, 112);"] {
+.select-box select[style="background-color: rgb(112, 112, 112);"] {
   color: white;
 }
 
-select[style="background: rgb(0, 0, 128);"] {
+select[style="background-color: rgb(0, 0, 128);"] {
   color: white !important;
 }
 
@@ -49,7 +49,11 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: #455a64;
+  background-color: #455a64;
+}
+
+input[style="background-color: white; caret-color: black;"] {
+  color: black !important;
 }
 
 .input-box {
@@ -207,7 +211,7 @@ button {
   font-weight: 400;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: #455a64;
+  background-color: #455a64;
   border: 1px solid #ddd;
   border-radius: 6px;
   padding: 0 15px;
@@ -215,7 +219,7 @@ button {
 
 button:hover,
 button:focus {
-  background: #78909c;
+  background-color: #78909c;
 }
 .broadcast {
   float: right;

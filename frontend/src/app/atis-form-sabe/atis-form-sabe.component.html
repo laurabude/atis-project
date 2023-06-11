@@ -8,7 +8,7 @@
     <div class="select-box">
       <select
         name="mlr"
-        [style.background]="
+        [style.background-color]="
           isChanged['mlr'] == 0
             ? 'white'
             : isChanged['mlr'] == 1
@@ -35,7 +35,7 @@
         [(ngModel)]="formAtisFields['apptype1'].value"
         (ngModelChange)="onInputChange($event, 'apptype1')"
         name="apptype1"
-        [style.background]="
+        [style.background-color]="
           isChanged['apptype1'] == 0
             ? 'white'
             : isChanged['apptype1'] == 1
@@ -61,7 +61,7 @@
       [(ngModel)]="formAtisFields['holding'].value"
       name="holding"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['holding'] == 0
           ? 'white'
           : isChanged['holding'] == 1
@@ -82,7 +82,7 @@
       [(ngModel)]="formAtisFields['tl'].value"
       name="tl"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['tl'] == 0
           ? 'white'
           : isChanged['tl'] == 1
@@ -103,7 +103,7 @@
       [(ngModel)]="formAtisFields['temperature'].value"
       name="temperature"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['temperature'] == 0
           ? 'white'
           : isChanged['temperature'] == 1
@@ -125,7 +125,7 @@
       [(ngModel)]="formAtisFields['mlr.wind.dir'].value"
       type="text"
       name="mlr.wind.dir"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.wind.dir'] == 0
           ? 'white'
           : isChanged['mlr.wind.dir'] == 1
@@ -146,7 +146,7 @@
       [(ngModel)]="formAtisFields['mlr.wind.var.min'].value"
       name="mlr.wind.var.min"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.wind.var.min'] == 0
           ? 'white'
           : isChanged['mlr.wind.var.min'] == 1
@@ -167,7 +167,7 @@
       [(ngModel)]="formAtisFields['mlr.wind.var.max'].value"
       type="text"
       name="mlr.wind.var.max"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.wind.var.max'] == 0
           ? 'white'
           : isChanged['mlr.wind.var.max'] == 1
@@ -190,7 +190,7 @@
       [(ngModel)]="formAtisFields['dewpoint'].value"
       name="dewpoint"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['dewpoint'] == 0
           ? 'white'
           : isChanged['dewpoint'] == 1
@@ -212,7 +212,7 @@
         [(ngModel)]="formAtisFields['mlr.wind.speed'].value"
         name="mlr.wind.speed"
         type="text"
-        [style.background]="
+        [style.background-color]="
           isChanged['mlr.wind.speed'] == 0
             ? 'white'
             : isChanged['mlr.wind.speed'] == 1
@@ -238,7 +238,7 @@
         [(ngModel)]="formAtisFields['mlr.wind.gusts'].value"
         name="mlr.wind.gusts"
         type="text"
-        [style.background]="
+        [style.background-color]="
           isChanged['mlr.wind.gusts'] == 0
             ? 'white'
             : isChanged['mlr.wind.gusts'] == 1
@@ -264,7 +264,7 @@
       [(ngModel)]="formAtisFields['pressure'].value"
       name="pressure"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['pressure'] == 0
           ? 'white'
           : isChanged['pressure'] == 1
@@ -287,7 +287,7 @@
     [(ngModel)]="formAtisFields['visibility'].value"
     name="visibility"
     type="text"
-    [style.background]="
+    [style.background-color]="
       isChanged['visibility'] == 0
         ? 'white'
         : isChanged['visibility'] == 1
@@ -309,7 +309,7 @@
       [(ngModel)]="formAtisFields['rvrTdz'].value"
       name="rvrTdz"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['rvrTdz'] == 0
           ? 'white'
           : isChanged['rvrTdz'] == 1
@@ -330,7 +330,7 @@
       [(ngModel)]="formAtisFields['rvrMid'].value"
       name="rvrMid"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['rvrMid'] == 0
           ? 'white'
           : isChanged['rvrMid'] == 1
@@ -351,7 +351,7 @@
       [(ngModel)]="formAtisFields['rvrEnd'].value"
       name="rvrEnd"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['rvrEnd'] == 0
           ? 'white'
           : isChanged['rvrEnd'] == 1
@@ -373,7 +373,7 @@
     [(ngModel)]="formAtisFields['presentweather'].value"
     name="presentweather"
     type="text"
-    [style.background]="
+    [style.background-color]="
       isChanged['presentweather'] == 0
         ? 'white'
         : isChanged['presentweather'] == 1
@@ -394,7 +394,7 @@
     [(ngModel)]="formAtisFields['cloud1'].value"
     name="cloud1"
     type="text"
-    [style.background]="
+    [style.background-color]="
       isChanged['cloud1'] == 0
         ? 'white'
         : isChanged['cloud1'] == 1
@@ -415,7 +415,7 @@
     [(ngModel)]="formAtisFields['cbtcu'].value"
     name="cbtcu"
     type="text"
-    [style.background]="
+    [style.background-color]="
       isChanged['cbtcu'] == 0
         ? 'white'
         : isChanged['cbtcu'] == 1
@@ -436,7 +436,7 @@
     [(ngModel)]="formAtisFields['remarksEnglish'].value"
     name="remarksEnglish"
     type="text"
-    [style.background]="
+    [style.background-color]="
       isChanged['remarksEnglish'] == 0
         ? 'white'
         : isChanged['remarksEnglish'] == 1
@@ -457,7 +457,7 @@
     [(ngModel)]="formAtisFields['remarksSpanish'].value"
     name="remarksSpanish"
     type="text"
-    [style.background]="
+    [style.background-color]="
       isChanged['remarksSpanish'] == 0
         ? 'white'
         : isChanged['remarksSpanish'] == 1

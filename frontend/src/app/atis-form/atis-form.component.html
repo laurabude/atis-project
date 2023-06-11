@@ -1,6 +1,10 @@
 <div class="input-box">
   <label>Observation time </label>
-  <input [(ngModel)]="formAtisFields['obstime'].value" readonly />
+  <input
+    [(ngModel)]="formAtisFields['obstime'].value"
+    name="obstime"
+    readonly
+  />
 </div>
 <div class="grid">
   <div class="grid-item">
@@ -8,7 +12,7 @@
     <div class="select-box">
       <select
         name="mlr"
-        [style.background]="
+        [style.background-color]="
           isChanged['mlr'] == 0
             ? 'white'
             : isChanged['mlr'] == 1
@@ -38,7 +42,8 @@
       <select
         [(ngModel)]="formAtisFields['apptype'].value"
         (ngModelChange)="onInputChange($event, 'apptype')"
-        [style.background]="
+        name="apptype"
+        [style.background-color]="
           isChanged['apptype'] == 0
             ? 'white'
             : isChanged['apptype'] == 1
@@ -63,7 +68,7 @@
       [(ngModel)]="formAtisFields['holding'].value"
       name="holding"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['holding'] == 0
           ? 'white'
           : isChanged['holding'] == 1
@@ -84,7 +89,7 @@
       [(ngModel)]="formAtisFields['tl'].value"
       name="tl"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['tl'] == 0
           ? 'white'
           : isChanged['tl'] == 1
@@ -105,7 +110,7 @@
       [(ngModel)]="formAtisFields['mlr.wind.dir'].value"
       type="text"
       name="mlr.wind.dir"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.wind.dir'] == 0
           ? 'white'
           : isChanged['mlr.wind.dir'] == 1
@@ -127,7 +132,7 @@
         [(ngModel)]="formAtisFields['mlr.wind.var.min'].value"
         name="mlr.wind.var.min"
         type="text"
-        [style.background]="
+        [style.background-color]="
           isChanged['mlr.wind.var.min'] == 0
             ? 'white'
             : isChanged['mlr.wind.var.min'] == 1
@@ -148,7 +153,7 @@
         [(ngModel)]="formAtisFields['mlr.wind.var.max'].value"
         type="text"
         name="mlr.wind.var.max"
-        [style.background]="
+        [style.background-color]="
           isChanged['mlr.wind.var.max'] == 0
             ? 'white'
             : isChanged['mlr.wind.var.max'] == 1
@@ -173,7 +178,7 @@
         [(ngModel)]="formAtisFields['mlr.wind.speed'].value"
         name="mlr.wind.speed"
         type="text"
-        [style.background]="
+        [style.background-color]="
           isChanged['mlr.wind.speed'] == 0
             ? 'white'
             : isChanged['mlr.wind.speed'] == 1
@@ -199,7 +204,7 @@
         [(ngModel)]="formAtisFields['mlr.wind.gusts'].value"
         name="mlr.wind.gusts"
         type="text"
-        [style.background]="
+        [style.background-color]="
           isChanged['mlr.wind.gusts'] == 0
             ? 'white'
             : isChanged['mlr.wind.gusts'] == 1
@@ -226,7 +231,7 @@
     [(ngModel)]="formAtisFields['visibility'].value"
     name="visibility"
     type="text"
-    [style.background]="
+    [style.background-color]="
       isChanged['visibility'] == 0
         ? 'white'
         : isChanged['visibility'] == 1
@@ -247,7 +252,7 @@
     [(ngModel)]="formAtisFields['rvr'].value"
     name="rvr"
     type="text"
-    [style.background]="
+    [style.background-color]="
       isChanged['rvr'] == 0
         ? 'white'
         : isChanged['rvr'] == 1
@@ -268,7 +273,7 @@
     [(ngModel)]="formAtisFields['presentweather'].value"
     name="presentweather"
     type="text"
-    [style.background]="
+    [style.background-color]="
       isChanged['presentweather'] == 0
         ? 'white'
         : isChanged['presentweather'] == 1
@@ -289,7 +294,7 @@
     [(ngModel)]="formAtisFields['clouds'].value"
     name="clouds"
     type="text"
-    [style.background]="
+    [style.background-color]="
       isChanged['clouds'] == 0
         ? 'white'
         : isChanged['clouds'] == 1
@@ -311,7 +316,7 @@
       [(ngModel)]="formAtisFields['temperature'].value"
       name="temperature"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['temperature'] == 0
           ? 'white'
           : isChanged['temperature'] == 1
@@ -332,7 +337,7 @@
       [(ngModel)]="formAtisFields['dewpoint'].value"
       name="dewpoint"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['dewpoint'] == 0
           ? 'white'
           : isChanged['dewpoint'] == 1
@@ -353,7 +358,7 @@
       [(ngModel)]="formAtisFields['pressure'].value"
       name="pressure"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['pressure'] == 0
           ? 'white'
           : isChanged['pressure'] == 1
@@ -374,7 +379,7 @@
       [(ngModel)]="formAtisFields['qfe'].value"
       name="qfe"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['qfe'] == 0
           ? 'white'
           : isChanged['qfe'] == 1
@@ -398,7 +403,7 @@
   <textarea
     [(ngModel)]="formAtisFields['freetext'].value"
     name="freetext"
-    [style.background]="
+    [style.background-color]="
       isChanged['freetext'] == 0
         ? 'white'
         : isChanged['freetext'] == 1
@@ -418,7 +423,8 @@
   <div class="select-box">
     <select
       [(ngModel)]="formAtisFields['fixedtext'].value"
-      [style.background]="
+      name="fixedtext"
+      [style.background-color]="
         isChanged['fixedtext'] == 0
           ? 'white'
           : isChanged['fixedtext'] == 1

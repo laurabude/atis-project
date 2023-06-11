@@ -25,6 +25,7 @@
     ],
     "strictPropertyInitialization":false,
     "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": true,

@@ -1,0 +1,43 @@
+{
+  "cards": [
+    {
+      "href": "atis-report/enfl",
+      "title": "ENFL",
+      "subtitle": "Florø Airport Norway",
+      "type": "Public",
+      "operator": "Avinor",
+      "serves": "Florø, Norway",
+      "coordinates": {
+        "latitude": "61°35′01″N",
+        "longitude": "005°01′29″E"
+      },
+      "image": "assets/enfl.jpg"
+    },
+    {
+      "href": "atis-report/sabe",
+      "title": "SABE",
+      "subtitle": "Jorge Newbery Airfield",
+      "type": "Military / Public",
+      "operator": "Aeropuertos Argentina 2000 S.A.",
+      "serves": "Buenos Aires, Argentina",
+      "coordinates": {
+        "latitude": "34°33′32″S",
+        "longitude": "058°24′59″W"
+      },
+      "image": "assets/sabe.jpg"
+    },
+    {
+      "href": "atis-report/evra",
+      "title": "EVRA",
+      "subtitle": "Riga International Airport",
+      "type": "Public",
+      "operator": "Government of Latvia",
+      "serves": "Riga, Latvia",
+      "coordinates": {
+        "latitude": "56°55′25″N",
+        "longitude": "023°58′16″E"
+      },
+      "image": "assets/evra.jpg"
+    }
+  ]
+}

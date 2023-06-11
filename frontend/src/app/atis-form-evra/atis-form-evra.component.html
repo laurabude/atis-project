@@ -10,7 +10,7 @@
         [(ngModel)]="formAtisFields['apptype1'].value"
         (ngModelChange)="onInputChange($event, 'apptype1')"
         name="apptype1"
-        [style.background]="
+        [style.background-color]="
           isChanged['apptype1'] == 0
             ? 'white'
             : isChanged['apptype1'] == 1
@@ -34,7 +34,7 @@
     <div class="select-box">
       <select
         name="mlr"
-        [style.background]="
+        [style.background-color]="
           isChanged['mlr'] == 0
             ? 'white'
             : isChanged['mlr'] == 1
@@ -49,8 +49,12 @@
         [ngClass]="{ 'readonly-select': readonlyMode }"
       >
         <option></option>
-        <option>31</option>
-        <option>13</option>
+        <option>07</option>
+        <option>10</option>
+        <option>14</option>
+        <option>25</option>
+        <option>28</option>
+        <option>32</option>
       </select>
     </div>
   </div>
@@ -60,7 +64,7 @@
       [(ngModel)]="formAtisFields['holding'].value"
       name="holding"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['holding'] == 0
           ? 'white'
           : isChanged['holding'] == 1
@@ -79,7 +83,7 @@
       [(ngModel)]="formAtisFields['tl'].value"
       name="tl"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['tl'] == 0
           ? 'white'
           : isChanged['tl'] == 1
@@ -101,7 +105,7 @@
       [(ngModel)]="formAtisFields['mlr.wind.dir'].value"
       name="mlr.wind.dir"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.wind.dir'] == 0
           ? 'white'
           : isChanged['mlr.wind.dir'] == 1
@@ -122,7 +126,7 @@
       [(ngModel)]="formAtisFields['mlr.wind.var.min'].value"
       name="mlr.wind.var.min"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.wind.var.min'] == 0
           ? 'white'
           : isChanged['mlr.wind.var.min'] == 1
@@ -143,7 +147,7 @@
       [(ngModel)]="formAtisFields['mlr.wind.var.max'].value"
       type="text"
       name="mlr.wind.var.max"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.wind.var.max'] == 0
           ? 'white'
           : isChanged['mlr.wind.var.max'] == 1
@@ -166,7 +170,7 @@
       [(ngModel)]="formAtisFields['mlr.wind.speed'].value"
       name="mlr.wind.speed"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.wind.speed'] == 0
           ? 'white'
           : isChanged['mlr.wind.speed'] == 1
@@ -188,7 +192,7 @@
       [(ngModel)]="formAtisFields['mlr.wind.gusts.min'].value"
       name="mlr.wind.gusts.min"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.wind.gusts.min'] == 0
           ? 'white'
           : isChanged['mlr.wind.gusts.min'] == 1
@@ -209,7 +213,7 @@
       [(ngModel)]="formAtisFields['mlr.wind.gusts'].value"
       name="mlr.wind.gusts"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.wind.gusts'] == 0
           ? 'white'
           : isChanged['mlr.wind.gusts'] == 1
@@ -232,7 +236,7 @@
       [(ngModel)]="formAtisFields['mlr.mid.wind.dir'].value"
       name="mlr.mid.wind.dir"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.mid.wind.dir'] == 0
           ? 'white'
           : isChanged['mlr.mid.wind.dir'] == 1
@@ -255,7 +259,7 @@
       [(ngModel)]="formAtisFields['mlr.mid.wind.var.min'].value"
       name="mlr.mid.wind.var.min"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.mid.wind.var.min'] == 0
           ? 'white'
           : isChanged['mlr.mid.wind.var.min'] == 1
@@ -276,7 +280,7 @@
       [(ngModel)]="formAtisFields['mlr.mid.wind.var.max'].value"
       type="text"
       name="mlr.mid.wind.var.max"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.mid.wind.var.max'] == 0
           ? 'white'
           : isChanged['mlr.mid.wind.var.max'] == 1
@@ -299,7 +303,7 @@
       [(ngModel)]="formAtisFields['mlr.mid.wind.speed'].value"
       name="mlr.mid.wind.speed"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.mid.wind.speed'] == 0
           ? 'white'
           : isChanged['mlr.mid.wind.speed'] == 1
@@ -323,7 +327,7 @@
       [(ngModel)]="formAtisFields['mlr.mid.wind.gusts.min'].value"
       name="mlr.mid.wind.gusts.min"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.mid.wind.gusts.min'] == 0
           ? 'white'
           : isChanged['mlr.mid.wind.gusts.min'] == 1
@@ -344,7 +348,7 @@
       [(ngModel)]="formAtisFields['mlr.mid.wind.gusts'].value"
       name="mlr.mid.wind.gusts"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.mid.wind.gusts'] == 0
           ? 'white'
           : isChanged['mlr.mid.wind.gusts'] == 1
@@ -369,7 +373,7 @@
       [(ngModel)]="formAtisFields['mlr.end.wind.speed'].value"
       name="mlr.end.wind.speed"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.end.wind.speed'] == 0
           ? 'white'
           : isChanged['mlr.end.wind.speed'] == 1
@@ -393,7 +397,7 @@
       [(ngModel)]="formAtisFields['mlr.end.wind.gusts.min'].value"
       name="mlr.end.wind.gusts.min"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.end.wind.gusts.min'] == 0
           ? 'white'
           : isChanged['mlr.end.wind.gusts.min'] == 1
@@ -414,7 +418,7 @@
       [(ngModel)]="formAtisFields['mlr.end.wind.gusts'].value"
       name="mlr.end.wind.gusts"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['mlr.end.wind.gusts'] == 0
           ? 'white'
           : isChanged['mlr.end.wind.gusts'] == 1
@@ -439,7 +443,7 @@
     [(ngModel)]="formAtisFields['visibility'].value"
     name="visibility"
     type="text"
-    [style.background]="
+    [style.background-color]="
       isChanged['visibility'] == 0
         ? 'white'
         : isChanged['visibility'] == 1
@@ -461,7 +465,7 @@
       [(ngModel)]="formAtisFields['rvrTdz'].value"
       name="rvrTdz"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['rvrTdz'] == 0
           ? 'white'
           : isChanged['rvrTdz'] == 1
@@ -482,7 +486,7 @@
       [(ngModel)]="formAtisFields['rvrMid'].value"
       name="rvrMid"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['rvrMid'] == 0
           ? 'white'
           : isChanged['rvrMid'] == 1
@@ -503,7 +507,7 @@
       [(ngModel)]="formAtisFields['rvrEnd'].value"
       name="rvrEnd"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['rvrEnd'] == 0
           ? 'white'
           : isChanged['rvrEnd'] == 1
@@ -525,7 +529,7 @@
     [(ngModel)]="formAtisFields['presentweather'].value"
     name="presentweather"
     type="text"
-    [style.background]="
+    [style.background-color]="
       isChanged['presentweather'] == 0
         ? 'white'
         : isChanged['presentweather'] == 1
@@ -546,7 +550,7 @@
     [(ngModel)]="formAtisFields['clouds'].value"
     name="clouds"
     type="text"
-    [style.background]="
+    [style.background-color]="
       isChanged['clouds'] == 0
         ? 'white'
         : isChanged['clouds'] == 1
@@ -568,7 +572,7 @@
       [(ngModel)]="formAtisFields['temperature'].value"
       name="temperature"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['temperature'] == 0
           ? 'white'
           : isChanged['temperature'] == 1
@@ -589,7 +593,7 @@
       [(ngModel)]="formAtisFields['dewpoint'].value"
       name="dewpoint"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['dewpoint'] == 0
           ? 'white'
           : isChanged['dewpoint'] == 1
@@ -610,7 +614,7 @@
       [(ngModel)]="formAtisFields['pressure'].value"
       name="pressure"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['pressure'] == 0
           ? 'white'
           : isChanged['pressure'] == 1
@@ -634,7 +638,7 @@
         [(ngModel)]="formAtisFields['windsheartype'].value"
         (ngModelChange)="onInputChange($event, 'windsheartype')"
         name="windsheartype"
-        [style.background]="
+        [style.background-color]="
           isChanged['windsheartype'] == 0
             ? 'white'
             : isChanged['windsheartype'] == 1
@@ -647,9 +651,9 @@
         [ngClass]="{ 'readonly-select': readonlyMode }"
       >
         <option></option>
-        <option>ILS</option>
-        <option>VOR</option>
-        <option>NDB</option>
+        <option>LIGHT</option>
+        <option>MEDIUM</option>
+        <option>HEAVY</option>
       </select>
     </div>
   </div>
@@ -660,7 +664,7 @@
         [(ngModel)]="formAtisFields['windshearintensity'].value"
         (ngModelChange)="onInputChange($event, 'windshearintensity')"
         name="windshearintensity"
-        [style.background]="
+        [style.background-color]="
           isChanged['windshearintensity'] == 0
             ? 'white'
             : isChanged['windshearintensity'] == 1
@@ -673,9 +677,9 @@
         [ngClass]="{ 'readonly-select': readonlyMode }"
       >
         <option></option>
-        <option>ILS</option>
-        <option>VOR</option>
-        <option>NDB</option>
+        <option>MODERATE</option>
+        <option>SEVERE</option>
+        <option>STRONG</option>
       </select>
     </div>
   </div>
@@ -686,7 +690,7 @@
         [(ngModel)]="formAtisFields['windshearlocation'].value"
         (ngModelChange)="onInputChange($event, 'windshearlocation')"
         name="windshearlocation"
-        [style.background]="
+        [style.background-color]="
           isChanged['windshearlocation'] == 0
             ? 'white'
             : isChanged['windshearlocation'] == 1
@@ -699,9 +703,10 @@
         [ngClass]="{ 'readonly-select': readonlyMode }"
       >
         <option></option>
-        <option>ILS</option>
-        <option>VOR</option>
-        <option>NDB</option>
+        <option>AFTER TAKE-OFF</option>
+        <option>ON LANDING</option>
+        <option>IN APPROACH</option>
+        <option>IN CLIMB-OUT</option>
       </select>
     </div>
   </div>
@@ -711,7 +716,7 @@
         [(ngModel)]="formAtisFields['windshearrwy'].value"
         (ngModelChange)="onInputChange($event, 'windshearrwy')"
         name="windshearrwy"
-        [style.background]="
+        [style.background-color]="
           isChanged['windshearrwy'] == 0
             ? 'white'
             : isChanged['windshearrwy'] == 1
@@ -724,9 +729,13 @@
         [ngClass]="{ 'readonly-select': readonlyMode }"
       >
         <option></option>
-        <option>ILS</option>
-        <option>VOR</option>
-        <option>NDB</option>
+        <option>07</option>
+        <option>10</option>
+        <option>14</option>
+        <option>25</option>
+        <option>28</option>
+        <option>32</option>
+        <option>ALL</option>
       </select>
     </div>
   </div>
@@ -737,7 +746,7 @@
       [(ngModel)]="formAtisFields['windsheartime'].value"
       name="windsheartime"
       type="text"
-      [style.background]="
+      [style.background-color]="
         isChanged['windsheartime'] == 0
           ? 'white'
           : isChanged['windsheartime'] == 1
@@ -761,7 +770,7 @@
         [(ngModel)]="formAtisFields['turbulenceintensity'].value"
         (ngModelChange)="onInputChange($event, 'turbulenceintensity')"
         name="turbulenceintensity"
-        [style.background]="
+        [style.background-color]="
           isChanged['turbulenceintensity'] == 0
             ? 'white'
             : isChanged['turbulenceintensity'] == 1
@@ -774,9 +783,8 @@
         [ngClass]="{ 'readonly-select': readonlyMode }"
       >
         <option></option>
-        <option>ILS</option>
-        <option>VOR</option>
-        <option>NDB</option>
+        <option>MODERATE</option>
+        <option>SEVERE</option>
       </select>
     </div>
   </div>
@@ -787,7 +795,7 @@
         [(ngModel)]="formAtisFields['turbulencelocation'].value"
         (ngModelChange)="onInputChange($event, 'turbulencelocation')"
         name="turbulencelocation"
-        [style.background]="
+        [style.background-color]="
           isChanged['turbulencelocation'] == 0
             ? 'white'
             : isChanged['turbulencelocation'] == 1
@@ -800,9 +808,9 @@
         [ngClass]="{ 'readonly-select': readonlyMode }"
       >
         <option></option>
-        <option>ILS</option>
-        <option>VOR</option>
-        <option>NDB</option>
+        <option>IN_CLOUDS</option>
+        <option>BETWEEN ... FEET AND ... FEET</option>
+        <option>FROM GROUND TO ... FEET</option>
       </select>
     </div>
   </div>

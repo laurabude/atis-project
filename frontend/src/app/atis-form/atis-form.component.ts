@@ -72,9 +72,9 @@ export class AtisFormComponent {
   readonlyMode = false;
   isBroadcastBtnDisabled = false;
   messageReceived = false;
-  @Output() currentBroadcast = new EventEmitter<string>();
+  @Output() currentBroadcastENGLISH = new EventEmitter<string>();
   @Output() isSubscribed = new EventEmitter<boolean>();
-  @Output() nextBroadcast = new EventEmitter<string>();
+  @Output() nextBroadcastENGLISH = new EventEmitter<string>();
   @Output() lastBroadcastTime = new EventEmitter<string>();
   @Output() currentAtisCode = new EventEmitter<string>();
   @Output() nextAtisCode = new EventEmitter<string>();
@@ -91,15 +91,21 @@ export class AtisFormComponent {
         this.handleSubscribeMessage(msg);
       } else if (msg.content.type == 'ATIS_NEXT_UPDATE') {
         //Update next message
-        this.nextBroadcast.emit(msg.content.nextMessageText.ENGLISH);
+        this.nextBroadcastENGLISH.emit(msg.content.nextMessageText.ENGLISH);
         this.nextAtisCode.emit(msg.content.nextIcaoCode);
       } else if (msg.content.type === 'ATIS_FIELD_UPDATED') {
         this.isBroadcastBtnDisabled = false;
-        if (msg.content.fieldState === 'CHANGED_BEFORE_BROADCAST') {
+        if (
+          msg.content.fieldState === 'CHANGED_BEFORE_BROADCAST' &&
+          msg.content.fieldName != 'atiscode'
+        ) {
           this.formAtisFields[msg.content.fieldName].value = msg.content.value;
           this.isChanged[msg.content.fieldName] = 1; // albastru
         } else if (msg.content.fieldState === 'CHANGED_AFTER_BROADCAST') {
           this.isChanged[msg.content.fieldName] = 2; // gri
+        } else if (msg.content.fieldState === 'NORMAL') {
+          this.isChanged[msg.content.fieldName] = 0; //alb
+          // schimb culoare text
         }
       } else if (msg.type === 'ERROR') {
         this.isChanged[this.fieldName] = 3; // rosu
@@ -107,9 +113,7 @@ export class AtisFormComponent {
       } else if (msg.content.type === 'ATIS_RELEASED') {
         this.currentAtisCode.emit(msg.content.atisCode);
         this.lastBroadcastTime.emit(msg.content.releaseTime);
-        this.currentBroadcast.emit(msg.content.messageText.ENGLISH);
-        this.currentBroadcast.emit(msg.content.messageText.SPANISH);
-        this.currentBroadcast.emit(msg.content.messageText.DATIS);
+        this.currentBroadcastENGLISH.emit(msg.content.messageText.ENGLISH);
         Object.entries(this.formAtisFields).forEach(([key, field]) => {
           this.formAtisFields[field.name].state =
             msg.content.atisFields[field.name].state;
@@ -120,6 +124,7 @@ export class AtisFormComponent {
             'CHANGED_AFTER_BROADCAST'
           ) {
             this.isChanged[field.name] = 2;
+            console.log(this.isChanged['mlr']);
           }
         });
       }
@@ -161,7 +166,7 @@ export class AtisFormComponent {
     this.WebsocketService.messages.next(messageToSend);
     setTimeout(() => {
       if (!this.messageReceived) {
-        this.isChanged[messageToSend.content.fieldName] = 1;
+        this.isChanged[messageToSend.content.fieldName] = 0;
       }
     }, 50);
   }
@@ -242,7 +247,8 @@ export class AtisFormComponent {
   }
 
   handleSubscribeMessage(msg: ReceivedMessage) {
-    this.currentBroadcast.emit(msg.content.messageText.ENGLISH);
+    this.currentBroadcastENGLISH.emit(msg.content.messageText.ENGLISH);
+    this.nextBroadcastENGLISH.emit(msg.content.nextMessageText.ENGLISH);
     this.lastBroadcastTime.emit(msg.content.releaseTime);
     Object.entries(this.formAtisFields).forEach(([key, field]) => {
       this.formAtisFields[field.name].value =

@@ -1,4 +1,5 @@
 import { formatDate } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -18,6 +19,9 @@ export class TabsSabeComponent {
   currentCode: string;
   nextCode: string;
   isRed: boolean = false;
+  audioFilePath: string;
+
+  constructor(private http: HttpClient) {}
 
   getCurrentCode(currentCode) {
     this.currentCode = currentCode;
@@ -57,5 +61,23 @@ export class TabsSabeComponent {
     } else {
       this.isRed = false;
     }
+  }
+
+  convertTextToSpeech(message: string, language: string): void {
+    const requestBody = { text: message, language: language };
+    console.log(message);
+    this.http
+      .post<any>('http://localhost:5000/convert-text-to-speech', requestBody)
+      .subscribe({
+        next: (response) => {
+          const audio = new Audio(
+            'http://localhost:5000/assets/current-broadcast.mp3?_=' + Date.now()
+          );
+          audio.play();
+        },
+        error: (error) => {
+          // Handle any errors
+        },
+      });
   }
 }

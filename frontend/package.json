@@ -23,6 +23,7 @@
     "axios": "^1.4.0",
     "csv-parser": "^3.0.0",
     "deck.gl": "^8.9.16",
+    "howler": "^2.2.3",
     "mapbox-gl": "^2.15.0",
     "papaparse": "^5.4.1",
     "socket.io-client": "^4.6.2",

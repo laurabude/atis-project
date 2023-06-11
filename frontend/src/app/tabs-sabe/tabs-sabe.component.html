@@ -14,23 +14,32 @@
     <p class="atis-code" [class.red]="isRed">
       ({{ currentCode }}) (Current EN)
     </p>
-    <button class="icon-button">
+    <button
+      class="icon-button"
+      (click)="convertTextToSpeech(messageEnglish, 'en')"
+    >
       <i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
     </button>
     <p class="atis-code" [class.red]="isRed">
       ({{ currentCode }}) (Current ES)
     </p>
-    <button class="icon-button">
+    <button class="icon-button" (click)="convertTextToSpeech(messageES, 'es')">
       <i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
     </button>
   </div>
   <div class="next">
     <p class="atis-code">({{ nextCode }}) (Next EN)</p>
-    <button class="icon-button">
+    <button
+      class="icon-button"
+      (click)="convertTextToSpeech(nextMessageEnglish, 'en')"
+    >
       <i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
     </button>
     <p class="atis-code">({{ nextCode }}) (Next ES)</p>
-    <button class="icon-button">
+    <button
+      class="icon-button"
+      (click)="convertTextToSpeech(nextMessageES, 'es')"
+    >
       <i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>
     </button>
   </div>

@@ -172,9 +172,6 @@ export class AtisFormEvraComponent {
           this.isChanged[msg.content.fieldName] = 0; //alb
           // schimb culoare text
         }
-        if (msg.content.value == '') {
-          this.isChanged[msg.content.fieldName] = 1; // albastru
-        }
       } else if (msg.type === 'ERROR') {
         this.isChanged[this.fieldName] = 3; // rosu
         this.isBroadcastBtnDisabled = true;

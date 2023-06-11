@@ -1,44 +1,29 @@
 <div class="container">
-  <a href="atis-report/enfl" style="text-decoration: none">
+  <a
+    *ngFor="let airport of cardData"
+    [href]="airport.href"
+    style="text-decoration: none"
+  >
     <div class="card">
-      <div class="card-image"></div>
+      <div
+        class="card-image"
+        [ngStyle]="{ 'background-image': 'url(' + airport.image + ')' }"
+      ></div>
       <div class="card-text">
-        <h2>ENFL</h2>
-        <span class="date">Florø Airport Norway</span>
+        <h2>{{ airport.title }}</h2>
+        <span class="date">{{ airport.subtitle }}</span>
         <br />
         <br />
-        <p>Airport type: Public</p>
-        <p>Operator: Avinor</p>
-        <p>Serves: Florø, Norway</p>
+        <p>Airport type: {{ airport.type }}</p>
+        <p>Operator: {{ airport.operator }}</p>
+        <p>Serves: {{ airport.serves }}</p>
       </div>
       <div class="card-stats">
         <div class="stat">
-          <div class="value">61°35′01″N</div>
+          <div class="value">{{ airport.coordinates.latitude }}</div>
         </div>
         <div class="stat border">
-          <div class="value">005°01′29″E</div>
-        </div>
-      </div>
-    </div>
-  </a>
-  <a href="atis-report/sabe" style="text-decoration: none">
-    <div class="card">
-      <div class="card-image-2"></div>
-      <div class="card-text">
-        <h2>SABE</h2>
-        <p class="date">Jorge Newbery Airfield</p>
-        <br />
-        <br />
-        <p>Airport type: Military / Public</p>
-        <p>Operator: Aeropuertos Argentina 2000 S.A.</p>
-        <p>Serves: Buenos Aires, Argentina</p>
-      </div>
-      <div class="card-stats">
-        <div class="stat">
-          <div class="value">34°33′32″S</div>
-        </div>
-        <div class="stat border">
-          <div class="value">058°24′59″W</div>
+          <div class="value">{{ airport.coordinates.longitude }}</div>
         </div>
       </div>
     </div>

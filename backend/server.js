@@ -59,18 +59,9 @@ const aviationWeatherProxy = createProxyMiddleware({
   }
 });
 
-const openskyProxy = createProxyMiddleware({
-  target: 'https://opensky-network.org/api',
-  changeOrigin: true,
-  pathRewrite: {
-    '^/api/opensky': '',
-  },
-});
-
 
 // Proxy requests to the Aviation Weather API
 app.use('/api/aviation-weather', aviationWeatherProxy);
-app.use('/api/opensky',openskyProxy)
 
 // routes
 require("./app/routes/auth.routes")(app);

@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-tabs-evra',
@@ -19,6 +20,7 @@ export class TabsEvraComponent {
   nextCode: string;
   isRed: boolean = false;
 
+  constructor(private http: HttpClient) {}
   getCurrentCode(currentCode) {
     this.currentCode = currentCode;
     this.addClass();
@@ -57,5 +59,23 @@ export class TabsEvraComponent {
     } else {
       this.isRed = false;
     }
+  }
+
+  convertTextToSpeech(message: string, language: string): void {
+    const requestBody = { text: message, language: language };
+    console.log(message);
+    this.http
+      .post<any>('http://localhost:5000/convert-text-to-speech', requestBody)
+      .subscribe({
+        next: (response) => {
+          const audio = new Audio(
+            'http://localhost:5000/assets/current-broadcast.mp3?_=' + Date.now()
+          );
+          audio.play();
+        },
+        error: (error) => {
+          // Handle any errors
+        },
+      });
   }
 }

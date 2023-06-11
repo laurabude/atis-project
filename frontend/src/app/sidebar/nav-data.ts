@@ -3,10 +3,7 @@ export const subTags = [
     routeLink: 'atis-report/enfl',
     label: 'ENFL ARR/DEP',
   },
-  {
-    routeLink: 'atis-report/enfl',
-    label: 'ENFL ARR',
-  },
+
   {
     routeLink: 'atis-report/sabe',
     label: 'SABE ARR/DEP',
