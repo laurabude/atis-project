@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { WebsocketService } from './websocket.service';
 import { AuthService } from './_services/auth.service';
+import { LogService } from './_services/log.service';
 import { StorageService } from './_services/storage.service';
 import { EventBusService } from './_shared/event-bus.service';
 
@@ -22,17 +23,18 @@ export class AppComponent {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  userPic?: string;
 
   eventBusSub?: Subscription;
 
   constructor(
     private storageService: StorageService,
     private authService: AuthService,
-    private eventBusService: EventBusService
+    private eventBusService: EventBusService,
+    private logService: LogService
   ) {}
   ngOnInit(): void {
     this.isLoggedIn = this.storageService.isLoggedIn();
-
     if (this.isLoggedIn) {
       const user = this.storageService.getUser();
       this.roles = user.roles;
@@ -41,6 +43,7 @@ export class AppComponent {
       this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
+      this.userPic = user.pic;
     }
 
     this.eventBusSub = this.eventBusService.on('logout', () => {

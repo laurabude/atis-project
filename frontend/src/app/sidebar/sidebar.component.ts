@@ -13,6 +13,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { StorageService } from '../_services/storage.service';
 import { navbarData } from './nav-data';
 
@@ -52,11 +53,12 @@ interface SideNavToggle {
 export class SidebarComponent implements OnInit {
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
   @Input() username = '';
+  @Input() userPic = '';
   @Input() isLoggedIn = false;
   collapsed = false;
   screenWidth = 0;
   navData = navbarData;
-  constructor(private storageService: StorageService) {}
+  constructor(private storageService: StorageService, private router: Router) {}
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.screenWidth = window.innerWidth;
@@ -92,5 +94,6 @@ export class SidebarComponent implements OnInit {
   signOut() {
     this.storageService.clean();
     this.isLoggedIn = false;
+    this.router.navigate(['login']);
   }
 }

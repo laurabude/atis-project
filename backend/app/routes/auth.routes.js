@@ -22,4 +22,17 @@ module.exports = function(app) {
   app.post("/api/auth/signin", controller.signin);
 
   app.post("/api/auth/signout", controller.signout);
+
+  app.put("/api/auth/changepicture", controller.changepicture);
+
+  app.put("/api/auth/updateusername", controller.updateusername);
+
+  app.put("/api/auth/updatepassword", controller.updatepassword);
+
+  app.post("/api/auth/deleteuser", controller.deleteuser);
+  
+  
+  
+  //folosim post in loc de delete pentru a putea trimite parametrii
+
 };

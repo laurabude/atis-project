@@ -5,12 +5,15 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   AtisFields,
   Content,
   ReceivedMessage,
   WebsocketService,
 } from '../websocket.service';
+import { LogService } from '../_services/log.service';
+import { StorageService } from '../_services/storage.service';
 @Component({
   selector: 'app-atis-form-evra',
   templateUrl: './atis-form-evra.component.html',
@@ -147,8 +150,14 @@ export class AtisFormEvraComponent {
   @Output() nextAtisCode = new EventEmitter<string>();
   received: ReceivedMessage;
   sent = [];
+  user: any;
 
-  constructor(private WebsocketService: WebsocketService) {
+  constructor(
+    private WebsocketService: WebsocketService,
+    private storageService: StorageService,
+    private logService: LogService,
+    private router: Router
+  ) {
     this.autoMode();
     WebsocketService.messages.subscribe((msg) => {
       this.messageReceived = true;
@@ -180,6 +189,8 @@ export class AtisFormEvraComponent {
         this.lastBroadcastTime.emit(msg.content.releaseTime);
         this.currentBroadcastEnglish.emit(msg.content.messageText.ENGLISH);
         this.currentBroadcastDATIS.emit(msg.content.messageText.DATIS);
+        this.logBroadcast(msg.content.messageText.ENGLISH, 'EN');
+        this.logBroadcast(msg.content.messageText.DATIS, 'DATIS');
         Object.entries(this.formAtisFields).forEach(([key, field]) => {
           this.formAtisFields[field.name].state =
             msg.content.atisFields[field.name].state;
@@ -196,10 +207,30 @@ export class AtisFormEvraComponent {
     });
   }
 
+  ngOnInit() {
+    this.user = this.storageService.getUser();
+    if (this.user.roles == null) {
+      this.router.navigate(['login']);
+    }
+  }
+
   ngAfterViewInit() {
     setTimeout(() => {
       this.sendSubscribeMsg();
     }, 100);
+  }
+
+  logBroadcast(text: string, language: string) {
+    this.logService
+      .addEntry(this.user.username, 'ENFL', text, language)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   sendBroadcastMessage() {

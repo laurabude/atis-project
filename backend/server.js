@@ -66,6 +66,7 @@ app.use('/api/aviation-weather', aviationWeatherProxy);
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
+require("./app/routes/log.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -84,16 +85,6 @@ function initial() {
         }
 
         console.log("added 'user' to roles collection");
-      });
-
-      new Role({
-        name: "moderator"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'moderator' to roles collection");
       });
 
       new Role({

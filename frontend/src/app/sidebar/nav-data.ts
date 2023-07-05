@@ -16,15 +16,15 @@ export const subTags = [
 
 export const navbarData = [
   {
-    routeLink: 'home',
-    icon: 'fa fa-home',
+    routeLink: 'atis-report',
+    icon: 'fa fa-plane',
     label: 'Home',
+    subtags: subTags,
   },
   {
-    routeLink: 'atis-report',
-    icon: 'fa-plane fa',
-    label: 'Airports',
-    subtags: subTags,
+    routeLink: 'weather-data',
+    icon: 'fa-cloud fa',
+    label: 'Weather Data',
   },
   {
     routeLink: 'map',
@@ -35,5 +35,6 @@ export const navbarData = [
     routeLink: 'settings',
     icon: 'fa fa-cog',
     label: 'Settings',
+    loginRequired: true,
   },
 ];

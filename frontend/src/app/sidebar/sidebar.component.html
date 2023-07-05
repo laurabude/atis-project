@@ -14,7 +14,10 @@
 
   <ul class="sidenav-nav">
     <div *ngFor="let data of navData">
-      <li class="sidenav-nav-item">
+      <li
+        *ngIf="!data.loginRequired || (data.loginRequired && isLoggedIn)"
+        class="sidenav-nav-item"
+      >
         <a
           class="sidenav-nav-link"
           [routerLink]="[data.routeLink]"
@@ -29,7 +32,7 @@
           </ng-container>
         </a>
       </li>
-      <ng-container *ngIf="data.subtags && collapsed">
+      <ng-container *ngIf="data.subtags && collapsed && isLoggedIn">
         <li class="sidenav-nav-item subTag" *ngFor="let subTag of data.subtags">
           <a
             class="sidenav-nav-link"
@@ -48,7 +51,8 @@
       </ng-container>
     </div>
 
-    <li>
+    <li class="logged-user">
+      <img [src]="userPic" class="profile-pic" *ngIf="isLoggedIn" />
       <ng-container *ngIf="collapsed">
         <ng-container *ngIf="isLoggedIn; else elseBlock">
           <div class="logged-in">
@@ -60,20 +64,22 @@
           </div>
         </ng-container>
         <ng-template #elseBlock>
-          <a routerLink="/register">
-            <button class="btns-login" @fadeInOut>
-              Sign up
-              <i class="fa fa-sign-in"></i>
-            </button>
-          </a>
-          <a routerLink="/login">
-            <button class="btns-login" @fadeInOut>
-              Login
-              <span
-                class="sidenav-link-icon fa fa-solid arrow-right-to-bracket"
-              ></span>
-            </button>
-          </a>
+          <div class="logged-in margin-left">
+            <a routerLink="/login">
+              <button class="sign-out full-width padding-10px" @fadeInOut>
+                Login
+                <span
+                  class="sidenav-link-icon fa fa-solid arrow-right-to-bracket"
+                ></span>
+              </button>
+            </a>
+            <a routerLink="/register">
+              <button class="sign-out margin-bottom padding-10px" @fadeInOut>
+                Sign up
+                <i class="fa fa-sign-in"></i>
+              </button>
+            </a>
+          </div>
         </ng-template>
       </ng-container>
     </li>

@@ -1,27 +1,35 @@
 <div class="col-md-12">
   <div class="card card-container">
     <img
-      id="profile-img"
+      [id]="isSuccessful ? 'disabled' : 'profile-img'"
       [src]="userPhoto"
       class="profile-img-card"
       (click)="openModal()"
     />
     <div class="modal-background" *ngIf="showModal">
-        <div class="modal-content">
-          <button class="close-button" (click)="closeModal()">X</button> <!-- Close button -->
-          <h3>Select Profile Picture</h3>
-          <div class="profile-picture-picker">
-            <div class="profile-picture" [ngClass]="{ 'selected': selectedPhoto === photo }" *ngFor="let photo of photos" (click)="selectPhoto(photo)">
-              <img [src]="photo" alt="Profile Picture">
-            </div>
+      <div class="modal-content">
+        <button class="close-button" (click)="closeModal()">X</button>
+        <!-- Close button -->
+        <h3>Select Profile Picture</h3>
+        <div class="profile-picture-picker">
+          <div
+            class="profile-picture"
+            [ngClass]="{ selected: selectedPhoto === photo }"
+            *ngFor="let photo of photos"
+            (click)="selectPhoto(photo)"
+          >
+            <img [src]="photo" alt="Profile Picture" />
           </div>
-    <div class="preview-section" *ngIf="selectedPhoto">
-      <h3>Preview:</h3>
-      <img [src]="selectedPhoto" alt="Selected Profile Picture">
-      <button class="photo-button" (click)="confirmSelection()">Confirm</button>
+        </div>
+        <div class="preview-section" *ngIf="selectedPhoto">
+          <h3>Preview:</h3>
+          <img [src]="selectedPhoto" alt="Selected Profile Picture" />
+          <button class="photo-button" (click)="confirmSelection()">
+            Confirm
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
     <form
       *ngIf="!isSuccessful"
       name="form"
@@ -29,7 +37,7 @@
       #f="ngForm"
       novalidate
     >
-        <mat-form-field class="inputs" [hideRequiredMarker]="true">
+      <mat-form-field class="inputs" [hideRequiredMarker]="true">
         <mat-label>Username</mat-label>
         <input
           matInput
@@ -44,15 +52,13 @@
           [ngClass]="{ 'is-invalid': f.submitted && username.errors }"
         />
         <mat-error>
-        <div *ngIf="username.errors?.['required']">
-          Username is required!
-        </div>
-        <div *ngIf="username.errors?.['minlength']">
-          Username must be at least 3 characters
-        </div>
-        <div *ngIf="username.errors?.['maxlength']">
-          Username must be at most 20 characters
-        </div>
+          <div *ngIf="username.errors?.['required']">Username is required!</div>
+          <div *ngIf="username.errors?.['minlength']">
+            Username must be at least 3 characters
+          </div>
+          <div *ngIf="username.errors?.['maxlength']">
+            Username must be at most 20 characters
+          </div>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="inputs" [hideRequiredMarker]="true">
@@ -68,15 +74,13 @@
           #email="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
         />
-          <mat-error>
-            <div *ngIf="email.errors?.['required']">
-              Email is required
-            </div>
-            <div  *ngIf="email.errors?.['email']">
+        <mat-error>
+          <div *ngIf="email.errors?.['required']">Email is required</div>
+          <div *ngIf="email.errors?.['email']">
             Email must be a valid email address
           </div>
-          </mat-error>
-        </mat-form-field>
+        </mat-error>
+      </mat-form-field>
       <mat-form-field class="inputs" [hideRequiredMarker]="true">
         <mat-label>Password</mat-label>
         <input
@@ -91,16 +95,16 @@
           [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
         />
         <mat-error>
-          <div *ngIf="password.errors?.['required']">
-            Password is required
-          </div>
+          <div *ngIf="password.errors?.['required']">Password is required</div>
           <div *ngIf="password.errors?.['minlength']">
             Password must be at least 6 characters
           </div>
         </mat-error>
       </mat-form-field>
       <div class="form-group">
-        <button mat-raised-button class="btn btn-primary btn-block">Sign Up</button>
+        <button mat-raised-button class="btn btn-primary btn-block">
+          Sign Up
+        </button>
       </div>
 
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">

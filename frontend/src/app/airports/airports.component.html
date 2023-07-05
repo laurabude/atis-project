@@ -1,7 +1,7 @@
 <div class="container">
   <a
     *ngFor="let airport of cardData"
-    [href]="airport.href"
+    (click)="clickCard(airport.href)"
     style="text-decoration: none"
   >
     <div class="card">
@@ -28,4 +28,12 @@
       </div>
     </div>
   </a>
+  <div class="modal-background" *ngIf="showWarning">
+    <div class="modal-content">
+      <button class="close-button" (click)="closeWarning()">X</button>
+      <!-- Close button -->
+      <h3>You need to be logged in to view this content!</h3>
+      <button class="cancel-button" (click)="closeWarning()">Cancel</button>
+    </div>
+  </div>
 </div>

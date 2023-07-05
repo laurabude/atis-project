@@ -11,13 +11,20 @@ export class RegisterComponent implements OnInit {
     username: null,
     email: null,
     password: null,
-    photo: ''
+    pic: '',
   };
-  userPhoto= '//ssl.gstatic.com/accounts/ui/avatar_2x.png';
+  userPhoto = '//ssl.gstatic.com/accounts/ui/avatar_2x.png';
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
-  photos: string[] = ['/assets/photo(1).jpg', '/assets/photo(2).jpg', '/assets/photo(3).jpg', '/assets/photo(4).jpg', '/assets/photo(5).jpg', '/assets/photo.jpeg'];
+  photos: string[] = [
+    '/assets/photo(1).jpg',
+    '/assets/photo(2).jpg',
+    '/assets/photo(3).jpg',
+    '/assets/photo(4).jpg',
+    '/assets/photo(5).jpg',
+    '/assets/photo.jpeg',
+  ];
   selectedPhoto: string;
   showModal: boolean = false;
   confirmedPhoto: string;
@@ -35,21 +42,21 @@ export class RegisterComponent implements OnInit {
   selectPhoto(photo: string): void {
     this.selectedPhoto = photo;
   }
-  
+
   confirmSelection(): void {
     if (this.selectedPhoto) {
-      this.form.photo = this.selectedPhoto;
+      this.form.pic = this.selectedPhoto;
     }
     this.closeModal();
     this.userPhoto = this.selectedPhoto;
   }
 
   onSubmit(): void {
-    const { username, email, password } = this.form;
+    const { username, email, password, pic } = this.form;
 
-    this.authService.register(username, email, password).subscribe({
+    this.authService.register(username, email, password, pic).subscribe({
       next: (data) => {
-        console.log(data);
+        console.log(pic);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
       },
@@ -61,7 +68,7 @@ export class RegisterComponent implements OnInit {
   }
 
   openModal(): void {
-    this.showModal = true;
+    if (!this.isSuccessful) this.showModal = true;
   }
 
   closeModal(): void {

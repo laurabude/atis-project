@@ -5,12 +5,15 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   AtisFields,
   Content,
   ReceivedMessage,
   WebsocketService,
 } from '../websocket.service';
+import { LogService } from '../_services/log.service';
+import { StorageService } from '../_services/storage.service';
 
 @Component({
   selector: 'app-atis-form',
@@ -80,8 +83,14 @@ export class AtisFormComponent {
   @Output() nextAtisCode = new EventEmitter<string>();
   received: ReceivedMessage;
   sent = [];
+  user: any;
 
-  constructor(private WebsocketService: WebsocketService) {
+  constructor(
+    private WebsocketService: WebsocketService,
+    private logService: LogService,
+    private storageService: StorageService,
+    private router: Router
+  ) {
     this.autoMode();
     WebsocketService.messages.subscribe((msg) => {
       this.messageReceived = true;
@@ -114,6 +123,7 @@ export class AtisFormComponent {
         this.currentAtisCode.emit(msg.content.atisCode);
         this.lastBroadcastTime.emit(msg.content.releaseTime);
         this.currentBroadcastENGLISH.emit(msg.content.messageText.ENGLISH);
+        this.logBroadcast(msg.content.messageText.ENGLISH);
         Object.entries(this.formAtisFields).forEach(([key, field]) => {
           this.formAtisFields[field.name].state =
             msg.content.atisFields[field.name].state;
@@ -124,10 +134,27 @@ export class AtisFormComponent {
             'CHANGED_AFTER_BROADCAST'
           ) {
             this.isChanged[field.name] = 2;
-            console.log(this.isChanged['mlr']);
           }
         });
       }
+    });
+  }
+
+  ngOnInit() {
+    this.user = this.storageService.getUser();
+    if (this.user.roles == null) {
+      this.router.navigate(['login']);
+    }
+  }
+
+  logBroadcast(text: string) {
+    this.logService.addEntry(this.user.username, 'ENFL', text, 'EN').subscribe({
+      next: (data) => {
+        //console.log(data);
+      },
+      error: (err) => {
+        //console.log(err);
+      },
     });
   }
 

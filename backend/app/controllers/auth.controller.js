@@ -10,6 +10,7 @@ exports.signup = (req, res) => {
   const user = new User({
     username: req.body.username,
     email: req.body.email,
+    profileImage: req.body.pic,
     password: bcrypt.hashSync(req.body.password, 8),
   });
 
@@ -101,6 +102,7 @@ exports.signin = (req, res) => {
       res.status(200).send({
         id: user._id,
         username: user.username,
+        pic: user.profileImage,
         email: user.email,
         roles: authorities,
       });
@@ -115,3 +117,149 @@ exports.signout = async (req, res) => {
     this.next(err);
   }
 };
+
+exports.changepicture  = (req, res) => {
+  const user = new User({
+    username:req.body.username,
+    profileImage:req.body.pic,
+  })
+  // Find the user by username and update the picture
+  User.findOneAndUpdate({ username: user.username }, { profileImage: user.profileImage }, { new: true , useFindAndModify: false })
+    .populate("roles", "-__v")
+    .then(user => {
+      if (!user) {
+        return res.status(404).json({ message: "User not found." });
+      }
+      var authorities = [];
+
+      for (let i = 0; i < user.roles.length; i++) {
+        authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
+      }
+
+      return res.status(200).send({id: user._id,
+        username: user.username,
+        pic: user.profileImage,
+        email: user.email,
+        roles: authorities,});
+    })
+    .catch(err => {
+      res.status(500).json({ message: err.message });
+    });
+}
+
+exports.updateusername  = (req, res) => {
+  const user = new User({
+    username:req.body.username,
+    email:req.body.email,
+    password:req.body.password,
+  })
+  User.findOne({ email: user.email })
+  .populate("roles", "-__v")
+  .exec((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+
+    if (!user) {
+      return res.status(404).send({ message: "User Not found." });
+    }
+
+    var passwordIsValid = bcrypt.compareSync(
+      req.body.password,
+      user.password
+    );
+
+    if (!passwordIsValid) {
+      return res.status(401).send({ message: "Invalid Password!" });
+    }
+
+    var token = jwt.sign({ id: user.id }, config.secret, {
+      expiresIn: 86400, // 24 hours
+    });
+
+    var authorities = [];
+
+    for (let i = 0; i < user.roles.length; i++) {
+      authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
+    }
+
+    req.session.token = token;
+
+    user.username = req.body.username;
+    user.save()
+      .then(updatedUser => {
+        return res.status(200).send({id: user._id,
+          username: user.username,
+          pic: user.profileImage,
+          email: user.email,
+          roles: authorities,});
+      })
+      .catch(err => {
+        res.status(500).json({ message: err.message });
+      });
+
+  });
+}
+
+exports.updatepassword  = (req, res) => {
+  User.findOne({ username: req.body.username })
+  .exec((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+
+    if (!user) {
+      return res.status(404).send({ message: "User Not found." });
+    }
+
+    var passwordIsValid = bcrypt.compareSync(
+      req.body.oldPass,
+      user.password
+    );
+
+    if (!passwordIsValid) {
+      return res.status(401).send({ message: "Invalid Password!" });
+    }
+    user.password = bcrypt.hashSync(req.body.password, 8)
+    user.save((err) => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return;
+      }
+
+      res.status(200).send({ message: "Password was updated successfully!!" });
+    });
+  });
+}
+
+exports.deleteuser  = (req, res) => {
+  User.findOne({ username: req.body.username })
+  .exec((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+
+    if (!user) {
+      return res.status(404).send({ message: "User Not found." });
+    }
+
+    var passwordIsValid = bcrypt.compareSync(
+      req.body.password,
+      user.password
+    );
+
+    if (!passwordIsValid) {
+      return res.status(401).send({ message: "Invalid Password!" });
+    }
+    User.deleteOne({ username: req.body.username })
+          .then(() => {
+            return res.json({ message: "User deleted successfully." });
+          })
+          .catch(err => {
+            res.status(500).json({ message: err.message });
+          });
+  });
+}
