@@ -101,7 +101,10 @@ export class SettingsComponent {
     if (this.selectedPhoto) {
       this.authService
         .changepicture(this.user.username, this.selectedPhoto)
-        .subscribe((user) => this.storageService.saveUser(user));
+        .subscribe((user) => {
+          this.storageService.saveUser(user);
+          window.location.reload();
+        });
     }
     this.closeModal();
     this.userPhoto = this.selectedPhoto;
@@ -123,13 +126,12 @@ export class SettingsComponent {
 
   changePassword(): void {
     this.authService
-      .updateusername(
+      .updatepassword(
+        this.user.username,
         this.passwordForm['oldPass'],
-        this.passwordForm['password'],
-        this.passwordForm['confirmPassword']
+        this.passwordForm['password']
       )
       .subscribe((response) => {
-        this.storageService.saveUser(response);
         window.location.reload();
       });
   }

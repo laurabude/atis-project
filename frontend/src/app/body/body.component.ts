@@ -17,7 +17,9 @@ export class BodyComponent {
         this.router.url === '/atis-report/enfl' ||
         this.router.url === '/atis-report/sabe' ||
         this.router.url === '/atis-report/evra' ||
-        this.router.url === '/home'
+        this.router.url === '/home' ||
+        this.router.url === '/weather-data' ||
+        this.router.url === '/map'
       ) {
         styleClass = 'body-trimmed-atis';
       } else {

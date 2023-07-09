@@ -15,7 +15,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-#search{
+#search {
   height: 30px;
   outline: none;
   font-size: 1rem;
@@ -27,7 +27,7 @@
   caret-color: black;
   box-shadow: 0px 0px 5px 0px #8b8b8b;
   border: none;
-  width:250px
+  width: 250px;
 }
 
 .search-bar {
@@ -60,7 +60,7 @@
   background-color: white;
   cursor: pointer;
   width: 100%;
-  color: #4b4b4b
+  color: #4b4b4b;
 }
 
 .dropdown-button input[type="checkbox"] {
@@ -69,13 +69,12 @@
   z-index: -1;
 }
 
-.checkbox-color{
+.checkbox-color {
   accent-color: rgb(109, 214, 255);
 }
 
-.search-bar .dropdown-button:hover{
+.search-bar .dropdown-button:hover {
   background-color: #e0e0e0;
-
 }
 
 .airplane-icon:hover {
@@ -108,7 +107,7 @@
   margin: 0.5% 0%;
   background-color: white;
   border: none;
-  border-left:1px solid rgb(199, 199, 199);
+  border-left: 1px solid rgb(199, 199, 199);
   cursor: pointer;
 }
 

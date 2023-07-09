@@ -24,6 +24,9 @@ def convert_text_to_speech():
     audio_file_path = os.path.join(os.path.dirname(
         __file__), 'assets', 'current-broadcast.mp3')
 
+    if lang == 'en':
+        text = text.replace('AEROPARQUE', 'air-oh-park')
+
     myobj = gTTS(text=text, lang=lang, slow=False)
     myobj.save(audio_file_path)
 

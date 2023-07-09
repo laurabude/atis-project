@@ -27,6 +27,7 @@
 .body-trimmed-atis {
   width: calc(100% - 16.123rem);
   margin-left: 16.123rem;
+  overflow: hidden;
 }
 
 .body-md-screen {
