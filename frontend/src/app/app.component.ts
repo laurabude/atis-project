@@ -43,7 +43,9 @@ export class AppComponent {
       this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
-      this.userPic = user.pic;
+      this.userPic = ''
+        ? '//ssl.gstatic.com/accounts/ui/avatar_2x.png'
+        : user.pic;
     }
 
     this.eventBusSub = this.eventBusService.on('logout', () => {

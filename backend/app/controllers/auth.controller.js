@@ -252,14 +252,15 @@ exports.deleteuser  = (req, res) => {
     );
 
     if (!passwordIsValid) {
-      return res.status(401).send({ message: "Invalid Password!" });
-    }
+      return res.send({ message: "Invalid Password!" });
+    }else{
     User.deleteOne({ username: req.body.username })
           .then(() => {
-            return res.json({ message: "User deleted successfully." });
+            return res.status(200).json({ message: "User deleted successfully." });
           })
           .catch(err => {
             res.status(500).json({ message: err.message });
           });
+        }
   });
 }

@@ -107,6 +107,14 @@ button:focus {
   background-color: rgb(198 51 51);
 }
 
+.delete-error-message {
+  color: rgb(198 51 51);
+}
+
+.rose-hover:hover {
+  background-color: rgb(232, 151, 151);
+}
+
 .log-card {
   height: fit-content;
   min-height: 5rem;
@@ -135,6 +143,56 @@ button:focus {
 .modal-content h3,
 .modal-content h4 {
   margin: 0;
+}
+
+.modal-background-warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Set a high z-index value */
+}
+
+.modal-content-warning {
+  position: relative;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.modal-content-warning h3 {
+  margin-top: 2%;
+}
+
+.cancel-button {
+  height: 40px;
+  width: 100px;
+  margin: 3px;
+  color: #eceff1;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #455a64;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
+  float: right;
+  margin-top: 6%;
+}
+
+.delete {
+  background-color: rgb(198 51 51);
+  width: 150px;
+}
+
+.delete :hover {
+  background-color: rgb(235, 151, 151);
 }
 
 .profile-picture-picker {
@@ -185,7 +243,7 @@ button:focus {
 .close-button {
   width: auto;
   position: absolute;
-  top: 10px;
+  top: 0px;
   right: 10px;
   padding: 5px;
   background-color: transparent;
@@ -193,6 +251,15 @@ button:focus {
   cursor: pointer;
   font-size: 18px;
   color: #888;
+}
+
+.modal-body {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.modal-body input {
+  margin-top: 5%;
 }
 
 .photo-button {

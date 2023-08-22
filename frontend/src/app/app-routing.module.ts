@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'admin', component: BoardAdminComponent },
+  { path: '**', redirectTo: 'atis-report' },
 ];
 
 @NgModule({

@@ -40,6 +40,8 @@ export class SettingsComponent {
   selectedPhoto: string;
   userPhoto = '/assets/photo.jpeg';
   isLogVisible = false;
+  showWarning = false;
+  deleteErrorMessage = null;
   user: any;
   logs: any;
   photos: string[] = [
@@ -55,12 +57,12 @@ export class SettingsComponent {
     email: null,
     password: null,
   };
+  deletePassword: null;
   passwordForm: { [key: string]: string } = {
     oldPass: null,
     password: null,
     confirmPassword: null,
   };
-  deletePassword: string;
   constructor(
     private storageService: StorageService,
     private logService: LogService,
@@ -70,11 +72,13 @@ export class SettingsComponent {
 
   ngOnInit() {
     this.user = this.storageService.getUser();
-    console.log(this.user.roles);
     if (this.user.roles == null) {
       this.router.navigate(['login']);
     } else {
-      this.userPhoto = this.user.pic;
+      this.userPhoto =
+        this.user.pic == ''
+          ? '//ssl.gstatic.com/accounts/ui/avatar_2x.png'
+          : this.user.pic;
       this.logService
         .getLogs(this.user.username, this.user.roles)
         .subscribe((data) => ((this.logs = data), console.log(data)));
@@ -136,5 +140,37 @@ export class SettingsComponent {
       });
   }
 
-  deleteAccount(): void {}
+  deleteAccountPopup(): void {
+    this.showWarning = true;
+  }
+
+  deleteAccount(): void {
+    console.log(this.deletePassword);
+    this.authService
+      .deleteuser(this.user.username, this.deletePassword)
+      .subscribe((response) => {
+        if (response.message == 'Invalid Password!') {
+          console.log('invalidPassword');
+        }
+      });
+  }
+
+  deleteUserAccount(): void {
+    this.authService
+      .deleteuser(this.user.username, this.deletePassword)
+      .subscribe((response) => {
+        if (response.message == 'User deleted successfully.') {
+          this.storageService.clean();
+          window.location.reload();
+        } else {
+          this.deleteErrorMessage = response.message;
+        }
+      });
+  }
+
+  closeWarning(): void {
+    this.showWarning = false;
+    this.deletePassword = null;
+    this.deleteErrorMessage = null;
+  }
 }

@@ -104,7 +104,31 @@
       OVERVIEW: "{{ log.language }}: {{ log.log }}"
     </div>
   </div>
-  <button class="delete-account" (click)="(deleteAccount)">
+  <button class="delete-account rose-hover" (click)="deleteAccountPopup()">
     Delete account
   </button>
+  <div class="modal-background-warning" *ngIf="showWarning">
+    <div class="modal-content-warning">
+      <button class="close-button" (click)="closeWarning()">X</button>
+      <div class="modal-body">
+        <h3>
+          To delete your entire account and its data enter your password below
+        </h3>
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          [(ngModel)]="deletePassword"
+        />
+        <h5 class="delete-error-message">{{ this.deleteErrorMessage }}</h5>
+      </div>
+      <button class="cancel-button" (click)="closeWarning()">Cancel</button>
+      <button
+        class="cancel-button delete rose-hover"
+        (click)="deleteUserAccount()"
+      >
+        Delete Account
+      </button>
+    </div>
+  </div>
 </div>
